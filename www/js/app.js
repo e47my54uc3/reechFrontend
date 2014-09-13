@@ -26,8 +26,8 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-        .state('home', {
-            url: '/home',
+        .state('questions', {
+            url: '/questions',
             templateUrl: 'templates/questions.html',
             controller: 'questionsCtrl'
         })
@@ -44,6 +44,6 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/questions');
 
 });
