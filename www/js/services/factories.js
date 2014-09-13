@@ -45,9 +45,13 @@ reech.factory('User', ['$resource', function($resource) {
       method: 'GET',
       params: {},
       isArray: true
-    }
-  },
-  {
+    },
+    leaderBoard: {
+      url: BaseUrl + "users/leader_board",
+      method: 'GET',
+      params: {},
+      isArray: false
+    },
     update: {
       method: 'PUT',
       params: {

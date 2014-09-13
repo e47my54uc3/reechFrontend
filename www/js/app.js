@@ -36,6 +36,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
             url: '/friends',
             templateUrl: 'templates/friends.html',
             controller: 'friendsCtrl'
+        })
+        .state('leader_board', {
+            url: '/leader_board/:boardType',
+            templateUrl: 'templates/leader_board.html',
+            controller: 'leaderBoardCtrl'
         });
 
     // if none of the above states are matched, use this as the fallback
