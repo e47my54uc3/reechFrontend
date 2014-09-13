@@ -16,3 +16,20 @@ reech.factory('Question', ['$resource', function($resource) {
   }
   );
 }]);
+
+reech.factory('Category', ['$resource', function($resource) {
+  return $resource(BaseUrl + "categories/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);
