@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-reech = angular.module('reech', ['ionic'])
+reech = angular.module('reech', ['ionic', 'ngResource'])
 
 reech.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,19 +20,19 @@ reech.run(function($ionicPlatform) {
 
 reech.config(function ($stateProvider, $urlRouterProvider) {
 
-        // Ionic uses AngularUI Router which uses the concept of states
-        // Learn more here: https://github.com/angular-ui/ui-router
-        // Set up the various states which the app can be in.
-        // Each state's controller can be found in controllers.js
-        $stateProvider
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
-            .state('home', {
-                url: '/home',
-                templateUrl: 'templates/friendships.html',
-                controller: 'friendshipsCtrl'
-            });
+        .state('home', {
+            url: '/home',
+            templateUrl: 'templates/questions.html',
+            controller: 'questionsCtrl'
+        });
 
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/home');
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/home');
 
-    });
+});
