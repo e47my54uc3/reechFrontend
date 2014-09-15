@@ -25,21 +25,30 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
     $stateProvider
-        .state('landing', {
-            url: '/landing',
-            controller: 'landingCtrl'
+       .state('reech', {
+            url: '/reech',
+            abstract: true,
+            templateUrl: 'templates/reech.html'
         })
 
-        .state('questions', {
+        .state('reech.questions', {
             url: '/questions',
-            templateUrl: 'templates/questions.html',
-            controller: 'questionsCtrl'
+            views: {
+        'reech-questions': {
+          templateUrl: 'templates/questions.html',
+          controller: 'questionsCtrl'
+        }
+      }
         })
 
-        .state('friends', {
+        .state('reech.friends', {
             url: '/friends',
-            templateUrl: 'templates/friends.html',
+            views: {
+        'reech-friends': {
+          templateUrl: 'templates/friends.html',
             controller: 'friendsCtrl'
+        }
+        }  
         })
         .state('leader_board', {
             url: '/leader_board/:boardType',
@@ -48,6 +57,6 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/landing');
+    $urlRouterProvider.otherwise('/reech/questions');
 
 });
