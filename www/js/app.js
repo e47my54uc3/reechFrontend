@@ -18,6 +18,15 @@ reech.run(function($ionicPlatform) {
   });
 })
 
+reech.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
+    for (var i=0; i<total; i++)
+      input.push(i);
+    return input;
+  };
+});
+
 reech.config(function ($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -34,26 +43,31 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
         .state('reech.questions', {
             url: '/questions',
             views: {
-        'reech-questions': {
-          templateUrl: 'templates/questions.html',
-          controller: 'questionsCtrl'
-        }
-      }
+                'reech-questions': {
+                    templateUrl: 'templates/questions.html',
+                    controller: 'questionsCtrl'
+                }
+            }
         })
 
         .state('reech.friends', {
             url: '/friends',
             views: {
-        'reech-friends': {
-          templateUrl: 'templates/friends.html',
-            controller: 'friendsCtrl'
-        }
-        }  
+                'reech-friends': {
+                    templateUrl: 'templates/friends.html',
+                    controller: 'friendsCtrl'
+                }
+            }  
         })
         .state('leader_board', {
             url: '/leader_board/:boardType',
             templateUrl: 'templates/leader_board.html',
             controller: 'leaderBoardCtrl'
+        })
+        .state('categories', {
+            url: '/categories',
+            templateUrl: 'templates/categories.html',
+            controller: 'categoriesCtrl'
         });
 
     // if none of the above states are matched, use this as the fallback
