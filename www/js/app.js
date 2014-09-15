@@ -25,6 +25,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
     $stateProvider
+        .state('landing', {
+            url: '/landing',
+            controller: 'landingCtrl'
+        })
 
         .state('questions', {
             url: '/questions',
@@ -44,6 +48,6 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/questions');
+    $urlRouterProvider.otherwise('/landing');
 
 });
