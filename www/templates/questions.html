@@ -2,19 +2,19 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="question in questions">
-        <div class="row responsive-sm">     	
-          <div class="col col-33 responsive-sm">
-            <span class="item-avatar">
-              <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}"></img>
-            </span>
+      <div class="row">
+        <div class="col col-50">
+          <a class="user-avatar item-avatar">
+            <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
+          </a>          
             {{question.posted_by}}
-          </div>
-          <div class="col col-33 responsive-sm">{{question.updated_at | timeago}}</div>
-          <div class="col col-33  pull-right responsive-sm">5miles</div>      	
         </div>
-        <div class="row responsive-sm">
-          <div class="col col-67 responsive-sm">{{question.post}}</div>
-          <div class="col col-33 responsive-sm"><img src="img/ionic.png"></img></div>
+        <div class="col col-33">{{question.updated_at | timeago}}</div>
+        <div class="col">5miles</div>
+      </div>
+        <div class="row">
+          <div class="col col-67 item-text-wrap">{{question.post}}</div>
+          <div class="col"><img src="img/ionic.png"></img></div>
         </div>
       </ion-item>
     </ion-list>
@@ -22,12 +22,10 @@
 </ion-view>
 <div class="bar bar-footer bar-dark">
   <button class="button button-clear col col-10" >All</button>
-  <button class="button button-clear col col-10">Mine</button>
-  <button class="button button-clear col col-10">Linked</button>
-  <button class="button button-clear col col-10">Starred</button>
-  <button class="button button-clear col col-10">
-    <i class="ion-loop"></i>
-  </button>  
+  <button class="button button-clear col col-20">Mine</button>
+  <button class="button button-clear col col-20">Linked</button>
+  <button class="button button-clear col col-20">Starred</button>
+  <button class="ion-loop button button-clear col col-10"></button>  
   <div class="responsive-sm"> 
     <a class="item-icon-right">
       <span class="badge badge-assertive">

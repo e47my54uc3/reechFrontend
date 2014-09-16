@@ -1,5 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .landing { 
-   background: url('../img/onboarding1.png') no-repeat center; 
-  
+   background: url('../img/onboarding1.png') no-repeat center;   
+}
+a.user-avatar{
+	padding-left: 32px;
 }
