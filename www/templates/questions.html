@@ -3,19 +3,22 @@
     <ion-list>
       <ion-item ng-repeat="question in questions">
       <div class="row">
-
-        <div class="col col-50 dark">
+        <div class="col col-50 dark item-text-wrap">
           <a class="user-avatar item-avatar">
             <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
           </a>{{question.posted_by}}            
         </div>
         <div class="col col-33"><h6 class="dark">{{question.updated_at | timeago}}</h6></div>
-        <div class="col"><h6 class="dark">5miles</h6></div>
+        <div class="col col-20"><h6 class="dark">5miles</h6></div>
       </div>
-        <div class="row">
-          <div class="col col-50 item-text-wrap dark">{{question.post}}</div>
-          <div class="col col-offset-10"><img src="img/ionic.png"></img></div>
+      <div class="row" ng-click="openModal(question)">
+        <div class="col col-50 item-text-wrap dark">{{question.post}}</div>
+        <div class="col col-offset-10">  
+          <a class="item-thumbnail">
+            <img class="full-image" ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/default-image.png'}}">
+          </a>
         </div>
+      </div>
       </ion-item>
     </ion-list>
   </ion-content>

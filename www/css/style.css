@@ -5,3 +5,22 @@
 a.user-avatar{
 	padding-left: 32px;
 }
+.item-avatar > img.user-avatar{
+	top: 37px !important;
+}
+.question{
+	min-height: 200px;
+}
+.question-image{
+	min-height: 400px;
+}
+.winter{
+	/* Fallback for web browsers that doesn't support RGBa */			
+	background: rgb(0, 0, 0);
+	/* RGBa with 0.6 opacity */
+	background: rgba(0, 0, 0, 0.6);
+}
+.main-box{
+	padding: 3px;
+	border: 1px gray solid;
+}
