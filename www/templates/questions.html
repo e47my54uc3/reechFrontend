@@ -3,34 +3,34 @@
     <ion-list>
       <ion-item ng-repeat="question in questions">
       <div class="row">
-        <div class="col col-50">
+
+        <div class="col col-50 dark">
           <a class="user-avatar item-avatar">
             <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
-          </a>          
-            {{question.posted_by}}
+          </a>{{question.posted_by}}            
         </div>
-        <div class="col col-33">{{question.updated_at | timeago}}</div>
-        <div class="col">5miles</div>
+        <div class="col col-33"><h6 class="dark">{{question.updated_at | timeago}}</h6></div>
+        <div class="col"><h6 class="dark">5miles</h6></div>
       </div>
         <div class="row">
-          <div class="col col-67 item-text-wrap">{{question.post}}</div>
-          <div class="col"><img src="img/ionic.png"></img></div>
+          <div class="col col-50 item-text-wrap dark">{{question.post}}</div>
+          <div class="col col-offset-10"><img src="img/ionic.png"></img></div>
         </div>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
-<div class="bar bar-footer bar-dark">
+<div class="bar bar-footer bar-stable">
   <button class="button button-clear col col-10" >All</button>
   <button class="button button-clear col col-20">Mine</button>
   <button class="button button-clear col col-20">Linked</button>
   <button class="button button-clear col col-20">Starred</button>
   <button class="ion-loop button button-clear col col-10"></button>  
-  <div class="responsive-sm"> 
+  <span class="responsive-sm col"> 
     <a class="item-icon-right">
       <span class="badge badge-assertive">
         <img src="img/small-currency.png"></img>
       </span>500
     </a>
-  </div>
+  </span>
 </div>
