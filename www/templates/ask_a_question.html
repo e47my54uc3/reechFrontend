@@ -1,0 +1,36 @@
+<ion-view title="Ask a Question">
+	<ion-content>
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+  					Category :
+				</div>
+				<select ng-model="questions.category_id" ng-options="category.title for category in categories">
+					<option value="">--- Choose a category ---</option>
+			    </select>
+			</label><br/>
+			<label class="item item-input">
+				<textarea placeholder="Tap to ask a question ..." rows="10"></textarea>
+			</label>
+		</div>
+
+		<div class="button-bar">
+				<a class="button" ng-click="takePicture()"><i class="icon ion-camera"></i></a>
+				<a class="button"><i class="icon ion-videocamera"></i></a>
+		</div>
+
+		<div class="button-bar">
+			<a class="button"><i class="icon ion-mic-a"></i></a>
+			<a class="button"><i class="icon ion-paperclip"></i></a>
+		</div>
+		
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-stable">
+		<div class="buttons  item-button-left">
+			<button class="button button-assertive">Cancel</button>
+		</div>
+		<div class="buttons item-button-right" ng-click="doSomething()">
+			<button class="button button-balanced">Ask</button>
+		</div>
+	</ion-footer-bar>
+</ion-view>

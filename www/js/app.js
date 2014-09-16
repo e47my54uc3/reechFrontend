@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-reech = angular.module('reech', ['ionic', 'ngResource'])
+reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova'])
 
 reech.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -60,10 +60,15 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/categories',
       templateUrl: 'templates/categories.html',
       controller: 'categoriesCtrl'
+    })
+    .state('ask_a_question', {
+      url: '/ask_a_question',
+      templateUrl: 'templates/ask_a_question.html',
+      controller: 'askAQuestionCtrl'
     });
 
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/questions');
+    $urlRouterProvider.otherwise('/ask_a_question');
 
   });
