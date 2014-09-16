@@ -9,14 +9,15 @@ reech.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+  if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
+  }
+  if(window.StatusBar) {
       StatusBar.styleDefault();
-    }
-  });
+  }
+});
 })
+
 
 reech.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -25,38 +26,23 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
     $stateProvider
-       .state('reech', {
-            url: '/reech',
-            abstract: true,
-            templateUrl: 'templates/reech.html'
-        })
-
-        .state('reech.questions', {
-            url: '/questions',
-            views: {
-        'reech-questions': {
-          templateUrl: 'templates/questions.html',
-          controller: 'questionsCtrl'
-        }
-      }
-        })
-
-        .state('reech.friends', {
-            url: '/friends',
-            views: {
-        'reech-friends': {
-          templateUrl: 'templates/friends.html',
-            controller: 'friendsCtrl'
-        }
-        }  
-        })
-        .state('leader_board', {
-            url: '/leader_board/:boardType',
-            templateUrl: 'templates/leader_board.html',
-            controller: 'leaderBoardCtrl'
-        });
+    .state('questions/:category_id', {
+        url: '/questions',        
+        templateUrl: 'templates/questions.html',
+        controller: 'questionsCtrl'       
+    })
+    .state('friends', {
+        url: '/friends',
+        templateUrl: 'templates/friends.html',
+        controller: 'friendsCtrl'
+    })
+    .state('leader_board', {
+        url: '/leader_board/:boardType',
+        templateUrl: 'templates/leader_board.html',
+        controller: 'leaderBoardCtrl'
+    });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/reech/questions');
+    $urlRouterProvider.otherwise('/questions');
 
 });

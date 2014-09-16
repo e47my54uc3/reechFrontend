@@ -1,8 +1,38 @@
 <ion-view title="Questions">
   <ion-content>
-     <div class="row">
-     	  <button class="col col-50 button button-assertive">{{questions[0].post}}</button>
-     	  <button class="col col-50 button button-calm">{{questions[1].post}}</button>
-     </div>
+    <ion-list>
+      <ion-item ng-repeat="question in questions">
+        <div class="row responsive-sm">     	
+          <div class="col col-33 responsive-sm">
+            <span class="item-avatar">
+              <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}"></img>
+            </span>
+            {{question.posted_by}}
+          </div>
+          <div class="col col-33 responsive-sm">{{question.updated_at | timeago}}</div>
+          <div class="col col-33  pull-right responsive-sm">5miles</div>      	
+        </div>
+        <div class="row responsive-sm">
+          <div class="col col-67 responsive-sm">{{question.post}}</div>
+          <div class="col col-33 responsive-sm"><img src="img/ionic.png"></img></div>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
+<div class="bar bar-footer bar-dark">
+  <button class="button button-clear col col-10" >All</button>
+  <button class="button button-clear col col-10">Mine</button>
+  <button class="button button-clear col col-10">Linked</button>
+  <button class="button button-clear col col-10">Starred</button>
+  <button class="button button-clear col col-10">
+    <i class="ion-loop"></i>
+  </button>  
+  <div class="responsive-sm"> 
+    <a class="item-icon-right">
+      <span class="badge badge-assertive">
+        <img src="img/small-currency.png"></img>
+      </span>500
+    </a>
+  </div>
+</div>
