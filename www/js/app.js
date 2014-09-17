@@ -5,19 +5,42 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova'])
 
-reech.run(function($ionicPlatform) {
+reech.run(function($ionicPlatform, $rootScope, $location) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-  if(window.cordova && window.cordova.plugins.Keyboard) {
-    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+  $rootScope.onLogin = function(data){
+    localStorage.apiKey = data.api_key;
+    localStorage.apiId = data.user_id; 
+    $location.path("/questions");    
   }
-  if(window.StatusBar) {
-    StatusBar.styleDefault();
-  }
-});
 })
 
+reech.config(function($httpProvider) {
+  var interceptor = function($q, $location) {
+    return {
+      'responseError': function(rejection) {
+        if (rejection.status == 401) {
+          if ($location.path().indexOf('login') < 0) {
+            $location.path('/sign_out');
+          }
+        }
+        if (rejection.status == 403) {
+          $location.path('/');
+        }
+        return $q.reject(rejection);
+      }
+    };
+  };
+  $httpProvider.interceptors.push(interceptor);
+});
 
 reech.filter('range', function() {
   return function(input, total) {
@@ -27,7 +50,6 @@ reech.filter('range', function() {
     return input;
   };
 });
-
 
 reech.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -40,6 +62,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/reech',
       abstract: true,
       templateUrl: 'templates/reech.html'
+    })
+    .state('login', {
+      url: '/login',      
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl'
     })
     .state('questions/:category_id', {
       url: '/questions',        
@@ -69,6 +96,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
 
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/ask_a_question');
+    $urlRouterProvider.otherwise('/login');
+
 
   });

@@ -79,3 +79,20 @@ reech.factory('Group', ['$resource', function($resource) {
   }
   );
 }]);
+
+reech.factory('Session', ['$resource', function($resource) {
+  return $resource(BaseUrl + "sessions/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);
