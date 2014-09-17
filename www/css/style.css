@@ -1,5 +1,57 @@
 /* Empty. Add your own CSS if you like */
-.landing { 
-   background: url('../img/onboarding1.png') no-repeat center; 
+.custom-div { 
   
+  background-color: rgb(215, 88, 52);
+  height: 88px;
+  border: 0px;  
+  border-radius: 0px; 
+  margin-top: -5px;
+  padding-top: 8px;
+  flex: 0 0 23%;
+  max-width: 22%;
+}
+img.logo {
+    width: 26px;
+    padding-top: 5px;
+}
+img.photo{
+
+    height: 75px;
+    width: 55px;
+}
+ 
+.bar-header {
+top: 0;
+border-top-width: 0;
+border-bottom-width: 0px;
+}
+.bar.bar-positive {
+border-color: #325692;
+background-color: #325692;
+background-image: linear-gradient(0deg, #145fd7, #145fd7 50%, transparent 50%);
+color: #fff;
+}
+.bar-positive .button {
+border-color: #325692;
+background-color: #325692;
+color: #fff;
+}
+.bar.bar-energized {
+border-color: #BBBBBB;
+background-color: #BBBBBB;
+background-image: linear-gradient(0deg, #d39211, #C2B7A2 50%, transparent 50%);
+color: #fff;
+}
+.bar-energized .button {
+border-color: #BBBBBB;
+background-color: #BBBBBB;
+color: #fff;
+}
+.divider-left{
+	border-left: 1px white solid !important;
+
+}
+.custom-icon {
+  font-size: 32px;
+  color : rgb(215, 88, 52);
 }

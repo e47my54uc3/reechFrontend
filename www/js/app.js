@@ -34,21 +34,21 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
         .state('reech.questions', {
             url: '/questions',
             views: {
-        'reech-questions': {
-          templateUrl: 'templates/questions.html',
-          controller: 'questionsCtrl'
-        }
-      }
+                'reech-questions': {
+                    templateUrl: 'templates/questions.html',
+                    controller: 'questionsCtrl'
+                }
+            }
         })
 
         .state('reech.friends', {
             url: '/friends',
             views: {
-        'reech-friends': {
-          templateUrl: 'templates/friends.html',
-            controller: 'friendsCtrl'
-        }
-        }  
+                'reech-friends': {
+                    templateUrl: 'templates/friends.html',
+                    controller: 'friendsCtrl'
+                }
+            }  
         })
         .state('leader_board', {
             url: '/leader_board/:boardType',
