@@ -1,7 +1,37 @@
-<ion-view title="Questions">
-  <ion-content>
-     {{groups}}
-     <hr />
-     {{friends}}
-  </ion-content>
+<ion-view title="Friends">
+	<ion-content>
+    <div id="example-item-dividers" class="ionic-body active-preview">
+    <div class="bar bar-header">
+      <div class="h1 title">Connections</div>
+    </div>
+
+    <div class="content has-header ionic-pseudo">
+
+      <div class="list">
+      	
+        <div class="item item-divider assertive-bg">
+          Groups
+        </div>
+			<div class="row250">
+        <a class="item" href="#" ng-repeat="group in groups">
+          {{group.name}}
+        </a>
+      </div>
+        
+
+        <div class="item item-divider assertive-bg">
+          Friends
+        </div>
+        <div class="row250">
+        <a class="item" href="#" ng-repeat="friend in friends">
+          {{friend.first_name}}  {{friend.last_name}}
+        </a>
+      </div>
+
+      </div>
+
+    </div>
+  </div>
+</ion-content>
 </ion-view>
+</body>

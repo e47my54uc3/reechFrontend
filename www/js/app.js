@@ -60,7 +60,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('reech', {
       url: '/reech',
-      abstract: true,
+
       templateUrl: 'templates/reech.html'
     })
     .state('login', {
@@ -98,10 +98,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/ask_a_question.html',
       controller: 'askAQuestionCtrl'
     });
-
-
     // if none of the above states are matched, use this as the fallback
+
     $urlRouterProvider.otherwise('/login');
+
 
 
   });
