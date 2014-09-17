@@ -78,6 +78,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/friends.html',
       controller: 'friendsCtrl'
     })
+    .state('user_settings', {
+      url: '/user_settings',
+      templateUrl: 'templates/user_settings.html',
+      controller: 'userSettingsCtrl'
+    })
     .state('leader_board', {
       url: '/leader_board/:boardType',
       templateUrl: 'templates/leader_board.html',
