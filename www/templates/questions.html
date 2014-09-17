@@ -23,13 +23,12 @@
     </ion-list>
   </ion-content>
 </ion-view>
-<div class="row">
 <div class="bar bar-footer bar-stable">
   <button class="button button-clear col" >All</button>
   <button class="button button-clear col">Mine</button>
   <button class="button button-clear col">Linked</h4></button>
   <button class="button button-clear col">Starred</button>
-  <button class="ion-loop button button-clear col"></button>  
+  <button class="ion-loop button button-clear col" ng-click="fetchAllQuestions()"></button>  
   <span class="col"> 
     <a class="item-icon-right">
       <span class="badge badge-assertive">
@@ -37,5 +36,4 @@
       </span>500
     </a>
   </span>
-</div>
 </div>

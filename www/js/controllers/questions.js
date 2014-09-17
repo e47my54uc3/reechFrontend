@@ -1,5 +1,10 @@
 function questionsCtrl($scope, $ionicModal, Question) {
-  $scope.questions = Question.query();
+  $scope.fetchAllQuestions = function(){
+    Question.query({'api_key': localStorage.apiKey, 'user_id': localStorage.apiId}, function(data){
+      $scope.questions = data;
+    });
+  }  
+  $scope.fetchAllQuestions();
   $ionicModal.fromTemplateUrl('templates/question_detail.html', {
     scope: $scope,
     animation: 'slide-in-up'

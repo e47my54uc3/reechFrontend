@@ -1,5 +1,3 @@
-var BaseUrl = "http://localhost:3000/api/v2/" ;
-
 reech.factory('Question', ['$resource', function($resource) {
   return $resource(BaseUrl + "questions/:id",
   {
