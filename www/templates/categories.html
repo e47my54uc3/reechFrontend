@@ -1,0 +1,37 @@
+<ion-view title="Castegories">
+	<ion-content>
+		<test ng-repeat="number in []|range:categories.length/2">
+			<div class="row">
+				<div ng-if="categories[2*number] != undefined" class="col-50">
+					<div class="item item-divider">
+						{{categories[2*number].title}}
+					</div>
+					<div class="item item-text-wrap">
+						<img src="img/onboarding1.png" width="100" height="100"/>
+					</div>
+					<div class="item item-divider">
+						{{categories[2*number].question_count}}Q, {{categories[2*number].solution_count}}S
+					</div>
+				</div>
+				<div ng-if="categories[(2*number)+1] != undefined" class="col-50">
+					<div class="item item-divider">
+						{{categories[(2*number)+1].title}}
+					</div>
+					<div class="item item-text-wrap">
+						<img src="img/onboarding1.png" width="100" height="100"/>
+					</div>
+					<div class="item item-divider">
+						{{categories[(2*number)+1].question_count}}Q, {{categories[2*number+1].solution_count}}S
+					</div>
+				</div>
+				
+			</div>
+		</test>
+	</ion-content>
+	<ion-footer-bar align-title="left" class="bar-dark">
+		<div class="buttons">
+			<button class="button button-light"><i class="icon ion-navicon"></i></button>
+		</div>
+	</ion-footer-bar>
+	
+</ion-view>

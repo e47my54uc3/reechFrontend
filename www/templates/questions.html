@@ -1,8 +1,41 @@
 <ion-view title="Questions">
   <ion-content>
-    <div class="row">
-   	  <button class="col col-50 button button-assertive">{{questions[0].post}}</button>
-   	  <button class="col col-50 button button-calm">{{questions[1].post}}</button>
-    </div>
+    <ion-list>
+      <ion-item ng-repeat="question in questions">
+        <div class="row">
+          <div class="col col-50 dark item-text-wrap">
+            <a class="user-avatar item-avatar">
+              <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
+            </a>{{question.posted_by}} 
+          </div>
+          <div class="col col-33"><h6 class="dark">{{question.updated_at | timeago}}</h6></div>
+          <div class="col col-20"><h6 class="dark">5miles</h6></div>
+        </div>
+        <div class="row" ng-click="openModal(question)">
+          <div class="col col-50 item-text-wrap dark">{{question.post}}</div>
+          <div class="col col-offset-10"> 
+            <a class="item-thumbnail">
+              <img class="full-image" ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/default-image.png'}}">
+            </a>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
+<div class="row">
+  <div class="bar bar-footer bar-stable">
+    <button class="button button-clear col" >All</button>
+    <button class="button button-clear col">Mine</button>
+    <button class="button button-clear col">Linked</h4></button>
+    <button class="button button-clear col">Starred</button>
+    <button class="ion-loop button button-clear col"></button> 
+    <span class="col"> 
+      <a class="item-icon-right">
+        <span class="badge badge-assertive">
+          <img src="img/small-currency.png"></img>
+        </span>500
+      </a>
+    </span>
+  </div>
+</div>
