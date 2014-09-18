@@ -1,12 +1,12 @@
-reech.directive('audienDetails', function($ionicModal, User, Group){
+reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaContacts){
 	return{
 		restrict: 'A',
 		scope: false,
-		//templateUrl: "<script id='my-popover.html' type='text/ng-template'><ion-popover-view><ion-header-bar><h1 class='title'>My Popover Title</h1></ion-header-bar><ion-content>Hello!</ion-content></ion-popover-view></script>",
 		link: function($scope, element, attrs){
+			$scope.new_invite = {email: "", phone_number: ""};
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
-
+			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
 			$ionicModal.fromTemplateUrl('templates/audien_details.html', {
 				scope: $scope,
 				animation: 'slide-in-up'
@@ -36,6 +36,62 @@ reech.directive('audienDetails', function($ionicModal, User, Group){
 			$scope.$on('modal.removed', function() {
 			// Execute action
 			});
+
+			$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
+				alert("success");
+				$scope.contacts = result;
+				alert(result);
+      		}, function(err) {
+    			alert(err);
+      		});
+
+			$scope.updateGroupSelection = function(event, group_id){
+				if(event.target.checked){
+					$scope.question.audien_details.groups[$scope.question.audien_details.groups.length] = group_id;
+				}else{
+					$scope.question.audien_details.groups.splice($scope.audien_details.groups.indexOf(group_id), 1)
+				}
+			}
+
+			$scope.updateReecherSelection = function(event, reecher_id){
+				if(event.target.checked){
+					$scope.question.audien_details.reecher_ids[$scope.question.audien_details.reecher_ids.length] = reecher_id;
+				}else{
+					$scope.question.audien_details.reecher_ids.splice($scope.question.audien_details.reecher_ids.indexOf(reecher_id), 1)
+				}
+			}
+
+			$scope.updateEmailSelection = function(event, email_id){
+				if(event.target.checked){
+					$scope.question.audien_details.emails[$scope.question.audien_details.emails.length] = email_id;
+				}else{
+					$scope.question.audien_details.emails.splice($scope.question.audien_details.emails.indexOf(email_id), 1)
+				}
+			}
+
+			$scope.updatePhoneNumberSelection = function(event, number){
+				if(event.target.checked){
+					$scope.question.audien_details.phone_numbers[$scope.question.audien_details.phone_numbers.length] = number;
+				}else{
+					$scope.question.audien_details.phone_numbers.splice($scope.question.audien_details.phone_numbers.indexOf(number), 1)
+				}
+			}
+
+			$scope.newInvite = function(){
+				if($scope.new_invite.email == "" && $scope.new_invite.phone_number == ""){
+					alert("Please enter email or mobile number.")
+				}
+				else if($scope.new_invite.email != ""){
+					$scope.question.audien_details.emails[$scope.question.audien_details.emails.length] = $scope.new_invite.email;
+					$scope.new_invite = {email: "", phone_number: ""};
+					alert("success");
+				}else if($scope.new_invite.phone_number != ""){
+					$scope.question.audien_details.phone_numbers[$scope.question.audien_details.emails.length] = $scope.new_invite.phone_number;
+					$scope.new_invite = {email: "", phone_number: ""};
+					alert("success");
+				}
+				
+			}
 		}		
 	}
 });

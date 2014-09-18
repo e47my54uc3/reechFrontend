@@ -4,45 +4,59 @@
 		<h1 class="title">Audiens</h1>
 		<a class="button button-clear button-dark" ng-click="closeModal()">Done</a>
 	</ion-header-bar>
-	<ion-content>
-		<div class="list">
-			<div class="item item-divider">
-			Groups
+	<ion-tabs class="tabs-dark tabs-icon-only">
+
+		<ion-tab title="My Reech" icon-on="ion-ios7-people" icon-off="ion-ios7-people-outline">
+			<ion-content>
+			<div class="list">
+				<div class="item item-divider">
+				Groups
+				</div>
+				<ion-checkbox ng-click="updateGroupSelection($event, group.id)" ng-checked="question.audien_details.groups.indexOf(group.id) == undefined" ng-repeat="group in groups">{{group.name}}</ion-checkbox>
 			</div>
-			<ul class="list">
-				<li ng-repeat="group in groups" class="item item-checkbox">
-					<label class="checkbox">
-						<input type="checkbox">
-					</label>
-					{{group.name}}
-				</li>
-			</ul>
-		</div>
-		<div class="list">
-			<div class="item item-divider">
-			Experts
+
+			<div class="list">
+				<div class="item item-divider">
+				Experts
+				</div>
+				<ion-checkbox ng-click="updateReecherSelection($event, friend.reecher_id)" ng-checked="question.audien_details.reecher_ids.indexOf(friend.reecher_id) == undefined" ng-repeat="friend in friends_list">{{friend.first_name}} {{friend.last_name}}</ion-checkbox>
 			</div>
-			<ul class="list">
-				<li ng-repeat="friend in friends_list" class="item item-checkbox">
-					<label class="checkbox">
-						<input type="checkbox">
+		</ion-content>
+				
+		</ion-tab>
+
+		<ion-tab title="My Contacts" icon-on="ion-ios7-personadd" icon-off="ion-ios7-personadd-outline">
+			<div class="list">
+				<div class="item item-divider">
+				My Contacts
+				</div>
+				<div ng-repeat="contact in contacts">
+					<ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone_number.value)">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
+					<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+				</div>
+				
+			</div>
+		</ion-tab>
+
+		<ion-tab title="Invite" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline">
+			<ion-content>
+				<div class="list">
+					<label class="item item-input">
+						<input ng-model="new_invite.email" type="text" placeholder="Email">
 					</label>
-					{{friend.first_name}} {{friend.last_name}}
-				</li>
-			</ul>
-		</div>
-	</ion-content>
-	<div class="tabs-striped tabs-background-dark tabs-color-light">
-	    <div class="tabs">
-	      <a class="tab-item active" href="#">
-	        My Reech
-	      </a>
-	      <a class="tab-item" href="#">
-	        Phonebook
-	      </a>
-	      <a class="tab-item" href="#">
-	        Invite
-	      </a>
-	    </div>
-  	</div>
+					<label class="item item-input col-center">
+					<div class="row"><div class="col col-offset-50">or</div></div>
+					</label>
+					<label class="item item-input">
+						<input ng-model="new_invite.phone_number" type="text" placeholder="Phone number">
+					</label>
+					<button ng-click="newInvite()" class="button button-block button-positive">
+						Invite
+					</button>
+				</div>
+			</ion-content>
+		</ion-tab>
+
+	</ion-tabs>
+	
 </ion-modal-view>

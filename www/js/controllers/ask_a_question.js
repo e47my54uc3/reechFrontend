@@ -1,11 +1,11 @@
 function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location){
 	$scope.categories = Category.query();
-	$scope.question = {}
-	$scope.takePicture = function() {
+	$scope.question = {};
+	
+	$scope.takePicture = function(type) {
 	    var options = { 
 	        quality : 75, 
 	        destinationType : Camera.DestinationType.DATA_URL, 
-	        sourceType : Camera.PictureSourceType.PHOTOLIBRARY, 
 	        allowEdit : true,
 	        encodingType: Camera.EncodingType.JPEG,
 	        targetWidth: 100,
@@ -13,6 +13,12 @@ function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location)
 	        popoverOptions: CameraPopoverOptions,
 	        saveToPhotoAlbum: false
 	    };
+
+	    if(type == 'camera'){
+	    	options.sourceType = Camera.PictureSourceType.CAMERA;
+	    }else if(type == 'gallery'){
+	    	options.sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
+	    }
 
 	    $cordovaCamera.getPicture(options).then(function(imageData) {
 	    	$scope.question.avatar = imageData;
