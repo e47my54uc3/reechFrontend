@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova'])
 
-reech.run(function($ionicPlatform, $rootScope, $location) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,6 +16,16 @@ reech.run(function($ionicPlatform, $rootScope, $location) {
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.previousState = fromState.name;
+    $rootScope.previousStateParams = fromParams;
+  });
+  
+  $rootScope.back = function() {
+    $state.go($rootScope.previousState,$rootScope.previousStateParams);
+  };
+  
   $rootScope.onLogin = function(data){
     localStorage.apiKey = data.api_key;
     localStorage.apiId = data.user_id; 

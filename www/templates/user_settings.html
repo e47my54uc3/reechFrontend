@@ -1,8 +1,8 @@
 <ion-view title="userSettings">
 <ion-content>
 <div class="bar bar-header bar-positive">
-  <button class="button-icon ion-arrow-left-c button back-button" ng-click="goBack()">
-      </button>
+  <button class="button-icon ion-arrow-left-c button back-button" ng-click="back()">
+  </button>
   <div class="h1 title energized">Settings</div>
 </div>
 
@@ -12,7 +12,7 @@
     <li class="item item-toggle">
      Enable/Disable location services
      <label class="toggle toggle-balanced">
-      <input type="checkbox" checked>
+      <input type="checkbox"   ng-change="changeSetting()" ng-model="model.location_is_enabled" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -21,7 +21,7 @@
    <li class="item item-toggle">
      Push Notifications
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.pushnotif_is_enabled" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -30,7 +30,7 @@
    <li class="item item-toggle">
      Email Notifications
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.emailnotif_is_enabled" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -42,7 +42,7 @@
    <li class="item item-toggle">
      my question has new answers
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_question_when_answered" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -51,7 +51,7 @@
    <li class="item item-toggle">
      I'm linked to a new question
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()"   ng-change="changeSetting()" ng-model="model.notify_linked_to_question" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -60,7 +60,7 @@
    <li class="item item-toggle">
      friends Hi5 my solutions
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_solution_got_highfive" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -69,7 +69,7 @@
    <li class="item item-toggle">
      a friend asks my help
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_audience_if_ask_for_help" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -78,7 +78,7 @@
    <li class="item item-toggle">
      starred questions have answers
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_when_my_stared_question_get_answer" >
        <div class="track">
          <div class="handle"></div>
        </div>
@@ -87,7 +87,7 @@
    <li class="item item-toggle">
      friend grab my solutions
      <label class="toggle toggle-balanced">
-       <input type="checkbox" checked>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_when_someone_grab_my_answer" >
        <div class="track">
          <div class="handle"></div>
        </div>

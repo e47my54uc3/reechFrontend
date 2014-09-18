@@ -94,3 +94,21 @@ reech.factory('Session', ['$resource', function($resource) {
   }
   );
 }]);
+
+reech.factory('UserSetting', ['$resource', function($resource) {
+  return $resource(BaseUrl + "user_settings/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);
+
