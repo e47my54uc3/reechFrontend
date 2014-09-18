@@ -1,0 +1,48 @@
+<ion-modal-view>
+	<ion-header-bar>
+		<a class="button button-clear button-dark" ng-click="closeModal()"><i class="icon ion-chevron-left"></i> Back</a>
+		<h1 class="title">Audiens</h1>
+		<a class="button button-clear button-dark" ng-click="closeModal()">Done</a>
+	</ion-header-bar>
+	<ion-content>
+		<div class="list">
+			<div class="item item-divider">
+			Groups
+			</div>
+			<ul class="list">
+				<li ng-repeat="group in groups" class="item item-checkbox">
+					<label class="checkbox">
+						<input type="checkbox">
+					</label>
+					{{group.name}}
+				</li>
+			</ul>
+		</div>
+		<div class="list">
+			<div class="item item-divider">
+			Experts
+			</div>
+			<ul class="list">
+				<li ng-repeat="friend in friends_list" class="item item-checkbox">
+					<label class="checkbox">
+						<input type="checkbox">
+					</label>
+					{{friend.first_name}} {{friend.last_name}}
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+	<div class="tabs-striped tabs-background-dark tabs-color-light">
+	    <div class="tabs">
+	      <a class="tab-item active" href="#">
+	        My Reech
+	      </a>
+	      <a class="tab-item" href="#">
+	        Phonebook
+	      </a>
+	      <a class="tab-item" href="#">
+	        Invite
+	      </a>
+	    </div>
+  	</div>
+</ion-modal-view>

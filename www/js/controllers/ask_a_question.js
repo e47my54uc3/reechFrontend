@@ -1,6 +1,6 @@
-function askAQuestionCtrl($scope, Category, Question, $cordovaCamera){
+function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location){
 	$scope.categories = Category.query();
-
+	$scope.question = {}
 	$scope.takePicture = function() {
 	    var options = { 
 	        quality : 75, 
@@ -15,9 +15,21 @@ function askAQuestionCtrl($scope, Category, Question, $cordovaCamera){
 	    };
 
 	    $cordovaCamera.getPicture(options).then(function(imageData) {
-	      // Success! Image data is here
+	    	$scope.question.avatar = imageData;
 	    }, function(err) {
-	      // An error occured. Show a message to the user
+	    	alert(err);
 	    });
+  	}
+
+  	$scope.cancelQuestion = function(){
+  		$location.path("/questions");
+  	}
+
+  	$scope.createQuestion = function(){
+  		Question.save({question: $scope.question}, function(res){
+  			alert("success");
+  		}, function(err){
+  			alert("error");
+  		});
   	}
 }
