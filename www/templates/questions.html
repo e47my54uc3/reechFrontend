@@ -1,15 +1,20 @@
 <ion-view title="Questions">
   <ion-content>
+  <div class="button-bar">
+    <a class="button" href="#/friends">Friends</a>
+    <a class="button" href="#/user_settings">UserSettings</a>
+    <a class="button" href="#/categories">Categories</a>
+  </div>
     <ion-list>
-      <ion-item ng-repeat="question in questions">
-      <div class="row">
-        <div class="col col-50 dark item-text-wrap">
-          <a class="item-avatar">
-            <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
-          </a>{{question.posted_by}}            
-        </div>
-        <div class="col col-33"><h6 class="dark">{{question.updated_at | timeago}}</h6></div>
-        <div class="col col-20"><h6 class="dark">5miles</h6></div>
+      <ion-item ng-repeat="question in questions">  
+       
+      <div class="button-bar button-clear">        
+        <a class="item item-clear item-icon-left">
+          <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}" class="icon"></img>
+          {{question.posted_by}}
+        </a>       
+        <a class="col "><h4>{{question.updated_at | timeago}}</h4></a>
+        <a class="col"><h4>5miles</h4></a>
       </div>
       <div class="row" ng-click="openModal(question)">
         <div class="col col-50 item-text-wrap dark">{{question.post}}</div>

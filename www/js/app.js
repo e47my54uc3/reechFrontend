@@ -23,7 +23,10 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   });
   
   $rootScope.back = function() {
-    $state.go($rootScope.previousState,$rootScope.previousStateParams);
+    if($rootScope.previousState)
+      $state.go($rootScope.previousState,$rootScope.previousStateParams);
+    else
+      $state.go('questions');
   };
   
   $rootScope.onLogin = function(data){
@@ -78,7 +81,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/login.html',
       controller: 'loginCtrl'
     })
-    .state('questions/:category_id', {
+    .state('questions', {
       url: '/questions',        
       templateUrl: 'templates/questions.html',
       controller: 'questionsCtrl'       

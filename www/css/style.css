@@ -92,3 +92,6 @@ a.user-avatar{
   height: 250px;
   overflow: scroll;
 }
+.item-clear{
+  border-color: white !important;
+}
