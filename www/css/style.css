@@ -1,4 +1,7 @@
 /* Empty. Add your own CSS if you like */
+*{
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue" !important;
+}
 .custom-div { 
   
   background-color: rgb(215, 88, 52);

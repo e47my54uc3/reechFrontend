@@ -1,6 +1,6 @@
 function questionsCtrl($scope, $ionicModal, Question) {
   $scope.fetchAllQuestions = function(){
-    Question.query({'api_key': localStorage.apiKey, 'user_id': localStorage.apiId}, function(data){
+    Question.query($scope.apiParams, function(data){
       $scope.questions = data;
     });
   }  

@@ -20,6 +20,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
     $rootScope.previousState = fromState.name;
     $rootScope.previousStateParams = fromParams;
+    $rootScope.apiParams = {'api_key': localStorage.apiKey, 'user_id': localStorage.apiId};
   });
   
   $rootScope.back = function() {
@@ -110,6 +111,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/ask_a_question',
       templateUrl: 'templates/ask_a_question.html',
       controller: 'askAQuestionCtrl'
+    })
+    .state('answer_question', {
+      url: '/answer_question/:questionId',
+      templateUrl: 'templates/answer_question.html',
+      controller: 'answerQuestionCtrl'
     });
     // if none of the above states are matched, use this as the fallback
 

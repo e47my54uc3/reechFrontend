@@ -1,5 +1,5 @@
 function userSettingsCtrl($scope, UserSetting){	
-  UserSetting.get({'id': 'new', 'api_key': localStorage.apiKey, 'user_id': localStorage.apiId}, function(data){
+  UserSetting.get(angular.extend({'id': 'new'}, $scope.apiParams)), function(data){
   	$scope.model = data;  	  	
   	if(data.id == null){
   		angular.forEach($scope.model, function(value, key){ 
@@ -12,11 +12,11 @@ function userSettingsCtrl($scope, UserSetting){
   });
 	$scope.changeSetting = function(){
 		if($scope.model.id == null){
-  		UserSetting.save(angular.extend({'user_settings': $scope.model}, {'api_key': localStorage.apiKey, 'user_id': localStorage.apiId}), function(data){
+  		UserSetting.save(angular.extend({'user_settings': $scope.model}, $scope.apiParams), function(data){
   			$scope.model = data.user_settings; 
   		});
   	}else{  			
-  		UserSetting.update(angular.extend({'user_settings': $scope.model}, {'id': $scope.model.id,'api_key': localStorage.apiKey, 'user_id': localStorage.apiId}), function(data){
+  		UserSetting.update(angular.extend({'id': $scope.model.id, 'user_settings': $scope.model}, $scope.apiParams), function(data){
   			
   		});
   	}  		
