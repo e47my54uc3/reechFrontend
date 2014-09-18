@@ -1,9 +1,9 @@
 <ion-view title="Questions">
   <ion-content>
-  <div class="button-bar">
-    <a class="button" href="#/friends">Friends</a>
-    <a class="button" href="#/user_settings">UserSettings</a>
-    <a class="button" href="#/categories">Categories</a>
+  <div class="button-bar navbar_top">
+    <a class="button" href="#/categories"><icon class="ion-grid button_bar_icons"></icon></a>
+    <a class="button" href="#/friends"><icon class="ion-ios7-people button_bar_icons"></icon></a>
+    <a class="button" href="#/user_settings"><icon class="ion-speakerphone button_bar_icons"></icon></a>
   </div>
     <ion-list>
       <ion-item ng-repeat="question in questions">  
@@ -29,16 +29,16 @@
   </ion-content>
 </ion-view>
 <div class="bar bar-footer bar-stable">
-  <button class="button button-clear col" >All</button>
-  <button class="button button-clear col">Mine</button>
-  <button class="button button-clear col">Linked</h4></button>
-  <button class="button button-clear col">Starred</button>
+  <button class="button button-clear col-10"><a class="navbar_bottom">All</a></button>
+  <button class="button button-clear col-15 navbar_bottom"><a class="navbar_bottom">Mine</a></button>
+  <button class="button button-clear col-20 navbar_bottom"><a class="navbar_bottom">Linked</a></h4></button>
+  <button class="button button-clear col-15 navbar_bottom"><a class="navbar_bottom">Starred</a></button>
   <button class="ion-loop button button-clear col" ng-click="fetchAllQuestions()"></button>  
   <span class="col"> 
-    <a class="item-icon-right">
-      <span class="badge badge-assertive">
-        <img src="img/small-currency.png"></img>
-      </span>500
+    <a class="item-icon-right curios">
+      <span class="curio_container">
+        <img src="img/curio.png" class="curio_img"></img>
+      <div class="curio_text">500</div></span>
     </a>
   </span>
 </div>

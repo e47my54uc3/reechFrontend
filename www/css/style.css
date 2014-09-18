@@ -31,12 +31,76 @@ img.photo {
     height: 75px;
     width: 55px;
 }
- 
+
+/* Categories Page --------------- */
+.categories_box {
+  background: url('../img/arts_culture.jpeg') no-repeat center;
+  height: 150px;
+  margin: 1px;
+  margin-bottom: -9px !important;
+
+  position: relative;
+}
+.categories_header_text {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;; 
+  font-weight:200 !important; 
+  font-stretch: condensed; 
+  font-size: 14px;
+  color: white;
+  background-color: rgba(0,0,0,.7);
+  padding: 5px;
+  position: relative;
+}
+
+.notification {
+  font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
+  font-size: 10px;
+  color: white;
+  right: 2px;
+  font-weight: bold;
+  text-align: center;
+  top: 5px;
+  display: inline;
+}
+
+.categories_footer_text {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;; 
+  font-weight:200 !important; 
+  font-stretch: condensed;
+  font-size: 13px;
+  color: white;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  bottom: 0px;
+  padding: 5px;
+  min-width: 100%;
+}
+
+.high5_icon {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;; 
+  font-weight:200 !important; 
+  font-stretch: condensed;
+  font-size: 13px;
+  color: white;
+  position: absolute;
+  padding: 5px;
+  bottom: 0px;
+  right: 10%;
+  width: 15%;
+}
+.high5_img {
+  position: absolute;
+  width: 100%;
+}
+
+/* ----------- End Categories --------------- */
+
 .bar-header {
 top: 0;
 border-top-width: 0;
 border-bottom-width: 0px;
 }
+
 .bar.bar-positive {
 border-color: #325692;
 background-color: #325692;
@@ -75,12 +139,109 @@ a.user-avatar{
 .item-avatar > img.user-avatar{
 	top: 37px !important;
 }
+
+/* Global Nav Bar ------------------- */
+
+.navbar_top{
+  width: 100%;
+  height: 20px !important;
+
+}
+.button_bar_icons {
+  font-size: 25px;
+}
+
+.navbar_bottom{
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight:100 !important; 
+  font-stretch: condensed; 
+  font-size: 15px;
+}
+
+.curios{
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight: bold !important; 
+  font-stretch: condensed; 
+  font-size: 13px; 
+  right: 5px;
+}
+.curio_container {
+  position: absolute;
+  bottom: 15%;
+  right: 1%;
+}
+.curio_img{
+  width: 35%;
+}
+.curio_text{
+  position: absolute;
+  bottom: 20%;
+  right: 15%;
+}
+/* End Global Nav Bar --------------- */
+
+
+/* Question Feed page --------------- */
+
 .question{
 	min-height: 200px;
 }
 .question-image{
 	min-height: 333px;
 }
+
+/* End Question Feed page ----------- */
+
+
+/* Connections Page ----------------- */
+
+.connectionsHeader {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight: 500 !important; 
+  font-stretch: condensed; 
+  font-size: 14px; 
+  color: white;
+
+}
+
+.navbarConnections_bottom {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight:100 !important; 
+  font-stretch: condensed; 
+  font-size: 13px;
+}
+
+/* End Connections page ------------- */
+
+/* Reech Main wrapper --------------- */
+
+.top_navbarCategories {
+  position: absolute;
+  left: 1%;
+}
+.categoryIcon {
+  font-size: 25px;
+}
+.top_navbarFriends {
+  position: absolute;
+  left: 40%;
+}
+.friendIcon {
+  font-size: 25px;
+}
+.top_navbarNotifs {
+  position: absolute;
+  left: 80%;
+}
+
+.top_navbarNotifsBubble {
+
+}
+
+
+/* End main wrapper ----------------- */
+
+
 .winter{
 	/* Fallback for web browsers that doesn't support RGBa */			
 	background: rgb(0, 0, 0);
