@@ -6,7 +6,7 @@
   					Category :
 				</div>
 				<select ng-model="question.category_id">
-					<option value="">--- Choose a category ---</option>
+					<option value="">Pick a category</option>
 					<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
 			    </select>
 			</label><br/>
@@ -21,9 +21,14 @@
 		</div>
 
 		<div class="button-bar">
+			<a audien-details ng-click="openModal()" class="button"><i class="icon ion-person-add"></i></a>
+		</div>
+		<div class="button-bar">
 				<a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
-				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
-				<a audien-details ng-click="openModal()" class="button"><i class="icon ion-person-add"></i></a>
+				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-videocamera"></i></a>
+				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-mic-a"></i></a>
+				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-android-note"></i></a>
+			
 		</div>
 		
 	</ion-content>

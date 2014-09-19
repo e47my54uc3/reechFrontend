@@ -7,24 +7,30 @@
     <a class="button" href="#/sign_out"><i class="icon ion-log-out"></i></a>
   </div>
     <ion-list>
-      <ion-item ng-repeat="question in questions">
-
+      <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
       <div class="button-bar button-clear">
-        <a class="item item-clear item-icon-left">
-          <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}" class="icon"></img>
-          {{question.posted_by}}
+        <a class="col-50 item item-clear item-icon-left" >
+          <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
+          <span class="postedby">{{question.posted_by}}</span>
         </a>
-        <a class="col "><h4>{{question.updated_at | timeago}}</h4></a>
-        <a class="col"><h4>5miles</h4></a>
+        <a class="col col-25 post_time">{{question.updated_at | timeago}}</a>
       </div>
       <div class="row" ng-click="openModal(question)">
-        <div class="col col-50 item-text-wrap dark">{{question.post}}</div>
-        <div class="col col-offset-10">
+        <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
+        <div class="col col-25">
           <a class="item-thumbnail">
             <img class="full-image" ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/default-image.png'}}">
           </a>
         </div>
       </div>
+      <div class="button-bar button-clear">
+          <div class="col col-offset-0"><icon class="ion-ios7-star staricon"></icon></div>
+          <div class="col col-offset-25"><icon class="ion-link linkicon"></icon></div>
+          <div class="col col-offset-25"><icon class="ion-ios7-chatboxes chaticon"></icon></div>
+          <div class="col col-offset-25"><icon class="ion-ios7-checkmark solvedicon"></icon></div>
+      </div>
+
+
       </ion-item>
     </ion-list>
   </ion-content>
