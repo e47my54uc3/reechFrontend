@@ -20,6 +20,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
     $rootScope.previousState = fromState.name;
     $rootScope.previousStateParams = fromParams;
+    $rootScope.currentUser = JSON.parse(localStorage.currentUser);
     $rootScope.apiParams = {'api_key': localStorage.apiKey, 'user_id': localStorage.apiId};
   });
   
@@ -32,7 +33,8 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   
   $rootScope.onLogin = function(data){
     localStorage.apiKey = data.api_key;
-    localStorage.apiId = data.user_id; 
+    localStorage.apiId = data.user_id;
+    localStorage.currentUser = JSON.stringify(data.current_user);
     $location.path("/questions");    
   }
 })
@@ -81,6 +83,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/login',      
       templateUrl: 'templates/login.html',
       controller: 'loginCtrl'
+    })
+    .state('sign_out', {
+      url: '/sign_out',      
+      controller: 'signOutCtrl'
     })
     .state('questions', {
       url: '/questions',        

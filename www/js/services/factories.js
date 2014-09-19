@@ -90,6 +90,12 @@ reech.factory('Session', ['$resource', function($resource) {
         id: '@id'
       },
       isArray: false
+    },
+    logOut: {
+      url: BaseUrl + "sessions/log_out",
+      method: 'DELETE',
+      params: {},
+      isArray: false
     }
   }
   );

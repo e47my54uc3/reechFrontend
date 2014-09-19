@@ -1,4 +1,5 @@
 function questionsCtrl($scope, $ionicModal, Question) {
+  alert(JSON.stringify($scope.currentUser))
   $scope.fetchAllQuestions = function(){
     Question.query($scope.apiParams, function(data){
       $scope.questions = data;
