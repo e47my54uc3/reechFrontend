@@ -25,7 +25,7 @@ function questionsCtrl($scope, $ionicModal, Question) {
   });
   $ionicModal.fromTemplateUrl('templates/answer_question.html', {
     scope: $scope,
-    animation: 'slide-in-up'
+    animation: 'slide-in-right'
   }).then(function(modal) {
     $scope.answerModal = modal;
   });

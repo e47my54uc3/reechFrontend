@@ -7,7 +7,7 @@
       <textarea ng-model="model.body" placeholder="Type answer to question here..." rows="8" cols="40"></textarea>
       <div class="button-bar">
 				<a class="button" ng-click="takePicture()"><i class="icon ion-camera"></i></a>
-				<a class="button" ng-click="model.is_public = !model.is_public"><i class="icon ion-person"></i>({{model.is_public ? "Public" : "Private"}})</a>
+				<a class="button" ng-click="model.is_public = !model.is_public"><i class="icon ion-person" ng-if="!model.is_public"></i><i class="icon ion-person-stalker" ng-if="model.is_public"></i><small>({{model.is_public ? "Public" : "Private"}})</small></a>
 				<a class="button button-balanced" ng-click="submit()">Answer</a>
 			</div>
 			<div class="row">
