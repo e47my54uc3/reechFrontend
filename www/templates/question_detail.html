@@ -1,26 +1,26 @@
-<ion-modal-view>  
-  <ion-content> 
-  <div class="main-box"> 
+<ion-modal-view>
+  <ion-content ng-controller="questionCtrl"> 
+  <div class="main-box">
   	<div class="box-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
   		<div class="winter inner-box">
     		<div class="item item-icon-left item-icon-right winter">
     			<i class="icon ion-close" ng-click="closeModal()"></i>
     			<i class="icon ion-ios7-star"></i>
-  			</div>    
-   
+  			</div>
+
     		<div class="row">
       		<div class="col col-50 stable">
         		<a class="item-avatar item-text-wrap">
           		<img class="user-avatar full-image" ng-src="{{selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.posted_by}}</span>
-        		</a>          		       
+        		</a>
       		</div>
       		<div class="button-bar col-20">
   					<a class="button button-clear ion-ios7-videocam "></a>
   					<a class="button button-clear ion-ios7-mic"></a>
   					<a class="button button-clear ion-link"></a>
-					</div>      	
-    		</div>    
-  
+					</div>
+    		</div>
+
     		<div class="row">
     			<div class="col col-90 item-text-wrap stable">
     				{{selectedQuestion.post}}
