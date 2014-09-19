@@ -1,7 +1,5 @@
 function answerQuestionCtrl($scope, $ionicModal, $stateParams, $cordovaCamera, Solution) {  
-  $scope.model = {is_public: true, question_id: $stateParams.questionId};
-  var image = document.getElementById('solutionImage');
-  image.src = "img/default-image.png";
+  $scope.model = {is_public: true, question_id: $stateParams.questionId};  
   $scope.takePicture = function() {
 	    var options = { 
 	        quality : 75, 
@@ -17,6 +15,7 @@ function answerQuestionCtrl($scope, $ionicModal, $stateParams, $cordovaCamera, S
 
 	    $cordovaCamera.getPicture(options).then(function(imageData) {
 	    	$scope.model.picture = imageData;
+	    	var image = document.getElementById('solutionImage');
     		image.src = "data:image/jpeg;base64," + "imageData";
 	    }, function(err) {
 	    	alert(err);

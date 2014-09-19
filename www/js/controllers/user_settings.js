@@ -1,6 +1,6 @@
-function userSettingsCtrl($scope, UserSetting){
+function userSettingsCtrl($scope, UserSetting){	
   UserSetting.get(angular.extend({'id': 'new'}, $scope.apiParams), function(data){
-  	$scope.model = data;
+  	$scope.model = data;  	  	
   	if(data.id == null){
   		angular.forEach($scope.model, function(value, key){
   			if(key != "id")

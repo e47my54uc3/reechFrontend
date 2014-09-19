@@ -21,13 +21,22 @@ function questionsCtrl($scope, $ionicModal, Question) {
   //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
+    $scope.answerModal.remove();
   });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
+  $ionicModal.fromTemplateUrl('templates/answer_question.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.answerModal = modal;
   });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
+  $scope.openAnswerModal = function(question) {
+    $scope.answerModal.show();
+    var image = document.getElementById('solutionImage');
+    image.src = "img/default-image.png";
+  };
+  $scope.closeAnswerModal = function() {
+    $scope.answerModal.hide();
+  };
+  
+  
 }
