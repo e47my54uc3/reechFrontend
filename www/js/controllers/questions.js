@@ -1,5 +1,4 @@
 function questionsCtrl($scope, $ionicModal, Question) {
-  alert(JSON.stringify($scope.currentUser))
   $scope.fetchAllQuestions = function(){
     Question.query($scope.apiParams, function(data){
       $scope.questions = data;
@@ -30,7 +29,7 @@ function questionsCtrl($scope, $ionicModal, Question) {
   }).then(function(modal) {
     $scope.answerModal = modal;
   });
-  $scope.openAnswerModal = function(question) {
+  $scope.openAnswerModal = function() {
     $scope.answerModal.show();
     var image = document.getElementById('solutionImage');
     image.src = "img/default-image.png";

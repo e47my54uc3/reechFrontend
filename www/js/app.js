@@ -47,7 +47,7 @@ reech.config(function($httpProvider) {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
           if ($location.path().indexOf('login') < 0) {
-            $location.path('/sign_out');
+            //$location.path('/sign_out');
           }
         }
         if (rejection.status == 403) {
