@@ -17,14 +17,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
     }
   });
 
-  $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
-    $rootScope.previousState = fromState.name;
-    $rootScope.previousStateParams = fromParams;
-    if(localStorage.currentUser) {
-      $rootScope.currentUser = JSON.parse(localStorage.currentUser);
-    }
-    $rootScope.apiParams = {'api_key': localStorage.apiKey, 'user_id': localStorage.apiId};
-  });
 
   $rootScope.back = function() {
     if($rootScope.previousState)
@@ -32,10 +24,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
     else
       $state.go('questions');
   };
-
-  $rootScope.onLogin = function(data){
-    $location.path("/questions");
-  }
 })
 
 reech.config(function($httpProvider) {

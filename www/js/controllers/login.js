@@ -6,6 +6,7 @@ function loginCtrl($scope, $location, Session){
 	$scope.login = function(){
 		$scope.errors = "";
 		Session.save({session: $scope.loginData}, function(response){
+			localStorage.currentUser = response.current_user;
       $location.path("/questions");
 		});
  	}
