@@ -1,38 +1,18 @@
 <ion-view title="Friends">
-	<ion-content>
-    <div id="example-item-dividers" class="ionic-body active-preview">
-    <div class="bar bar-header">
-      <div class="h1 title">Connections</div>
+   <ion-content>
+    <div class="item item-divider assertive-bg connectionsHeader">Groups</div>
+    <div>
+      <ion-scroll style="height: 250px">
+        <a class="item" href="#" ng-repeat="group in groups">{{group.name}}</a>
+      </ion-scroll>
     </div>
-
-    <div class="content has-header ionic-pseudo">
-
-      <div class="list">
-      	
-        <div class="item item-divider assertive-bg connectionsHeader">
-          Groups
-        </div>
-			<div class="row250">
-        <a class="item" href="#" ng-repeat="group in groups">
-          {{group.name}}
-        </a>
-      </div>
-        
-
-        <div class="item item-divider assertive-bg  connectionsHeader">
-          Friends
-        </div>
-        <div class="row250">
-        <a class="item" href="#" ng-repeat="friend in friends">
-          {{friend.first_name}}  {{friend.last_name}}
-        </a>
-      </div>
-
-      </div>
-
-    </div>
-  </div>
-</ion-content>
+    <div class="item item-divider assertive-bg connectionsHeader">Friends</div>
+    <div>
+      <ion-scroll>
+        <a class="item" href="#" ng-repeat="friend in friends">{{friend.first_name}} {{friend.last_name}}</a>
+      </ion-scroll>
+    </div>  
+  </ion-content>
 <div class="bar bar-footer bar-stable">
   <button class="button button-clear col-25"><a class="navbarConnections_bottom">My Reech</a></button>
   <button class="button button-clear col-25"><a class="navbarConnections_bottom">Phonebook</a></button>
@@ -43,6 +23,5 @@
         <img src="img/curio.png" class="curio_img"></img>
       <div class="curio_text">500</div></span>
     </a>
-  </span>
+  </span>  
 </ion-view>
-</body>

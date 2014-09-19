@@ -98,7 +98,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'userSettingsCtrl'
     })
     .state('leader_board', {
-      url: '/leader_board/:boardType',
+      url: '/leader_board',
       templateUrl: 'templates/leader_board.html',
       controller: 'leaderBoardCtrl'
     })    
@@ -114,7 +114,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     });
     // if none of the above states are matched, use this as the fallback
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/reech');
 
 
 

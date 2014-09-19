@@ -259,3 +259,14 @@ a.user-avatar{
 .item-clear{
   border-color: white !important;
 }
+.dividers{
+color: #FFF;
+font-weight: bold;
+text-align: center;
+}
+.tabs-striped.tabs-color-light .tab-item.tab-item-active, .tabs-striped.tabs-color-light .tab-item.active, .tabs-striped.tabs-color-light .tab-item.activated {
+    margin-top: -2px;
+    color: #fff;
+    border: 0 solid #000;
+    border-top-width: 2px; 
+  }
