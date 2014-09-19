@@ -1,0 +1,48 @@
+<ion-modal-view  ng-controller="solutionCtrl">  
+  <ion-content> 
+  <div class="main-box"> 
+  	<div class="box-image" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+  		<div class="winter inner-box has_header">
+    		<div class="item item-icon-left item-icon-right item-positive">
+    			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
+    			<div class="title text-center">Solution</div>
+    			<i class="icon ion-android-hand"></i>
+  			</div>    
+   
+    		<div class="row">
+      		<div class="col col-50 stable">
+        		<a class="item-avatar item-text-wrap">
+          		<img class="user-avatar full-image"><span class="item-text-wrap">
+          		wrote_by</span>
+        		</a>          		       
+      		</div>
+      		<div class="button-bar col-20">
+  					<a class="button button-clear ion-ios7-videocam "></a>
+  					<a class="button button-clear ion-ios7-mic"></a>
+  					<a class="button button-clear ion-link"></a>
+					</div>      	
+    		</div>    
+  
+    		<div class="row">
+    			<div class="col col-90 item-text-wrap stable">
+    				solution
+    			</div>
+    		</div>    		   
+  		</div>
+  	</div>
+  	<div class="winter inner-box" ng-click="grabSolution()">    
+  		<div class="row">
+  			<div class="col col-offset-10">
+  				<h1  class="ion-ios7-timer-outline"></h1><span class="stable">8 seconds</span>
+  			</div>
+  			<div class="col">
+  				<h1  class="royal ion-android-hand"></h1><span class="stable">Grab Solution</span>
+  			</div>
+  		</div>
+  		<div class="text-center">
+  			<h3><img src="img/small-currency.png"/><span class="stable"> 25</span>	</h3>
+  		</div>
+  	</div>    
+  </div>
+  </ion-content>
+</ion-modal-view>

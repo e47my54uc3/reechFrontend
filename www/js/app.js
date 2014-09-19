@@ -36,7 +36,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   $rootScope.onLogin = function(data){
     localStorage.apiKey = data.api_key;
     localStorage.apiId = data.user_id;
-    localStorage.currentUser = JSON.stringify(data.current_user);
+    localStorage.currentUser = JSON.stringify(data.user);
     $location.path("/questions");
   }
 })
@@ -47,7 +47,7 @@ reech.config(function($httpProvider) {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
           if ($location.path().indexOf('login') < 0) {
-            //$location.path('/sign_out');
+            $location.path('/sign_out');
           }
         }
         if (rejection.status == 403) {

@@ -37,6 +37,18 @@ function questionsCtrl($scope, $ionicModal, Question) {
   $scope.closeAnswerModal = function() {
     $scope.answerModal.hide();
   };
+  $ionicModal.fromTemplateUrl('templates/solution.html', {
+    scope: $scope,
+    animation: 'slide-in-left'
+  }).then(function(modal) {
+    $scope.solutionModal = modal;
+  });
+  $scope.openSolutionModal = function() {
+    $scope.solutionModal.show();    
+  };
+  $scope.closeSolutionModal = function() {
+    $scope.solutionModal.hide();
+  };
   
   
 }
