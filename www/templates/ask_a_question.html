@@ -12,14 +12,14 @@
 			</label><br/>
 			<div class="list card">
 				<div class="item item-image">
-					<img ng-src="{{question.avatar == null ? 'img/default-image.png' : ('data:image/jpeg;base64,'+question.avatar)}}" height="100">
+					<img ng-src="{{avatar == '' ? 'img/default-image.png' : (avatar)}}" height="100">
 				</div>
 			</div>
 			<label class="item item-input">
 				<textarea ng-model="question.post" placeholder="Tap to ask a question ..." rows="10"></textarea>
 			</label>
 		</div>
-
+		
 		<div class="button-bar">
 				<a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
 				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>

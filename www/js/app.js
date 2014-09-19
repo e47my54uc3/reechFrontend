@@ -17,7 +17,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
     }
   });
 
-
   $rootScope.back = function() {
     if($rootScope.previousState)
       $state.go($rootScope.previousState,$rootScope.previousStateParams);
