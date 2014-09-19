@@ -19,5 +19,8 @@ function questionsCtrl($scope, $ionicModal, Question) {
   $scope.closeModal = function() {
     $scope.modal.remove();
   };
+  $scope.$on('modal.hidden', function() {
+    $scope.modal.remove();
+  });
 
 }
