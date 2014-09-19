@@ -1,25 +1,30 @@
-<ion-view title="Categories">
+<ion-view title="Castegories">
 	<ion-content>
 		<test ng-repeat="number in []|range:categories.length/2">
 			<div class="row">
-				<div class="col-50">
-					<div ng-if="categories[2*number] != undefined" class="categories_box">
-						<div class="categories_header_text">{{categories[2*number].title}}
-							<div class="notification badge badge-assertive">1</div>
-						</div>
-						<div class="categories_footer_text">{{categories[2*number].question_count}}Q &nbsp&nbsp {{categories[2*number].solution_count}}S <div class="high5_icon">5<img src="../img/High-Five.png" class="high5_img"></img></div>
-						</div>
+				<div ng-if="categories[2*number] != undefined" class="col-50">
+					<div class="item item-divider">
+						{{categories[2*number].title}}
+					</div>
+					<div class="item item-text-wrap">
+						<img src="img/onboarding1.png" width="100" height="100"/>
+					</div>
+					<div class="item item-divider">
+						{{categories[2*number].question_count}}Q, {{categories[2*number].solution_count}}S
 					</div>
 				</div>
-				<div class="col-50">
-					<div ng-if="categories[(2*number)+1] != undefined" class="categories_box">
-						<div class="categories_header_text">{{categories[(2*number)+1].title}}
-							<div class="badge badge-assertive notification">5</div>
-						</div>
-						<div class="categories_footer_text">{{categories[(2*number)+1].question_count}}Q &nbsp&nbsp {{categories[2*number+1].solution_count}}S <div class="high5_icon">5<img src="../img/High-Five.png" class="high5_img"></img></div>
-						</div>
+				<div ng-if="categories[(2*number)+1] != undefined" class="col-50">
+					<div class="item item-divider">
+						{{categories[(2*number)+1].title}}
+					</div>
+					<div class="item item-text-wrap">
+						<img src="img/onboarding1.png" width="100" height="100"/>
+					</div>
+					<div class="item item-divider">
+						{{categories[(2*number)+1].question_count}}Q, {{categories[2*number+1].solution_count}}S
 					</div>
 				</div>
+				
 			</div>
 		</test>
 	</ion-content>
