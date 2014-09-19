@@ -1,8 +1,8 @@
 <ion-modal-view>  
   <ion-content> 
   <div class="main-box"> 
-  	<div class="question-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
-  		<div class="winter question">
+  	<div class="box-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+  		<div class="winter inner-box">
     		<div class="item item-icon-left item-icon-right winter">
     			<i class="icon ion-close" ng-click="closeModal()"></i>
     			<i class="icon ion-ios7-star"></i>
@@ -35,7 +35,12 @@
   	</div>
 	</div>
 	<ion-scroll direction="x">
-		
+		<div class="list card">
+      <a ng-click="openSolutionModal()" class="item item-icon-left">
+        <i class="icon ion-home"></i>
+        Solution
+      </a>
+    </div>
 	</ion-scroll>
   </ion-content>
 </ion-modal-view>

@@ -183,10 +183,10 @@ a.user-avatar{
 
 /* Question Feed page --------------- */
 
-.question{
+.inner-box{
 	min-height: 200px;
 }
-.question-image{
+.box-image{
 	min-height: 333px;
 }
 
