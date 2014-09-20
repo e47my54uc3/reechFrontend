@@ -1,14 +1,15 @@
-function loginCtrl($scope, $location, Session){
-	if(localStorage.apiKey && localStorage.apiId){
-		$location.path("/questions");
-	}
-	$scope.loginData = {'provider': 'standard', 'device_token': '', 'platform': ionic.Platform.platform()};
-	$scope.login = function(){
-		$scope.errors = "";
-		Session.save({session: $scope.loginData}, function(response){
-			localStorage.currentUser = response.current_user;
-      $location.path("/questions");
-		});
- 	}
+function loginCtrl($scope, $location, Auth){
+	var credentials = {
+      phone_number: '999999999',
+      password: 'test1234'
+  };
+
+  Auth.login(credentials).then(function(user) {
+		//$location.path("/questions");
+		console.log("In success");
+  }, function(error) {
+		console.log("In errors.");
+      // Authentication failed...
+  });
 
 }

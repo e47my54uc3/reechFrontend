@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters'])
+reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
 
 reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) {
   $ionicPlatform.ready(function() {
@@ -25,26 +25,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
   };
 })
 
-reech.config(function($httpProvider) {
-  var interceptor = function($q, $location) {
-    return {
-      'responseError': function(rejection) {
-
-        if (rejection.status == 401) {
-
-          if ($location.path().indexOf('login') < 0) {
-            $location.path('/login');
-          }
-        }
-        if (rejection.status == 403) {
-          $location.path('/');
-        }
-        return $q.reject(rejection);
-      }
-    };
-  };
-  $httpProvider.interceptors.push(interceptor);
-});
 
 reech.filter('range', function() {
   return function(input, total) {

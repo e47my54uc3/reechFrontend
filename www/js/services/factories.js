@@ -82,6 +82,12 @@ reech.factory('Session', ['$resource', function($resource) {
   return $resource(BaseUrl + "sessions",
   {},
   {
+    logIn: {
+      url: BaseUrl + "users/sign_in",
+      method: 'POST',
+      params: {},
+      isArray: false
+    },
     logOut: {
       url: BaseUrl + "sessions/log_out",
       method: 'DELETE',
