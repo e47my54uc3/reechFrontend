@@ -79,16 +79,13 @@ reech.factory('Group', ['$resource', function($resource) {
 }]);
 
 reech.factory('Session', ['$resource', function($resource) {
-  return $resource(BaseUrl + "sessions/:id",
+  return $resource(BaseUrl + "sessions",
+  {},
   {
-    id: '@id'
-  },
-  {
-    update: {
-      method: 'PUT',
-      params: {
-        id: '@id'
-      },
+    logOut: {
+      url: BaseUrl + "sessions/log_out",
+      method: 'DELETE',
+      params: {},
       isArray: false
     }
   }

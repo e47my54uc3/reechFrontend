@@ -1,41 +1,46 @@
-<ion-modal-view>  
-  <ion-content> 
-  <div class="main-box"> 
-  	<div class="question-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
-  		<div class="winter question">
-    		<div class="item item-icon-left item-icon-right winter">
-    			<i class="icon ion-close" ng-click="closeModal()"></i>
-    			<i class="icon ion-ios7-star"></i>
-  			</div>    
-   
-    		<div class="row">
-      		<div class="col col-50 stable">
-        		<a class="item-avatar item-text-wrap">
-          		<img class="user-avatar full-image" ng-src="{{selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.posted_by}}</span>
-        		</a>          		       
-      		</div>
-      		<div class="button-bar col-20">
-  					<a class="button button-clear ion-ios7-videocam "></a>
-  					<a class="button button-clear ion-ios7-mic"></a>
-  					<a class="button button-clear ion-link"></a>
-					</div>      	
-    		</div>    
-  
-    		<div class="row">
-    			<div class="col col-90 item-text-wrap stable">
-    				{{selectedQuestion.post}}
-    			</div>
-    		</div>
-  		</div>
-  	</div>
-  	<div class="row">
-  		<a class="button col button-positive button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
-  		<span class="divider-left"></span>
-  		<a class="button col button-balanced ion-link">Link Expert</a>
-  	</div>
-	</div>
-	<ion-scroll direction="x">
-		
-	</ion-scroll>
+<ion-modal-view>
+  <ion-content ng-controller="questionCtrl">
+  <div class="main-box">
+    <div class="box-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+      <div class="winter inner-box">
+        <div class="item item-icon-left item-icon-right winter">
+          <i class="icon ion-close" ng-click="closeModal()"></i>
+          <i class="icon ion-ios7-star"></i>
+        </div>
+
+        <div class="row">
+          <div class="col col-50 stable">
+            <a class="item-avatar item-text-wrap">
+              <img class="user-avatar full-image" ng-src="{{selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.posted_by}}</span>
+            </a>
+          </div>
+          <div class="button-bar col-20">
+            <a class="button button-clear ion-ios7-videocam "></a>
+            <a class="button button-clear ion-ios7-mic"></a>
+            <a class="button button-clear ion-link"></a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-90 item-text-wrap stable">
+            {{selectedQuestion.post}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <a class="button col button-positive button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
+      <span class="divider-left"></span>
+      <a class="button col button-balanced ion-link">Link Expert</a>
+    </div>
+  </div>
+  <ion-scroll direction="x">
+    <div class="list card">
+      <a ng-click="openSolutionModal()" class="item item-icon-left">
+        <i class="icon ion-home"></i>
+        Solution
+      </a>
+    </div>
+  </ion-scroll>
   </ion-content>
 </ion-modal-view>

@@ -1,11 +1,12 @@
-function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location){
+function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location, $cordovaFile){
 	$scope.categories = Category.query();
-	$scope.question = {};
-	
+	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: ''};
+	$scope.avatar = "";
+	$scope.test = localStorage.currentUser;
 	$scope.takePicture = function(type) {
 	    var options = { 
 	        quality : 75, 
-	        destinationType : Camera.DestinationType.DATA_URL, 
+	        destinationType : Camera.DestinationType.FILE_URI, 
 	        allowEdit : true,
 	        encodingType: Camera.EncodingType.JPEG,
 	        targetWidth: 100,
@@ -21,7 +22,7 @@ function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location)
 	    }
 
 	    $cordovaCamera.getPicture(options).then(function(imageData) {
-	    	$scope.question.avatar = imageData;
+	    	$scope.avatar = imageData;
 	    }, function(err) {
 	    	alert(err);
 	    });
@@ -32,10 +33,31 @@ function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location)
   	}
 
   	$scope.createQuestion = function(){
-  		Question.save({question: $scope.question}, function(res){
-  			alert("success");
-  		}, function(err){
-  			alert("error");
-  		});
+		$scope.question.posted_by_uid = localStorage.currentUser.reecher_id;
+		$scope.question.posted_by = (localStorage.currentUser.first_name + localStorage.currentUser.last_name);	
+  		if($scope.avatar != ""){
+  			var options = new FileUploadOptions();
+	  		options.fileKey = "file";
+	        options.fileName = "filename.jpg";
+	        options.mimeType = "image/jpeg";
+	        options.chunkedMode = false;
+	        var params = {};
+	        params.question = $scope.question;
+	        options.params = params;
+	        
+	  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
+			    alert("upload success");
+			}, function(error) {
+				alert("An error has occurred: Code = " + error.code);
+	    	}, function (progress) {
+			});
+		}else{
+			Question.save({question: $scope.question}, function(res){
+	  			alert("Question successfully posted.");
+	  			$location.path("/questions");
+	  		}, function(err){
+	  			alert("Error occured while posting the question. Please try again.");
+	  		});
+		}
   	}
 }

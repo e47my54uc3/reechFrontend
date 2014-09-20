@@ -1202,7 +1202,7 @@ angular.module('ngCordova.plugins.file', [])
         var q = $q.defer();
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(server);
-
+        
         fileTransfer.onprogress = function (progressEvent) {
           q.notify(progressEvent);
         };

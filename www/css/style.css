@@ -78,6 +78,7 @@ img.photo {
   bottom: 0px;
   padding: 5px;
   min-width: 100%;
+  height: 30px;
 }
 
 .high5_icon {
@@ -94,7 +95,40 @@ img.photo {
 }
 .high5_img {
   position: absolute;
-  width: 100%;
+  width: 90%;
+}
+.q_icon {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;; 
+  font-weight:200 !important; 
+  font-stretch: condensed;
+  font-size: 13px;
+  color: white;
+  position: absolute;
+  padding: 5px;
+  bottom: 0px;
+  right: 83%;
+  width: 15%;
+}
+.q_img {
+  position: absolute;
+  width: 90%;
+}
+
+.a_icon{
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;; 
+  font-weight:200 !important; 
+  font-stretch: condensed;
+  font-size: 13px;
+  color: white;
+  position: absolute;
+  padding: 5px;
+  bottom: 0px;
+  right: 45%;
+  width: 15%;
+}
+.a_img {
+  position: absolute;
+  width: 90%;
 }
 
 /* ----------- End Categories --------------- */
@@ -188,14 +222,93 @@ a.user-avatar{
 
 /* Question Feed page --------------- */
 
-.question{
+.inner-box{
 	min-height: 200px;
 }
-.question-image{
+.box-image{
 	min-height: 333px;
+}
+.profilebox {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.postedby {
+  font-stretch: condensed; 
+  font-size: 15px;
+  position: absolute;
+  color: black;
+  top: 30%;
+  left: 20%;
+}
+.avatar {
+  width: 22%;
+}
+.post_time{
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight: 300 !important; 
+  font-stretch: condensed; 
+  font-size: 10px; 
+  color: black;
+  position: absolute;
+  right:-8%;
+  top:0;
+}
+.question_text {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight: 200 !important; 
+  font-stretch: condensed; 
+  font-size: 13px; 
+}
+.questionimage {
+  position: absolute;
+  width: 40%;
+  right: 0%;
+}
+.questionfooter {
+  position: relative;
+  
+}
+.staricon {
+  font-size: 20px;
+}
+.linkicon {
+  font-size: 22px;
+}
+.chaticon {
+  font-size: 22px;
+  color: red;
+}
+.solvedicon {
+  font-size: 22px;
+  color: #e87f59;
+
 }
 
 /* End Question Feed page ----------- */
+
+/* Question Detail ------------------ */
+
+.Qcloseicon {
+  font-size: 22px !important;
+  color: white;
+}
+
+.Qstaricon {
+  font-size: 22px !important;
+  color: white;
+}
+
+.questiondetail_text {
+  font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important; 
+  font-weight:100 !important; 
+  font-stretch: condensed; 
+  font-size: 15px;
+}
+
+/* End Question Detail -------------- */
+
+
 
 
 /* Connections Page ----------------- */
