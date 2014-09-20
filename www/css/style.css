@@ -26,6 +26,10 @@ img.logo {
     width: 26px;
     padding-top: 5px;
 }
+img.logoLeaderboard {
+    width: 40px;
+ 
+}
 img.photo {
 
     height: 75px;
@@ -161,6 +165,7 @@ color: #fff;
 	border-left: 1px white solid !important;
 
 }
+
 .custom-icon {
   font-size: 32px;
 }

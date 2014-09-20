@@ -114,6 +114,22 @@ reech.factory('UserSetting', ['$resource', function($resource) {
   }
   );
 }]);
+reech.factory('Profile', ['$resource', function($resource) {
+  return $resource(BaseUrl + "profile/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);
 
 reech.factory('Solution', ['$resource', function($resource) {
   return $resource(BaseUrl + "solutions/:id",
