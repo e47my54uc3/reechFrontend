@@ -1,6 +1,6 @@
 function loginCtrl($scope, $location, Auth){
 	var credentials = {
-      phone_number: '999999999',
+      phone_number: '9999999999',
       password: 'test1234'
   };
 

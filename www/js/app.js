@@ -94,7 +94,28 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // if none of the above states are matched, use this as the fallback
 
     $urlRouterProvider.otherwise('/login');
-
-
-
   });
+//Connect to devise
+reech.config(function(AuthProvider) {
+  AuthProvider.loginPath(BaseUrl + 'users/sign_in');
+  AuthProvider.loginMethod('POST');
+});
+
+reech.config(function($httpProvider) {
+  var interceptor = function($q, $location) {
+    return {
+      'responseError': function(rejection) {
+        if (rejection.status == 401) {
+          if ($location.path().indexOf('login') < 0) {
+            $location.path('/login');
+          }
+        }
+        if (rejection.status == 403) {
+          $location.path('/questions');
+        }
+        return $q.reject(rejection);
+      }
+    };
+  };
+  $httpProvider.interceptors.push(interceptor);
+});
