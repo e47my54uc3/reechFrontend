@@ -1,4 +1,4 @@
-function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location, $cordovaFile){
+function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $location, $cordovaFile){
 	$scope.categories = Category.query();
 	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: ''};
 	$scope.avatar = "";
@@ -33,8 +33,8 @@ function askAQuestionCtrl($scope, Category, Question, $cordovaCamera, $location,
   	}
 
   	$scope.createQuestion = function(){
-		$scope.question.posted_by_uid = localStorage.currentUser.reecher_id;
-		$scope.question.posted_by = (localStorage.currentUser.first_name + localStorage.currentUser.last_name);	
+		$scope.question.posted_by_uid = $rootScope.currentUser.reecher_id;
+		$scope.question.posted_by = ($rootScope.currentUser.first_name + $rootScope.currentUser.last_name);	
   		if($scope.avatar != ""){
   			var options = new FileUploadOptions();
 	  		options.fileKey = "file";

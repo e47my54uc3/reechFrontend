@@ -15,10 +15,12 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 			});
 
 			$scope.openModal = function() {
+				$scope.temp_audien = angular.copy($scope.question.audien_details);
 				$scope.modal.show();
 			};
 
 			$scope.closeModal = function() {
+				$scope.new_invite = {email: "", phone_number: ""};
 				$scope.modal.hide();
 			};
 
@@ -37,6 +39,11 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 			// Execute action
 			});
 
+			$scope.resetAudiens = function(){
+				$scope.question.audien_details = $scope.temp_audien;
+				$scope.closeModal();
+			}
+
 			$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
 				$scope.contacts = result;
 			}, function(err) {
@@ -47,7 +54,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 				if(event.target.checked){
 					$scope.question.audien_details.groups[$scope.question.audien_details.groups.length] = group_id;
 				}else{
-					$scope.question.audien_details.groups.splice($scope.audien_details.groups.indexOf(group_id), 1)
+					$scope.question.audien_details.groups.splice($scope.question.audien_details.groups.indexOf(group_id), 1)
 				}
 			}
 

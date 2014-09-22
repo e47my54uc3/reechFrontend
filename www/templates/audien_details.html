@@ -1,6 +1,6 @@
 <ion-modal-view>
 	<ion-header-bar>
-		<a class="button button-clear button-dark" ng-click="closeModal()"><i class="icon ion-chevron-left"></i> Back</a>
+		<a class="button button-clear button-dark" ng-click="resetAudiens()"><i class="icon ion-chevron-left"></i> Back</a>
 		<h1 class="title">Audiens</h1>
 		<a class="button button-clear button-dark" ng-click="closeModal()">Done</a>
 	</ion-header-bar>
@@ -12,14 +12,14 @@
 				<div class="item item-divider">
 				Groups
 				</div>
-				<ion-checkbox ng-click="updateGroupSelection($event, group.id)" ng-checked="question.audien_details.groups.indexOf(group.id) == undefined" ng-repeat="group in groups">{{group.name}}</ion-checkbox>
+				<ion-checkbox ng-click="updateGroupSelection($event, group.id)" ng-checked="question.audien_details.groups.indexOf(group.id) != -1" ng-repeat="group in groups">{{group.name}}</ion-checkbox>
 			</div>
 
 			<div class="list">
 				<div class="item item-divider">
 				Experts
 				</div>
-				<ion-checkbox ng-click="updateReecherSelection($event, friend.reecher_id)" ng-checked="question.audien_details.reecher_ids.indexOf(friend.reecher_id) == undefined" ng-repeat="friend in friends_list">{{friend.first_name}} {{friend.last_name}}</ion-checkbox>
+				<ion-checkbox ng-click="updateReecherSelection($event, friend.reecher_id)" ng-checked="question.audien_details.reecher_ids.indexOf(friend.reecher_id) != -1" ng-repeat="friend in friends_list">{{friend.first_name}} {{friend.last_name}}</ion-checkbox>
 			</div>
 		</ion-content>
 				
