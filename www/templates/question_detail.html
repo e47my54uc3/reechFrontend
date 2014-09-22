@@ -4,8 +4,8 @@
     <div class="box-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
       <div class="winter inner-box">
         <div class="item item-icon-left item-icon-right winter">
-          <i class="icon ion-close" ng-click="closeModal()"></i>
-          <i class="icon ion-ios7-star"></i>
+          <i class="icon ion-android-close Qcloseicon" ng-click="closeModal()"></i>
+          <i class="icon ion-android-star Qstaricon"></i>
         </div>
 
         <div class="row">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row">
-          <div class="col col-90 item-text-wrap stable">
+          <div class="col col-90 item-text-wrap stable questiondetail_text">
             {{selectedQuestion.post}}
           </div>
         </div>
@@ -37,8 +37,7 @@
   <ion-scroll direction="x">
     <div class="list card">
       <a ng-click="openSolutionModal()" class="item item-icon-left">
-        <i class="icon ion-home"></i>
-        Solution
+        Solutions
       </a>
     </div>
   </ion-scroll>

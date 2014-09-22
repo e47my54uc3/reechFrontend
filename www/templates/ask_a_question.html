@@ -6,7 +6,7 @@
   					Category :
 				</div>
 				<select ng-model="question.category_id">
-					<option value="">--- Choose a category ---</option>
+					<option value="">Choose a category</option>
 					<option ng-repeat="category in categories" value="{{category.id}}">{{category.title}}</option>
 			    </select>
 			</label><br/>
@@ -27,12 +27,12 @@
 		</div>
 		
 	</ion-content>
-	<ion-footer-bar align-title="left" class="bar-stable">
-		<div class="buttons  item-button-left" ng-click="cancelQuestion()">
-			<button class="button button-assertive">Cancel</button>
+	<ion-footer-bar align-title="left" class="bar bar-footer bar-stable askbar">
+		<div class="buttons item-button-left" ng-click="cancelQuestion()">
+			<button class="button button-clear button-assertive navbar_bottom askbarbtn">Cancel</button>
 		</div>
 		<div class="buttons item-button-right" ng-click="createQuestion()">
-			<button class="button button-balanced">Ask</button>
+			<button class="button button-clear button-askgreen navbar_bottom askbarbtn askright">Ask</button>
 		</div>
 	</ion-footer-bar>
 </ion-view>
