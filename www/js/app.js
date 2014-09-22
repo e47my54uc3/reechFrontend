@@ -69,8 +69,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('questions', {
       url: '/questions',
-      templateUrl: 'templates/questions.html',
-      controller: 'questionsCtrl'
+      templateUrl: 'templates/questions.html'
     })
     .state('friends', {
       url: '/friends',
@@ -79,8 +78,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('user_settings', {
       url: '/user_settings',
-      templateUrl: 'templates/user_settings.html',
-      controller: 'userSettingsCtrl'
+      templateUrl: 'templates/user_settings.html'
     })
     .state('profile', {
       url: '/profile',

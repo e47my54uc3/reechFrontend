@@ -1,5 +1,6 @@
 <ion-view title="Castegories">
-	<ion-content>
+  <main-header></main-header>
+	<ion-content class="has-subheader">
 		<test ng-repeat="number in []|range:categories.length/2">
 			<div class="row">
 				<div ng-if="categories[2*number] != undefined" class="col-50">

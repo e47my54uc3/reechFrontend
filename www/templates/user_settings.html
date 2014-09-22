@@ -1,7 +1,7 @@
-<ion-view title="userSettings">
+<ion-view title="userSettings" ng-controller="userSettingsCtrl">
 <ion-content>
 <div class="bar bar-header bar-positive">
-  <button class="button-icon ion-arrow-left-c button back-button" ng-click="back()">
+  <button class="button-icon ion-arrow-left-c button back-button" ng-if="showBackButton" ng-click="back()">
   </button>
   <div class="h1 title energized">Settings</div>
 </div>

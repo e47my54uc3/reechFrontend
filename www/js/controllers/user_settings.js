@@ -1,4 +1,5 @@
-function userSettingsCtrl($scope, UserSetting){	
+function userSettingsCtrl($scope, $location, UserSetting){	
+  $scope.showBackButton = ($location.path() == "/user_settings");
   UserSetting.get(angular.extend({'id': 'new'}, $scope.apiParams), function(data){
   	$scope.model = data;  	  	
   	if(data.id == null){

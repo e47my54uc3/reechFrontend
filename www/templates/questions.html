@@ -1,15 +1,8 @@
-<ion-view title="Questions">
-  <ion-content>
-  <div class="button-bar navbar_top">
-    <a class="button" href="#/categories"><icon class="ion-grid button_bar_icons"></icon></a>
-    <a class="button" href="#/friends"><icon class="ion-ios7-people button_bar_icons"></icon></a>
-    <a class="button" href="#/user_settings"><icon class="ion-speakerphone button_bar_icons"></icon></a>
-    <a class="button" href="#/ask_a_question">Ask a Q ?</a>
-    <a class="button" href="#/sign_out"><i class="icon ion-log-out"></i></a>
-  </div>
-    <ion-list>
+<ion-view title="Questions" ng-controller="questionsCtrl">
+<main-header></main-header>
+  <ion-content class="has-subheader" on-swipe-up="loadMore()">
+    <ion-list >
       <ion-item ng-repeat="question in questions">
-
       <div class="button-bar button-clear">
         <a class="item item-clear item-icon-left">
           <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}" class="icon"></img>
@@ -26,8 +19,8 @@
           </a>
         </div>
       </div>
-      </ion-item>
-    </ion-list>
+      </ion-item> 
+</ion-list>
   </ion-content>
 </ion-view>
 <div class="bar bar-footer bar-stable">

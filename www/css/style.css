@@ -31,7 +31,7 @@ img.logoLeaderboard {
  
 }
 img.photo {
-
+    margin-top: 5px;
     height: 75px;
     width: 55px;
 }
