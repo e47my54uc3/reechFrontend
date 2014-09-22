@@ -1,4 +1,5 @@
 function questionsCtrl($scope, $ionicModal, Question) {
+  //console.log(localStorage.currentUser);
   $scope.selectedQuestion = '';
   Question.query({}, function(data){
     $scope.questions = data;

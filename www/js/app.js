@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -14,6 +14,17 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams) 
     }
     if(window.StatusBar) {
       StatusBar.styleDefault();
+    }
+    //Check if authenticated on page load.
+
+    if(localStorage.currentUser) {
+      $rootScope.currentUser = JSON.parse(localStorage.currentUser);
+      $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
+      $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+      $location.path("/questions");
+    }
+    else {
+      $location.path("/login");
     }
   });
 
@@ -106,6 +117,7 @@ reech.config(function($httpProvider) {
     return {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
+          localStorage.currentUser = '';
           if ($location.path().indexOf('login') < 0) {
             $location.path('/login');
           }
