@@ -99,6 +99,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/ask_a_question',
       templateUrl: 'templates/ask_a_question.html',
       controller: 'askAQuestionCtrl'
+    })
+    .state('connections', {
+      url: '/connections',
+      templateUrl: 'templates/connections.html',
+      controller: 'connectionsCtrl'
     });
     // if none of the above states are matched, use this as the fallback
 
