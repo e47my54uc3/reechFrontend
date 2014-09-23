@@ -1,6 +1,9 @@
-reech.directive('mainHeader',function(){
+reech.directive('mainHeader',function($state){
   return{
     restrict : 'E',
-    templateUrl: 'templates/main_header.html'
+    templateUrl: 'templates/main_header.html',
+    link: function(scope, element, attrs){
+    	scope.currentPage = $state.current.name;
+    }
   }
 });
