@@ -107,14 +107,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     });
     // if none of the above states are matched, use this as the fallback
 
-<<<<<<< HEAD
+
     $urlRouterProvider.otherwise('/login');
-=======
-    $urlRouterProvider.otherwise('/reech');
 
 
 
->>>>>>> Leaderboard page
   });
 //Connect to devise
 reech.config(function(AuthProvider) {
