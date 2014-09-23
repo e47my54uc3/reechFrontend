@@ -4,7 +4,7 @@
 <ion-tabs class=" tabs-dark">
 
   <ion-tab title="My Reech">
-    <div class="list has-subheader">
+    <div class="list">
         <div class="item item-divider">
         Groups
         </div>
@@ -18,7 +18,7 @@
               <div></div>
             </span>
             <span class="item-note padding-left">
-              <button class="button button-small button-light" ng-click="openGroupModal(group.id)">
+              <button reech-modal modal-template="/templates/group_members.html" modal-before-open="beforeGroupModal(group.id)" class="button button-small button-light" ng-click="openModal()">
                 {{group.members.length}} {{group.members.length > 1 ? 'members' : 'member'}}
               </button>
             </span>
@@ -35,7 +35,7 @@
             {{friend.first_name}} {{friend.last_name}}   
             
             <span class="item-note padding-left">
-              <button class="button button-small button-light" ng-click="openMemberModal(friend.id)">
+              <button modal-template="/templates/user_groups.html" modal-before-open="beforeMemberModal(friend.id)" modal-on-close="executeOnClose()" class="button button-small button-light" reech-modal ng-click="openModal()">
                 {{friend.groups.length}} {{friend.groups.length > 1 ? 'groups' : 'group'}}
               </button>
             </span>

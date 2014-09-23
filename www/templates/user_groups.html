@@ -14,7 +14,7 @@
             Update
         </button>
 
-        <button ng-click="newGroup(current_member.reecher_id)" class="button button-block button-positive">
+        <button reech-modal modal-template="/templates/new_group.html" modal-on-close="executeOnClose()" modal-before-open="beforeNewGroup(current_member.reecher_id)" ng-click="openModal()" class="button button-block button-positive">
             Create a new group
         </button>
 
