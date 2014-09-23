@@ -1,30 +1,28 @@
-<ion-tabs class="tabs-dark">
+<ion-view title="Connections">
+<main-header></main-header>
+
+<ion-tabs class=" tabs-dark">
 
   <ion-tab title="My Reech">
-    <div class="list">
+    <div class="list has-subheader">
         <div class="item item-divider">
         Groups
         </div>
         <ul class="list">
           <li ng-repeat="group in groups" class="item">
-            <div class="item item-button-right">
-              {{group.name}}
-              <button class="button button-positive">
-                <i class="icon ion-ios7-telephone"></i>
-              </button>
-            </div>
-
-            <div class="row">
-              <div class="col col-50">
-                {{group.name}}
-              </div>
-              <div class="col">
+            {{group.name}}   
+            <span class="item-note">
+              <a href="#"><i class="icon ion-close-round"></i></a>
+            </span>
+            <span class="item-note">
+              <div></div>
+            </span>
+            <span class="item-note padding-left">
+              <button class="button button-small button-light" ng-click="openGroupModal(group.id)">
                 {{group.members.length}} {{group.members.length > 1 ? 'members' : 'member'}}
-              </div>
-              <div class="col">
-                X
-              </div>
-            </div>
+              </button>
+            </span>
+            
           </li>
         </ul>
     </div>
@@ -34,7 +32,14 @@
         </div>
         <ul class="list">
           <li ng-repeat="friend in friends_list" class="item">
-            {{friend.first_name}} {{friend.la}}
+            {{friend.first_name}} {{friend.last_name}}   
+            
+            <span class="item-note padding-left">
+              <button class="button button-small button-light" ng-click="openMemberModal(friend.id)">
+                {{friend.groups.length}} {{friend.groups.length > 1 ? 'groups' : 'group'}}
+              </button>
+            </span>
+            
           </li>
         </ul>
     </div>
@@ -49,3 +54,6 @@
   </ion-tab>
 
 </ion-tabs>
+
+</ion-view>
+

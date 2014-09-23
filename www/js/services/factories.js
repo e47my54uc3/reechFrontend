@@ -73,6 +73,11 @@ reech.factory('Group', ['$resource', function($resource) {
         id: '@id'
       },
       isArray: false
+    },
+    associate_user_to_group: {
+      url: BaseUrl + "groups/associate_user_to_group",
+      method: 'POST',
+      isArray: false
     }
   }
   );

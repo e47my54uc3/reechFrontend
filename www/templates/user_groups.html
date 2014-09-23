@@ -1,0 +1,22 @@
+<ion-modal-view>
+    <ion-header-bar>
+    	<a class="button button-clear button-dark" ng-click="closeModal()"><i class="icon ion-close-round"></i></a>
+    	<h1 class="title">{{current_member.first_name}} {{current_member.last_name}}</h1>
+    </ion-header-bar>
+    <ion-content>
+    	<ul class="list">
+            <div class="item item-divider">
+                Add to groups
+            </div>
+            <ion-checkbox ng-click="updateSelection($event, gr.id)" ng-repeat="gr in groups" ng-checked="group.group_id.indexOf(gr.id) > -1">{{gr.name}}</ion-checkbox>
+        </ul>
+        <button ng-click="associateUser()" class="button button-block button-positive">
+            Update
+        </button>
+
+        <button ng-click="newGroup(current_member.reecher_id)" class="button button-block button-positive">
+            Create a new group
+        </button>
+
+    </ion-content>
+</ion-modal-view>
