@@ -22,8 +22,8 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope) 
       $scope.fetchQuestions();
     }
   }
-  $scope.openQuestionDetailsModal = function(question) {
-    $scope.selectedQuestion = question.id;
+  $scope.openQuestionDetailsModal = function(question_id) {
+    $scope.selectedQuestion = question_id;
     $ionicModal.fromTemplateUrl('templates/question_detail.html', {
       scope: $scope,
       animation: 'slide-in-up'

@@ -10,7 +10,7 @@
         </a>
         <a class="col col-33 post_time">{{question.updated_at | timeago}}</a>
       </div>
-      <div class="row" ng-click="openQuestionDetailsModal(question)">
+      <div class="row" ng-click="openQuestionDetailsModal(question.id)">
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
         <div class="col col-25">
           <a class="item-thumbnail">
