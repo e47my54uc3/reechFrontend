@@ -4,7 +4,7 @@
 		<test ng-repeat="number in []|range: ceil(categories.length/2)">
 			<div class="row">
 				<div class="col-50" ng-repeat="column in [0,1]" ng-click="loadQuestions(categories[2*number + column].id)" >
-					<div ng-if="categories[2*number + column] != undefined" class="categories_box">
+					<div ng-if="categories[2*number + column] != undefined" class="categories_box" style="background: url('img/categories/{{(categories[2*number + column].title.replace('&', '_').split(' ').join('')|lowercase)}}.jpg') no-repeat center">
 						<div class="categories_header_text ng-binding">
 							{{categories[2*number + column].title}}
 							<div class="badge badge-assertive notification">10</div>
