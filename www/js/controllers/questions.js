@@ -1,6 +1,7 @@
-function questionsCtrl($scope, $ionicModal, Question, $stateParams) {
+function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope) {
   $scope.selectedQuestion = '';
   $scope.currentCategory = $stateParams.categoryId ? $stateParams.categoryId : '';
+  $rootScope.selectedCategoryId =  $scope.currentCategory;
   $scope.currentScope = "all_feed";
   $scope.pageOptions = {page: 1, per_page: 3};
 

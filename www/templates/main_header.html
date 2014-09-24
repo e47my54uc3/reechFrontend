@@ -1,10 +1,11 @@
 <div class="row bar bar-header">
 	<div class="col col-80">
 		<div class="bar bar-header bar-positive col col-80">
-			<a class="button top_navbarCategories" href="#/profile"><img src = "img/User-icon1.png" class ="logo" /></a>
+			<a class="button top_navbarCategories" href="#/profile"><img src = "img/User-icon1.png" class ="logo" /></a> 
 			<h1 class="title"><b ng-if="currentState == 'categories'">Areas of Interests</b>
-			<button select-categories ng-click="openCategoriesModel()" class="button button-large" ng-if="currentState != 'categories'"><h4 class="stable style-select">{{categoryName ? categoryName : "Categories"}}</h4>
-			</button>
+			<select select-categories ng-if="currentState != 'categories'" ng-change="loadQuestions(selectedCategoryId)" ng-model="selectedCategoryId" class="style-select" ng-options=" ''+category.id as category.title for category in categories">
+				<option value="">select category</option>
+			</select>			
 			</h1>
 
 			<button class ="button icon ion-search divider-left"></button>
