@@ -1,4 +1,4 @@
-<ion-view title="Profile">
+<ion-view title="Profile" ng-controller="profilesCtrl">
 	<ion-content>
 <!-- 	<div class = "row positive-bg">
 			<a class="col col-10 button button-clear" ng-click="back()"><i class="icon ion-chevron-left"></i></a>
@@ -27,21 +27,21 @@
     </div>
  
   	</div> -->
-  	<div class = "row positive-bg" style="height: 120px">
+  	<div class = "row positive-bg" style="height: 100px">
   		<div class= "col col-10">
   			<a ng-click="back()"><i class="icon ion-chevron-left stable"></i></a>
   		</div>
   		<div class= "col col-25">
         <center>
-  			<img src="img/ionic.png" style="height: 75px;"/><br /><h5 class="dividers">click to change</h5></center>
+  			<img src={{":s3_domain_url?1408024075"}} style="height: 67px;"/><br /><h6 class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
   		</div>
   		<div class ="col">
-  			<div class="col col-bottom"><h3 class="dividers">current user</h3></div>
+  			<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
   			<div class="row" style="height: 40px; border-top:2px solid white">
-  				<div class="col">Q</div>
-  				<div class="col divider-left">S</div>
-  				<div class="col divider-left">HI5</div>
-  				<div class="col divider-left">500C</div>
+  				<div class="col stable">{{profile.questions_count || 0}} Q</div>
+  				<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
+  				<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
+  				<div class="col divider-left stable">{{profile.curio_points}} C</div>
   			</div>
   		</div>
   	</div>
@@ -50,43 +50,42 @@
 			<a class="item item-icon-left">
 				<i class="icon icon ion-ios7-telephone"></i>
 				
-				<input type="text" placeholder="">
+			
+        <input type="text" ng-model="attributes.user.phone_number" placeholder="phone number">
 			</a>
 
 			<a class="item item-icon-left">
 				<i class="icon icon ion-ios7-home"></i>
 				
-				<input type="text" placeholder="Location">
+				<input type="text" ng-model="attributes.user.user_profile_attributes.location" placeholder="Location">
 			</a>
 			<a class="item item-icon-left">
 			<i class="icon icon ion-document-text"></i>
-				<textarea placeholder="About me blurp (150 characters)"></textarea>
+				<textarea placeholder="About me blurb (150 characters)" maxlength="150" ng-model="attributes.user.user_profile_attributes.blurb"></textarea>
 					
  		</a>
  	</div>
- 	<br>
-  <br>
+  <button ng-click ="updateDetails()" class="button button-block button-energized">
+  Update
+</button>
+
   <center>
       <ion-list scroll="false">
         <ion-item ng-repeat="brand in brands"
                   item="brand">
           {{brand.title}}
           <br>
-          <br>
          
             <div ng-repeat="app in brand.apps" item="app" style='display: inline-block; margin: 10px;'>
               <i class="{{app.icon}}" style='font-size: 30px;'></i>
               {{app.title}}
-              <br>
-              <br>
             </div>
       
         </ion-item>
       </ion-list>
     </center>
-  <br>
 
- 	<button ng-click ="showConfirm()" class="button button-block button-positive">
+ 	<button ng-click ="showConfirm()" class="button button-full button-positive">
   Need Help? Contact Us
   </button>
 	</ion-view>

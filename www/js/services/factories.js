@@ -50,6 +50,12 @@ reech.factory('User', ['$resource', function($resource) {
       params: {},
       isArray: false
     },
+    Profile: {
+      url: BaseUrl + "users/profile",
+      method: 'GET',
+      params: {},
+      isArray: false
+    },
     update: {
       method: 'PUT',
       params: {
@@ -105,22 +111,6 @@ reech.factory('Session', ['$resource', function($resource) {
 
 reech.factory('UserSetting', ['$resource', function($resource) {
   return $resource(BaseUrl + "user_settings/:id",
-  {
-    id: '@id'
-  },
-  {
-    update: {
-      method: 'PUT',
-      params: {
-        id: '@id'
-      },
-      isArray: false
-    }
-  }
-  );
-}]);
-reech.factory('Profile', ['$resource', function($resource) {
-  return $resource(BaseUrl + "profile/:id",
   {
     id: '@id'
   },
