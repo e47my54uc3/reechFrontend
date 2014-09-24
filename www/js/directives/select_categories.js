@@ -1,10 +1,10 @@
-reech.directive('selectCategories', function($rootScope, $ionicModal, $cordovaContacts, $state, $filter, $location){
+reech.directive('selectCategories', function($ionicModal, $cordovaContacts, $state, $stateParams, $filter, $location){
 	return{
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){	
-		  $scope.categories = JSON.parse(localStorage.categories);		
-			$scope.openCategoriesModel = function() {
+			$scope.selectedCategoryId =  $stateParams.categoryId ? $stateParams.categoryId : '';
+		  $scope.openCategoriesModel = function() {
 				$ionicModal.fromTemplateUrl('templates/select_categories.html', {
 					scope: $scope,
 					animation: 'slide-in-left'
@@ -22,14 +22,13 @@ reech.directive('selectCategories', function($rootScope, $ionicModal, $cordovaCo
 			});			
 
 		  var index;
-			$scope.addCategory = function(category_id){
-				$scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
+		  $scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
+			$scope.addCategory = function(category_id){				
 				index = $scope.selectedCategories.indexOf(category_id);
 				if(index < 0)
 					$scope.selectedCategories.push(category_id);
 				else
-					$scope.selectedCategories.splice(index, 1);
-				localStorage.selectedCategoriesIds = JSON.stringify($scope.selectedCategories);				
+					$scope.selectedCategories.splice(index, 1);								
 			}
 			
 			$scope.isCategorySelected = function(category_id){
@@ -45,14 +44,22 @@ reech.directive('selectCategories', function($rootScope, $ionicModal, $cordovaCo
 				$scope.categories = $scope.allCategories;				
 				$scope.closeCategoriesModel();	
 			}
-
-			$scope.filterCategories = function(){
+      $scope.submit = function(){
+      	localStorage.selectedCategoriesIds = JSON.stringify($scope.selectedCategories);
+      	$scope.filterCategories();
+      }
+			$scope.filterCategories = function(){				
 				$scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
+				$scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
 				$scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
 				$scope.closeCategoriesModel();
 			}
+			$scope.filterCategories();
 			$scope.loadQuestions = function(categoryId) {
-    		$location.path("categories/" + categoryId + "/questions");
+				if(categoryId == null)
+					$location.path("/questions");
+				else
+  				$location.path("categories/" + categoryId + "/questions");								
 			}
 		}
 	};
