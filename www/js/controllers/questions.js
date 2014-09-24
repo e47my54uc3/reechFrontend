@@ -5,17 +5,17 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams) {
   $scope.pageOptions = {page: 1, per_page: 3};
 
   $scope.fetchQuestions = function(){
+    $scope.questions = [];
     Question.query({scope: $scope.currentScope, category_id: $scope.currentCategory}, function(data){
-      $scope.count = data[1];
-      angular.forEach(data[0], function(value){
+      $scope.count = data[0].count;
+      angular.forEach(data[0].questions, function(value){
         $scope.questions.push(value);
       });
 
     });
   }
 
-  $scope.$watch("currentScope", function(){
-    $scope.questions = [];
+  $scope.$watch("currentScope", function(){    
     $scope.fetchQuestions();
   });
 

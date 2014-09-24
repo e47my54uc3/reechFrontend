@@ -28,11 +28,11 @@
 </ion-list>
   </ion-content>
   <div class="bar bar-footer bar-stable">
-    <button class="button button-clear col-10 navbar_bottom" ng-click="currentScope = 'all_feed'">All</button>
-    <button class="button button-clear col-15 navbar_bottom" ng-click="currentScope = 'mine'">Mine</button>
-    <button class="button button-clear col-20 navbar_bottom" ng-click="currentScope = 'linked'">Linked</button>
-    <button class="button button-clear col-15 navbar_bottom" ng-click="currentScope = 'starred'">Starred</button>
-    <button class="ion-loop button button-clear col navbar_bottom" ng-click="fetchAllQuestions()"></button>
+    <button class="button col-10 navbar_bottom" ng-click="currentScope = 'all_feed'" ng-class="{'button-positive': currentScope == 'all_feed'}">All</button>
+    <button class="button col-15 navbar_bottom" ng-click="currentScope = 'created_by'" ng-class="{'button-positive': currentScope == 'created_by'}">Mine</button>
+    <button class="button col-20 navbar_bottom" ng-click="currentScope = 'linked'" ng-class="{'button-positive': currentScope == 'linked'}">Linked</button>
+    <button class="button col-15 navbar_bottom" ng-click="currentScope = 'starred'" ng-class="{'button-positive': currentScope == 'starred'}">Starred</button>
+    <button class="ion-loop button button-clear col navbar_bottom" ng-click="fetchQuestions()"></button>
     <span class="col">
         <span class="curio_container">
           <img src="img/curio.png" class="curio_img"></img>
