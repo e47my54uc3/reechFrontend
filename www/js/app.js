@@ -71,6 +71,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/questions',
       templateUrl: 'templates/questions.html'
     })
+    .state('category_questions', {
+      url: '/categories/:categoryId/questions',
+      templateUrl: 'templates/questions.html'
+    })
     .state('friends', {
       url: '/friends',
       templateUrl: 'templates/friends.html',
