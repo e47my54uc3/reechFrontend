@@ -1,17 +1,18 @@
 <div class="row bar bar-header">
 	<div class="col col-80">
 		<div class="bar bar-header bar-positive col col-80">
-			<a class="button top_navbarCategories" href="#/profile"><img src = "img/User-icon1.png" class ="logo" /></a>
+			<a class="button top_navbarCategories" href="#/profile"><img src = "img/User-icon1.png" class ="logo" /></a> 
 			<h1 class="title"><b ng-if="currentState == 'categories'">Areas of Interests</b>
-			<button select-categories ng-click="openCategoriesModel()" class="button button-large" ng-if="currentState != 'categories'"><h4 class="stable style-select">{{categoryName ? categoryName : "Categories"}}</h4>
-			</button>
+			<select select-categories ng-if="currentState != 'categories'" ng-change="loadQuestions(selectedCategoryId)" ng-model="selectedCategoryId" class="style-select" ng-options=" ''+category.id as category.title for category in categories">
+				<option value="">select category</option>
+			</select>			
 			</h1>
 
 			<button class ="button icon ion-search divider-left"></button>
 		</div>
 		<div class="bar bar-subheader bar-energized top_navbar col col-80">
 			<a class="button top_navbarCategories" href="#/categories"><icon class="ion-grid button_bar_icons " ng-class="{'positive': currentPage == 'categories'}"></icon></a>
-			<a class="button top_navbarFriends" href="#/connections"><icon class="ion-ios7-people button_bar_icons" ng-class="{'positive': currentPage == 'friends'}"></icon></a>
+			<a class="button top_navbarFriends" href="#/connections"><icon class="ion-ios7-people button_bar_icons" ng-class="{'positive': currentPage == 'connections'}"></icon></a>
 			<a class="button top_navbarNotifs" href="#/user_settings" ><icon class="ion-speakerphone button_bar_icons" ng-class="{'positive': currentPage == 'user_settings'}"></icon></a>
 		</div>
 	</div>

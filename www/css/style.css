@@ -425,6 +425,10 @@ text-align: center;
 
 
 .style-select {
-  background: url("../img/triangle-left.png") no-repeat right #325692;  
+  -webkit-appearance: none;
+  font-size: 22px;
+  border: 0px;
+  color: white;
+  background: url("../img/triangle-left.png") no-repeat #325692;  
   background-position: right bottom;
 }
