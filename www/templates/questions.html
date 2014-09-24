@@ -5,7 +5,7 @@
       <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
       <div class="button-bar button-clear">
         <a class="col-50 item item-clear item-icon-left" >
-          <img ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
+          <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
           <span class="postedby">{{question.posted_by}}</span>
         </a>
         <a class="col col-33 post_time">{{question.updated_at | timeago}}</a>
@@ -27,7 +27,7 @@
       </ion-item>
 </ion-list>
   </ion-content>
-  <div class="bar bar-footer bar-stable">
+  <ion-footer-bar class="bar bar-footer bar-stable">
     <button class="button button-clear col-10 navbar_bottom" ng-click="currentScope = 'all_feed'">All</button>
     <button class="button button-clear col-15 navbar_bottom" ng-click="currentScope = 'mine'">Mine</button>
     <button class="button button-clear col-20 navbar_bottom" ng-click="currentScope = 'linked'">Linked</button>
@@ -38,6 +38,6 @@
           <img src="img/curio.png" class="curio_img"></img>
         <div class="curio_text">500</div></span>
     </span>
-  </div>
+  </ion-footer-bar>
 
 </ion-view>
