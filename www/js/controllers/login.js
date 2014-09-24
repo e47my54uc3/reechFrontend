@@ -1,4 +1,7 @@
 function loginCtrl($scope, $rootScope, $location, Auth, $http){
+	if(localStorage.currentUser)
+		$location.path("/categories");
+
 	$scope.credentials = {};
 	$scope.login = function(){
 		Auth.login($scope.credentials).then(function(user) {

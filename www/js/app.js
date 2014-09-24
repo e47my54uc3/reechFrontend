@@ -19,7 +19,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
     if(localStorage.currentUser) {
       $rootScope.currentUser = JSON.parse(localStorage.currentUser);
-      $rootScope.categories = JSON.parse(localStorage.categories);
       $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
       $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
       $location.path("/categories");

@@ -2,7 +2,8 @@ reech.directive('selectCategories', function($rootScope, $ionicModal, $cordovaCo
 	return{
 		restrict: 'A',
 		scope: false,
-		link: function($scope, element, attrs){			
+		link: function($scope, element, attrs){	
+		  $scope.categories = JSON.parse(localStorage.categories);		
 			$scope.openCategoriesModel = function() {
 				$ionicModal.fromTemplateUrl('templates/select_categories.html', {
 					scope: $scope,
