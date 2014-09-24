@@ -26,21 +26,21 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope) 
       $scope.fetchQuestions();
     }
   }
-  $scope.openModal = function(question) {
+  $scope.openQuestionDetailsModal = function(question) {
     $scope.selectedQuestion = question.id;
     $ionicModal.fromTemplateUrl('templates/question_detail.html', {
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
-      $scope.modal = modal;
-      $scope.modal.show();
+      $scope.questionDetailModel = modal;
+      $scope.questionDetailModel.show();
     });
   };
-  $scope.closeModal = function() {
-    $scope.modal.remove();
+  $scope.closeQuestionDetailsModal = function() {
+    $scope.questionDetailModel.remove();
   };
-  $scope.$on('modal.hidden', function() {
-    $scope.modal.remove();
+  $scope.$on('questionDetailModel.hidden', function() {
+    $scope.questionDetailModel.remove();
   });
 
 }
