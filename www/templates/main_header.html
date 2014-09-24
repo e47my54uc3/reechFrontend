@@ -2,7 +2,11 @@
 	<div class="col col-80">
 		<div class="bar bar-header bar-positive col col-80">
 			<a class="button top_navbarCategories" href="#/profile"><img src = "img/User-icon1.png" class ="logo" /></a>
-			<h1 class="title"><b>Areas of Interests</b></h1>
+			<h1 class="title"><b ng-if="currentState == 'categories'">Areas of Interests</b>
+			<button select-categories ng-click="openCategoriesModel()" class="button button-large" ng-if="currentState != 'categories'"><h4 class="stable style-select">{{categoryName ? categoryName : "Categories"}}</h4>
+			</button>
+			</h1>
+
 			<button class ="button icon ion-search divider-left"></button>
 		</div>
 		<div class="bar bar-subheader bar-energized top_navbar col col-80">

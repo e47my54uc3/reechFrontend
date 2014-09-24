@@ -34,9 +34,15 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     else
       $state.go('questions');
   };
+  $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.previousState = fromState.name;
+    $rootScope.previousStateParams = fromParams;
+    $rootScope.currentState = toState.name;
+    $rootScope.currentStateParams = toParams;
+  });
 })
 
-
+ 
 reech.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -98,6 +104,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/categories',
       templateUrl: 'templates/categories.html',
       controller: 'categoriesCtrl'
+    })
+    .state('questions_by_categories', {
+      url: '/categories/questions',
+      templateUrl: 'templates/questions.html'
     })
     .state('ask_a_question', {
       url: '/ask_a_question',
