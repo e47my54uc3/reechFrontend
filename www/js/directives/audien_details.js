@@ -44,12 +44,6 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 				$scope.closeModal();
 			}
 
-			$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
-				$scope.contacts = result;
-			}, function(err) {
-    			alert(err);
-      		});
-
 			$scope.updateGroupSelection = function(event, group_id){
 				if(event.target.checked){
 					$scope.question.audien_details.groups[$scope.question.audien_details.groups.length] = group_id;
@@ -61,6 +55,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 			$scope.updateReecherSelection = function(event, reecher_id){
 				if(event.target.checked){
 					$scope.question.audien_details.reecher_ids[$scope.question.audien_details.reecher_ids.length] = reecher_id;
+					console.log($scope.question.audien_details)
 				}else{
 					$scope.question.audien_details.reecher_ids.splice($scope.question.audien_details.reecher_ids.indexOf(reecher_id), 1)
 				}
@@ -97,6 +92,14 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 				}
 				
 			}
+
+			// $cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
+			// 	$scope.contacts = result;
+			// }, function(err) {
+   //  			alert(err);
+   //    		});
+
+
 		}		
 	}
 });

@@ -152,3 +152,20 @@ reech.factory('Solution', ['$resource', function($resource) {
   }
   );
 }]);
+
+reech.factory('Notification', ['$resource', function($resource) {
+  return $resource(BaseUrl + "notifications/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);

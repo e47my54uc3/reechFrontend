@@ -21,15 +21,15 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope) 
       $scope.fetchQuestions();
     }
   }
-  $scope.openQuestionDetailsModal = function(question_id) {
+  $scope.beforeQuestionDetailsModal = function(question_id) {
     $scope.selectedQuestion = question_id;
-    $ionicModal.fromTemplateUrl('templates/question_detail.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal) {
-      $scope.questionDetailModel = modal;
-      $scope.questionDetailModel.show();
-    });
+    // $ionicModal.fromTemplateUrl('templates/question_detail.html', {
+    //   scope: $scope,
+    //   animation: 'slide-in-up'
+    // }).then(function(modal) {
+    //   $scope.questionDetailModel = modal;
+    //   $scope.questionDetailModel.show();
+    // });
   };
   $scope.closeQuestionDetailsModal = function() {
     $scope.questionDetailModel.remove();
