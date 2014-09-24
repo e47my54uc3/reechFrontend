@@ -4,10 +4,6 @@ reech.directive('reechModal', function($ionicModal, $compile, $parse){
 		restrict: 'AE',
 		scope: false,
 		link: function($scope, element, attrs){
-			if($scope.modal){
-				$scope.modal.remove();
-			}
-
 			$scope.openModal = function() {
 				if(attrs.modalBeforeOpen != ""){
 					$parse(attrs.modalBeforeOpen)($scope);

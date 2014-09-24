@@ -118,7 +118,12 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/connections',
       templateUrl: 'templates/connections.html',
       controller: 'connectionsCtrl'
-    });
+    })
+    .state('notifications', {
+      url: '/notifications',
+      templateUrl: 'templates/notifications.html',
+      controller: 'notificationsCtrl'
+    });;
     // if none of the above states are matched, use this as the fallback
 
 
