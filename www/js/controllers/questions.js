@@ -23,19 +23,6 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope) 
   }
   $scope.beforeQuestionDetailsModal = function(question_id) {
     $scope.selectedQuestion = question_id;
-    // $ionicModal.fromTemplateUrl('templates/question_detail.html', {
-    //   scope: $scope,
-    //   animation: 'slide-in-up'
-    // }).then(function(modal) {
-    //   $scope.questionDetailModel = modal;
-    //   $scope.questionDetailModel.show();
-    // });
-  };
-  $scope.closeQuestionDetailsModal = function() {
-    $scope.questionDetailModel.remove();
-  };
-  $scope.$on('questionDetailModel.hidden', function() {
-    $scope.questionDetailModel.remove();
-  });
+  };  
 
 }
