@@ -42,7 +42,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
   });
 })
 
- 
+
 reech.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -68,6 +68,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/login',
       templateUrl: 'templates/login.html',
       controller: 'loginCtrl'
+    })
+    .state('sign_up', {
+      url: '/sign_up',
+      templateUrl: 'templates/register.html',
+      controller: 'registrationCtrl'
     })
     .state('sign_out', {
       url: '/sign_out',
@@ -136,6 +141,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
 reech.config(function(AuthProvider) {
   AuthProvider.loginPath(BaseUrl + 'users/sign_in');
   AuthProvider.loginMethod('POST');
+  AuthProvider.registerMethod('POST');
+  AuthProvider.registerPath(BaseUrl + 'users');
+  AuthProvider.logoutPath(BaseUrl + 'users/sign_out');
+  AuthProvider.logoutMethod('POST');
 });
 
 reech.config(function($httpProvider) {

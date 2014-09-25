@@ -1,0 +1,28 @@
+<ion-view title="Register">
+  <ion-content>
+    <form ng-submit="register()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label" ng-class="{'assertive': errors.message.phone_number}">Phone Number</span>
+          <input type="text" ng-model="user.phone_number">
+        </label>
+        <label class="item item-input">
+          <span class="input-label" ng-class="{'assertive': errors.message.phone_number}"> Email </span>
+          <input type="text" ng-model="user.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label" ng-class="{'assertive': errors.message.password}">Password</span>
+          <input type="password" ng-model="user.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label" ng-class="{'assertive': errors.message.password}">Confirm Password</span>
+          <input type="password" ng-model="user.password_confirmation">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Signup</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+
+</ion-view>
