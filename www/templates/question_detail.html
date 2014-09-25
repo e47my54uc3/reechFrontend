@@ -5,7 +5,8 @@
       <div class="winter inner-box">
         <div class="item item-icon-left item-icon-right winter">
           <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
-          <i class="icon ion-android-star Qstaricon"></i>
+          <i class="icon ion-ios7-star-outline Qstaricon" ng-if="!selectedQuestion.current_user_starred_question" ng-click="starQuestion()"></i>
+          <i class="icon ion-ios7-star Qstaricon" ng-if="selectedQuestion.current_user_starred_question"></i>
         </div>
 
         <div class="row">
