@@ -13,7 +13,7 @@
       		<div class="col col-50 stable">
         		<a class="item-avatar item-text-wrap">
           		<img class="user-avatar full-image"><span class="item-text-wrap">
-          		wrote_by</span>
+          		{{currentSolution.solution_provider_name}}</span>
         		</a>          		       
       		</div>
       		<div class="button-bar col-20">
@@ -25,22 +25,22 @@
   
     		<div class="row">
     			<div class="col col-90 item-text-wrap stable">
-    				solution
+    				{{currentSolution.body}}
     			</div>
     		</div>    		   
   		</div>
   	</div>
-  	<div class="winter inner-box" ng-click="grabSolution()">    
+  	<div class="winter inner-box" ng-click="grabSolution()" ng-if="showGrab">    
   		<div class="row">
   			<div class="col col-offset-10">
-  				<h1  class="ion-ios7-timer-outline"></h1><span class="stable">8 seconds</span>
+  				<h1  class="ion-ios7-timer-outline"></h1><span class="stable h3">{{previewTime}} seconds</span>
   			</div>
   			<div class="col">
-  				<h1  class="royal ion-android-hand"></h1><span class="stable">Grab Solution</span>
+  				<h1  class="royal ion-android-hand"></h1><span class="stable h3">Grab Solution</span>
   			</div>
   		</div>
   		<div class="text-center">
-  			<h3><img src="img/small-currency.png"/><span class="stable"> 25</span>	</h3>
+  			<h3><img src="img/curio.png"/><span class="stable"> 25</span>	</h3>
   		</div>
   	</div>    
   </div>

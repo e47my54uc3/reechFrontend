@@ -148,6 +148,22 @@ reech.factory('Solution', ['$resource', function($resource) {
         id: '@id'
       },
       isArray: false
+    },
+    previewSolution: {
+      url: BaseUrl + "solutions/:solution_id/preview_solution",
+      method: 'POST',
+      params: {
+        solution_id: '@solution_id'
+      },
+      isArray: false
+    },
+    purchaseSolution: {
+      url: BaseUrl + "solutions/:solution_id/purchase_solution",
+      method: 'POST',
+      params: {
+        solution_id: '@solution_id'
+      },
+      isArray: false
     }
   }
   );

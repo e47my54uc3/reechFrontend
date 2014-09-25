@@ -21,7 +21,8 @@ function questionCtrl($scope, $ionicModal, Question) {
     $scope.answerModal.remove();
   });
 
-  $scope.openSolutionModal = function() {
+  $scope.openSolutionModal = function(solution) {
+    $scope.selectedSolution = solution;
     $ionicModal.fromTemplateUrl('templates/solution.html', {
       scope: $scope,
       animation: 'slide-in-up'
