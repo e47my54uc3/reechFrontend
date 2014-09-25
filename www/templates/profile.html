@@ -35,12 +35,12 @@
 					
  		</a>
  	</div>
-  <button ng-if="currentUser.id == attributes.user.id" ng-click ="updateDetails()" class="button button-block button-energized">
+  <button ng-if="currentUser.id == profile.id" ng-click ="updateDetails()" class="button button-block button-energized">
   Update
-</button>
+  </button>
 
   <center>
-      <ion-list scroll="false" ng-if="currentUser.id == attributes.user.id">
+      <ion-list scroll="false" ng-if="currentUser.id == profile.id">
         <ion-item ng-repeat="brand in brands"
                   item="brand">
           {{brand.title}}
