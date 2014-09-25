@@ -96,7 +96,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/user_settings.html'
     })
     .state('profile', {
-      url: '/profile',
+      url: '/user/:id/profile',
       templateUrl: 'templates/profile.html',
       controller: 'profilesCtrl'
     })

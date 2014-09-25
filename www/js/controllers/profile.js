@@ -1,7 +1,7 @@
-function profilesCtrl($scope, $ionicPopup, $stateParams, User){
-    User.Profile({}, function(data){
+function profilesCtrl($scope, $ionicPopup, $stateParams, User, $rootScope, $stateParams){
+    User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
-      $scope.attributes = { user: { phone_number: data.phone_number, user_profile_attributes: {location: data.location, blurb: data.blurb}}};
+      $scope.attributes = { user: {phone_number: data.phone_number, user_profile_attributes: {location: data.location, blurb: data.blurb}}};
     });
     
     $scope.updateDetails = function(){      

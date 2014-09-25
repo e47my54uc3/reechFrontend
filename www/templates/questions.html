@@ -4,7 +4,7 @@
     <ion-list >
       <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
       <div class="button-bar button-clear">
-        <a class="col-50 item item-clear item-icon-left" >
+        <a href="#/user/{{question.posted_by_user_id}}/profile" class="col-50 item item-clear item-icon-left" >
           <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
           <span class="postedby">{{question.posted_by}}</span>
         </a>

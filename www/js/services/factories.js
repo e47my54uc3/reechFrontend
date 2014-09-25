@@ -59,9 +59,11 @@ reech.factory('User', ['$resource', function($resource) {
       isArray: false
     },
     Profile: {
-      url: BaseUrl + "users/profile",
+      url: BaseUrl + "users/:id/profile",
       method: 'GET',
-      params: {},
+      params: {
+        id: '@id'
+      },
       isArray: false
     },
     update: {
