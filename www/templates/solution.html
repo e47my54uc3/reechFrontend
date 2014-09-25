@@ -6,7 +6,8 @@
     		<div class="item item-icon-left item-icon-right item-positive">
     			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
     			<div class="title text-center">Solution</div>
-    			<i class="icon ion-android-hand"></i>
+    			<i class="icon ion-android-hand" ng-if="showGrab"></i>
+          <i class="icon ion-android-hand dark" ng-if="!showGrab"></i>
   			</div>    
    
     		<div class="row">
