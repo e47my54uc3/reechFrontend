@@ -37,6 +37,7 @@ reech.directive('selectCategories', function($ionicModal, $cordovaContacts, $sta
 			
 			$scope.selectAllCategories = function(){
 				var selectedCategories = [];
+				$scope.allCategories = JSON.parse(localStorage.categories);
 				angular.forEach($scope.allCategories, function(data){
 					selectedCategories.push(data.id);
 				});

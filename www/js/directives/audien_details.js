@@ -7,36 +7,38 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
 			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
-			$ionicModal.fromTemplateUrl('templates/audien_details.html', {
-				scope: $scope,
-				animation: 'slide-in-up'
-			}).then(function(modal) {
-				$scope.modal = modal;
-			});
+			
 
-			$scope.openModal = function() {
+			$scope.openAudienModal = function() {
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
-				$scope.modal.show();
+				$ionicModal.fromTemplateUrl('templates/audien_details.html', {
+					scope: $scope,
+					animation: 'slide-in-up'
+				}).then(function(modal) {
+					$scope.audien_modal = modal;
+					$scope.audien_modal.show();
+				});
+				
 			};
 
-			$scope.closeModal = function() {
+			$scope.closeAudienModal = function() {
 				$scope.new_invite = {email: "", phone_number: ""};
-				$scope.modal.remove();
+				$scope.audien_modal.remove();
 			};
 
 			//Cleanup the modal when we're done with it!
 			$scope.$on('$destroy', function() {
-				$scope.modal.remove();
+				$scope.audien_modal.remove();
 			});
 
 			// Execute action on hide modal
 			$scope.$on('modal.hidden', function() {
-				$scope.modal.remove();
+				$scope.audien_modal.remove();
 			});
 
 			$scope.resetAudiens = function(){
 				$scope.question.audien_details = $scope.temp_audien;
-				$scope.closeModal();
+				$scope.closeAudienModal();
 			}
 
 			$scope.updateGroupSelection = function(event, group_id){

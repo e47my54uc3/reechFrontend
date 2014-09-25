@@ -59,9 +59,11 @@ reech.factory('User', ['$resource', function($resource) {
       isArray: false
     },
     Profile: {
-      url: BaseUrl + "users/profile",
+      url: BaseUrl + "users/:id/profile",
       method: 'GET',
-      params: {},
+      params: {
+        id: '@id'
+      },
       isArray: false
     },
     update: {
@@ -144,6 +146,22 @@ reech.factory('Solution', ['$resource', function($resource) {
       method: 'PUT',
       params: {
         id: '@id'
+      },
+      isArray: false
+    },
+    previewSolution: {
+      url: BaseUrl + "solutions/:solution_id/preview_solution",
+      method: 'POST',
+      params: {
+        solution_id: '@solution_id'
+      },
+      isArray: false
+    },
+    purchaseSolution: {
+      url: BaseUrl + "solutions/:solution_id/purchase_solution",
+      method: 'POST',
+      params: {
+        solution_id: '@solution_id'
       },
       isArray: false
     }

@@ -1,5 +1,6 @@
 <ion-view title="Ask a Question">
-	<ion-content>
+<main-header></main-header>
+	<ion-content class="has-subheader">
 		<div class="list">
 			<label class="item item-input item-select">
 				<div class="input-label">
@@ -23,7 +24,7 @@
 		<div class="button-bar">
 				<a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
 				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
-				<a audien-details ng-click="openModal()" class="button"><i class="icon ion-person-add"></i></a>
+				<a audien-details ng-click="openAudienModal()" class="button"><i class="icon ion-person-add"></i></a>
 		</div>
 		
 	</ion-content>

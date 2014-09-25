@@ -1,7 +1,7 @@
 <ion-modal-view>
   <ion-content ng-controller="questionCtrl">
   <div class="main-box">
-    <div class="box-image" back-img="selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+    <div class="box-image" back-img="selectedQuestion.question.image_url ? selectedQuestion.question.image_url : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
       <div class="winter inner-box">
         <div class="item item-icon-left item-icon-right winter">
           <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col col-50 stable">
             <a class="item-avatar item-text-wrap">
-              <img class="user-avatar full-image" ng-src="{{selectedQuestion.avatar_file_name ? selectedQuestion.avatar_file_name : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.posted_by}}</span>
+              <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.owner_image ? selectedQuestion.question.owner_image : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.question_referee}}</span>
             </a>
           </div>
           <div class="button-bar col-20">
@@ -24,23 +24,42 @@
 
         <div class="row">
           <div class="col col-90 item-text-wrap stable questiondetail_text">
-            {{selectedQuestion.post}}
+            {{selectedQuestion.question.post}}
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <a class="button col button-positive button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
-      <span class="divider-left"></span>
-      <a class="button col button-balanced ion-link" audien-details ng-click="openModal()">Link Expert</a>
+      <a class="button col button-positive button-clear button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
+      <span class="divider-left dark"></span>
+      <a class="button col button-balanced ion-link button-clear" audien-details ng-click="openModal()">Link Expert</a>
     </div>
   </div>
   <ion-scroll direction="x">
-    <div class="list card">
-      <a ng-click="openSolutionModal()" class="item item-icon-left">
-        Solutions
-      </a>
+  <div class="row">
+    <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" ng-click="openSolutionModal(solution)">      
+      <div class="row stable">
+        <a class="item-avatar item-text-wrap">
+          <img class="full-image" ng-src="{{solution.solver_image ? solution.solver_image : 'img/no-image.png'}}"><span class="dark item-text-wrap">{{solution.solution_provider_name}}</span>
+        </a>
+      </div>
+      <div class="row item-text-wrap" style="height: 200px;">
+        <ion-scroll direction="y">
+          {{solution.body}}
+        </ion-scroll>
+      </div>
+      <div class="row stable-bg categories_footer_text" ng-if="solution.purchased">
+        <i class="ion-chatbubbles assertive "></i>        
+        <i class="ion-android-hand royal notification "></i>
+      </div>
+      <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased">
+        <span class="curio_container">
+          <img src="img/curio.png" class="curio_img"></img>
+          <div class="curio_text">25</div>
+        </span>
+      </div>
     </div>
+  </div>
   </ion-scroll>
   </ion-content>
 </ion-modal-view>
