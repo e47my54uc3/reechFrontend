@@ -6,7 +6,7 @@
   		</div>
   		<div class= "col col-25">
         <center>
-  			<img src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
+  			<img src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
   		</div>
   		<div class ="col">
   			<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
@@ -22,7 +22,7 @@
 				
 			<a class="item item-icon-left">
 				<i class="icon icon ion-ios7-telephone"></i>
-			  <input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.user.phone_number" placeholder="phone number">
+			  <input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.user.phone_number" placeholder="phone number">{{currentUser.id}}
 			</a>
 
 			<a class="item item-icon-left">
