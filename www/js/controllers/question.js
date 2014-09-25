@@ -36,4 +36,9 @@ function questionCtrl($scope, $ionicModal, Question) {
   $scope.$on('solutionModal.hidden', function() {
     $scope.solutionModal.remove();
   });
+  $scope.starQuestion = function(){
+    Question.starQuestion({'question_id': $scope.selectedQuestion.question.id}, function(response){
+      $scope.selectedQuestion.current_user_starred_question = true;
+    });
+  }
 }

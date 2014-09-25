@@ -10,6 +10,14 @@ reech.factory('Question', ['$resource', function($resource) {
         id: '@id'
       },
       isArray: false
+    },
+    starQuestion: {
+      url: BaseUrl + "questions/:question_id/star_question",
+      method: 'POST',
+      params: {
+        question_id: '@question_id'
+      },
+      isArray: false
     }
   }
   );
