@@ -1,11 +1,5 @@
 function registrationCtrl($scope, $rootScope, $location, Auth, $http){
 
-  var credentials = {
-      email: 'user2@domain.com',
-      password: 'pas',
-      password_confirmation: 'password1'
-  };
-
   $scope.user = {
     email: '',
     password: '',
