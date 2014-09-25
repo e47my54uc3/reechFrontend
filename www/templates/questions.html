@@ -20,7 +20,7 @@
       </div>
       <div class="button-bar button-clear">
           <div class="col col-offset-0"><icon class="ion-ios7-star staricon" ng-class="{positive: question.is_starred}" ></icon></div>
-          <div class="col col-offset-25"><icon class="ion-link linkicon" ng-class="{positive: question.is_linked}"></icon></div>
+          <div class="col col-offset-25"><icon class="ion-link linkicon" ng-class="{positive: question.is_linked}"></icon>{{question.linked_count}}</div>
           <div class="col col-offset-25"><icon class="ion-ios7-chatboxes" ng-class="{chaticon: question.has_conversation}"></icon></div>
           <div class="col col-offset-25"><icon class="ion-ios7-checkmark" ng-class="{solvedicon: question.has_solution}"></icon></div>
       </div>
