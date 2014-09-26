@@ -6,34 +6,36 @@
     		<div class="item item-icon-left item-icon-right item-positive">
     			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
     			<div class="title text-center">Solution</div>
-    			<i class="icon ion-android-hand" ng-if="showGrab"></i>
-          <i class="icon ion-android-hand dark" ng-if="!showGrab"></i>
+    			<i class="icon ion-android-hand" ng-if="!currentSolution.purchased"></i>
+          <i class="icon ion-android-hand dark" ng-if="currentSolution.purchased"></i>
   			</div>    
-   
-    		<div class="row">
-      		<div class="col col-50 stable">
-        		<a class="item-avatar item-text-wrap">
-          		<img class="user-avatar full-image"><span class="item-text-wrap">
+        <div ng-if="showSolution">
+    		  <div class="row" >
+      		  <div class="col col-50 stable">
+        		  <a class="item-avatar item-text-wrap">
+          		  <img class="user-avatar full-image" ng-src="{{currentSolution.solver_image ? currentSolution.solver_image : 'img/no-image.png'}}"  ng-click="currentSolution.profile_pic_clickable && goTo('user/{{currentSolution.solution_provider_id}}/profile')"><span class="item-text-wrap">
           		{{currentSolution.solution_provider_name}}</span>
-        		</a>          		       
-      		</div>
-      		<div class="button-bar col-20">
-  					<a class="button button-clear ion-ios7-videocam "></a>
-  					<a class="button button-clear ion-ios7-mic"></a>
-  					<a class="button button-clear ion-link"></a>
-					</div>      	
-    		</div>    
+        		  </a>          		       
+      		  </div>
+      		  <div class="button-bar col-20">
+  					  <a class="button button-clear ion-ios7-videocam "></a>
+  					  <a class="button button-clear ion-ios7-mic"></a>
+  					  <a class="button button-clear ion-link"></a>
+					  </div>      	
+    		  </div>    
   
-    		<div class="row">
-    			<div class="col col-90 item-text-wrap stable">
-    				{{currentSolution.body}}
-    			</div>
-    		</div>    		   
-  		</div>
+    		  <div class="row">
+    			  <div class="col col-90 item-text-wrap stable">
+    				  {{currentSolution.body}}
+    			  </div>
+    		  </div>    		   
+  		  </div>
+      </div>
+      <div class="row h3" ng-if="!showSolution"> Grab Solution! </div>
   	</div>
-  	<div class="winter inner-box" ng-click="grabSolution()" ng-if="showGrab">    
+  	<div class="winter inner-box" ng-click="grabSolution()" ng-if="!currentSolution.purchased && !currentSolution.current_user_is_solver"> 
   		<div class="row">
-  			<div class="col col-offset-10">
+  			<div class="col col-offset-10" ng-if="!currentSolution.previewed">
   				<h1  class="ion-ios7-timer-outline"></h1><span class="stable h3">{{previewTime}} seconds</span>
   			</div>
   			<div class="col">

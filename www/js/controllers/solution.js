@@ -1,11 +1,21 @@
-function solutionCtrl($scope, $timeout, Solution){	
+function solutionCtrl($scope, $timeout, Solution, $location){	
 	var timer;
 	$scope.previewTime = 8;
-	if($scope.$parent.selectedSolution) {
+	$scope.setPreviewSolution = function(){    
+    Solution.previewSolution({solution_id: $scope.currentSolution.id}, function(){
+      $scope.currentSolution.previewed = true;
+      $scope.$parent.selectedSolution.previewed = true;     
+    });    
+  }
+  if($scope.$parent.selectedSolution) {
   	$scope.currentSolution = $scope.$parent.selectedSolution;
-  	$scope.showGrab = !$scope.currentSolution.purchased && !$scope.currentSolution.current_user_is_solver;
-  	if($scope.showGrab)
-  		startTimer();  
+    $scope.showSolution =  !$scope.currentSolution.previewed ||  $scope.currentSolution.current_user_is_solver || $scope.currentSolution.purchased;
+    if(!$scope.currentSolution.previewed && !$scope.currentSolution.current_user_is_solver && !$scope.currentSolution.purchased)
+    {    
+      $scope.setPreviewSolution();  
+      startTimer();  
+    }
+  		
   }
   function startTimer(){
   	timer = $timeout(function() {
@@ -13,8 +23,8 @@ function solutionCtrl($scope, $timeout, Solution){
       if($scope.previewTime > -1)
       	startTimer();
       else{
-      	$scope.previewTime = 0;
-      	$scope.setPreviewSolution();
+      	$scope.previewTime = 0;      	
+        $scope.$parent.closeSolutionModal();
       }      	
     }, 1000);
   }
@@ -24,13 +34,7 @@ function solutionCtrl($scope, $timeout, Solution){
   $scope.cancelTimer = function(){
   	$timeout.cancel( timer );
   }
-  $scope.setPreviewSolution = function(){  	
-  	Solution.previewSolution({solution_id: $scope.currentSolution.id}, function(){
-  		$scope.currentSolution.previewed = true;
-  		$scope.$parent.selectedSolution.previewed = true;  		
-  	});
-  	$scope.$parent.closeSolutionModal();
-  }
+  
 	$scope.grabSolution = function(){		
 		Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
   		$scope.showGrab = false;
@@ -44,4 +48,9 @@ function solutionCtrl($scope, $timeout, Solution){
 		$scope.$parent.selectedSolution.solution_provider_name = $scope.currentSolution.solution_owner;
   	$scope.$parent.selectedSolution.solver_image = $scope.currentSolution.solution_owner_image; 		
 	}
+  $scope.goTo = function(url){
+    $scope.modal.remove();
+    $scope.$parent.closeSolutionModal();
+    $location.path(url);
+  }
 }
