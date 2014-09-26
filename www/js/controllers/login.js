@@ -1,36 +1,22 @@
-function loginCtrl($scope, $rootScope, $location, Auth, $http, $window){
-    if ($rootScope.currentUser)
-			$location.path("/categories");
+function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
 
-		var url = BaseUrl + "users/auth/facebook";
 
 	$scope.facebookLogin = function () {
-
-		  var loginWindow;
-			var queryString = '';
-		  loginWindow = $window.open(url, '_blank', 'location=no,toolbar=no');
-		  loginWindow.addEventListener('loadstart', function(evt) {
-		    var url = decodeURIComponent(evt.url);
-		    if (url.indexOf("auth_face_book") > 0 || url.indexOf("error=") > 0) {
-		      if (url.indexOf("user=") > 0) {
-						queryString = url.substr(url.indexOf('user=') + 5);
-						queryString = queryString.substr(0, queryString.indexOf('#_=_'));
-
-				  }
-					loginWindow.close();
-					$scope.facebookAfterLogin(queryString);
-			}
-		});
+    if(!window.cordova) {
+      facebookConnectPlugin.browserInit('1493228840925351');
+    }
+    facebookConnectPlugin.login(["public_info", "email"], function(response){
+      User.authorizeFacebook({email: response.email, uid: response.id, first_name: response.first_name, last_name: response.last_name}, function(user){
+        localStorage.currentUser = JSON.stringify(user);
+        $rootScope.currentUser = JSON.parse(localStorage.currentUser);
+        $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
+        $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+        $location.path("/categories");
+        console.log($rootScope.currentUser);
+      });
+    })
 	}
 
-	$scope.facebookAfterLogin = function (user) {
-    localStorage.currentUser = user;
-		$rootScope.currentUser = JSON.parse(localStorage.currentUser);
-		$http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
-		$http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
-		$window.location.reload();
-		console.log($rootScope.currentUser);
-	}
 
 
 	$scope.credentials = {};
