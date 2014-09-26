@@ -5,96 +5,109 @@
   </button>
   <div class="h1 title energized">{{currentUser.first_name}} {{currentUser.last_name}}</div>
 </div>
-
-<div class="content has-header">
-
+<div class="list has-header">
+  <div class="item item-divider assertive-bg">
+    Send a push notification when
+  </div>
   <ul class="list">
-    <li class="item item-toggle">
-     <span class="item-text-wrap">Enable/Disable location services</span>
-     <label class="toggle toggle-balanced">
-      <input type="checkbox"   ng-change="changeSetting()" ng-model="model.location_is_enabled" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+    <ion-scroll>
+    <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.question_gets_answer" >
+       my question gets new answers
      </label>
    </li>
-   <li class="item item-toggle">
-     <h3>Push Notifications</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.pushnotif_is_enabled" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.linked_to_new" >
+       I'm linked to a new question
      </label>
    </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">Email Notifications</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.emailnotif_is_enabled" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.solution_gets_hi5" >
+       my solution gets a Hi5
      </label>
    </li>
-   <div class="item item-divider positive">
-      Let me know when
-   </div>   
-   <li class="item item-toggle">
-     <span class="item-text-wrap">my question has new answers</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_question_when_answered" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.friend_asks_help" >
+       a friends ask me for help
      </label>
    </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">I'm linked to a new question</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()"   ng-change="changeSetting()" ng-model="model.notify_linked_to_question" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.stared_question_gets_answer" >
+       my starred question gets an answer
      </label>
    </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">friends Hi5 my solutions</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_solution_got_highfive" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.some_one_grabs_my_solution" >
+       someone grabs my solution
      </label>
    </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">a friend asks my help</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_audience_if_ask_for_help" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">starred questions have answers</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_when_my_stared_question_get_answer" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
-   <li class="item item-toggle">
-     <span class="item-text-wrap">friend grab my solutions</span>
-     <label class="toggle toggle-balanced">
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.notify_when_someone_grab_my_answer" >
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-   </li>
+   </ion-scroll>
  </ul>
-
+</div>
+<div class="list">
+  <div class="item item-divider assertive-bg">
+    Notify through email when
+  </div>
+    <ul class="list">
+      <ion-scroll>
+    <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.question_gets_answer" >
+       my question gets new answers
+     </label>
+   </li>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.linked_to_new" >
+       I'm linked to a new question
+     </label>
+   </li>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.solution_gets_hi5" >
+       my solution gets a Hi5
+     </label>
+   </li>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.friend_asks_help" >
+       a friends ask me for help
+     </label>
+   </li>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.stared_question_gets_answer" >
+       my starred question gets an answer
+     </label>
+   </li>
+   <li class="item">
+     <label>
+       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.some_one_grabs_my_solution" >
+       someone grabs my solution
+     </label>
+   </li></ion-scroll>
+ </ul>
+</div>
+<div class="list">
+  <div class="item item-divider assertive-bg">
+    Change Password
+  </div>
+  <label class="item item-input">
+    <input type="password" placeholder="Old password" ng-model="user.old_password">
+  </label>
+  <label class="item item-input">
+    <input type="password" placeholder="New password" ng-model="user.password">
+  </label>
+  <label class="item item-input">
+    <input type="password" placeholder="Confirm new password" ng-model="user.password_confirmation"></input>
+  </label>
+  <button class="button button-positive" ng-click="changePassword()" ng-disabled="user.password != user.password_confirmation">Change password</button>
 </div>
 </ion-content>
 </ion-view>

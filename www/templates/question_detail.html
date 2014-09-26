@@ -48,11 +48,11 @@
           {{solution.body}}
         </ion-scroll>
       </div>
-      <div class="row stable-bg categories_footer_text" ng-if="solution.purchased">
+      <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
         <i class="ion-chatbubbles assertive "></i>        
-        <i class="ion-android-hand royal notification "></i>
+        <i class="ion-android-hand royal notification">{{solution.hi5_count}} </i>
       </div>
-      <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased">
+      <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
         <span class="curio_container">
           <img src="img/curio.png" class="curio_img"></img>
           <div class="curio_text">25</div>
