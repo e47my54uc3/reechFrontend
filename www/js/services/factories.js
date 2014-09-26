@@ -185,3 +185,20 @@ reech.factory('Notification', ['$resource', function($resource) {
   }
   );
 }]);
+
+reech.factory('ReechChat', ['$resource', function($resource) {
+  return $resource(BaseUrl + "reech_chats/:id",
+  {
+    id: '@id'
+  },
+  {
+    update: {
+      method: 'PUT',
+      params: {
+        id: '@id'
+      },
+      isArray: false
+    }
+  }
+  );
+}]);

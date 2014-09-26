@@ -93,11 +93,14 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 				
 			}
 
-			$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
-				$scope.contacts = result;
-			}, function(err) {
-    			alert(err);
-      		});
+			try{
+				$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
+					$scope.contacts = result;
+				}, function(err) {
+	    			alert(err);
+	      		});
+			}catch(e){}
+			
 
 
 		}		

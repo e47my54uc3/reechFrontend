@@ -33,6 +33,9 @@
       </div>
       <div class="row h3" ng-if="!showSolution"> Grab Solution! </div>
   	</div>
+    <button reech-modal modal-template="/templates/chat.html" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" class="button button-block button-positive" ng-click="openModal()"><i class="icon ion-chatbubbles"></i>
+      Chat
+    </button>
   	<div class="winter inner-box" ng-click="grabSolution()" ng-if="!currentSolution.purchased && !currentSolution.current_user_is_solver"> 
   		<div class="row">
   			<div class="col col-offset-10" ng-if="!currentSolution.previewed">
