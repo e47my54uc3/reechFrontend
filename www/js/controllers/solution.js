@@ -3,9 +3,23 @@ function solutionCtrl($scope, $timeout, Solution, $location){
 	$scope.previewTime = 8;
 	$scope.setPreviewSolution = function(){    
     Solution.previewSolution({solution_id: $scope.currentSolution.id}, function(){
-      $scope.currentSolution.previewed = true;
-      $scope.$parent.selectedSolution.previewed = true;     
+      $scope.preview_set = true;   
     });    
+  }
+  $scope.grabSolution = function(){   
+    Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
+      $scope.showSolution = true;
+      $scope.cancelTimer();
+      $scope.currentSolution.purchased = true;
+      $scope.$parent.selectedSolution.purchased = true;     
+      $scope.setOrginalOwnerDetails();
+    });   
+  }
+  $scope.solutionHi5 = function(){
+    Solution.solutionHi5({solution_id: $scope.currentSolution.id}, function(response){
+      $scope.showSolution.hi5_count =  response.hi5_count;
+      $scope.$parent.selectedSolution.hi5_count = response.hi5_count;           
+    });
   }
   if($scope.$parent.selectedSolution) {
   	$scope.currentSolution = $scope.$parent.selectedSolution;
@@ -33,17 +47,13 @@ function solutionCtrl($scope, $timeout, Solution, $location){
   });
   $scope.cancelTimer = function(){
   	$timeout.cancel( timer );
+    if($scope.preview_set){
+      $scope.currentSolution.previewed = true;
+      $scope.$parent.selectedSolution.previewed = true;  
+    }      
   }
   
-	$scope.grabSolution = function(){		
-		Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
-  		$scope.showSolution = false;
-			$scope.cancelTimer();
-  		$scope.currentSolution.purchased = true;
-  		$scope.$parent.selectedSolution.purchased = true;  		
-  		$scope.setOrginalOwnerDetails();
-  	});  	
-	}
+	
 	$scope.setOrginalOwnerDetails = function(){
     $scope.$parent.selectedSolution.solution_provide_id = $scope.currentSolution.solution_owner_id;
 		$scope.$parent.selectedSolution.solution_provider_name = $scope.currentSolution.solution_owner;

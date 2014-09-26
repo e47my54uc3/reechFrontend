@@ -164,6 +164,14 @@ reech.factory('Solution', ['$resource', function($resource) {
         solution_id: '@solution_id'
       },
       isArray: false
+    },
+    solutionHi5: {
+      url: BaseUrl + "solutions/:solution_id/solution_hi5",
+      method: 'POST',
+      params: {
+        solution_id: '@solution_id'
+      },
+      isArray: false
     }
   }
   );
