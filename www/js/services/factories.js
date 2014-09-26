@@ -41,25 +41,25 @@ reech.factory('Category', ['$resource', function($resource) {
 }]);
 
 reech.factory('User', ['$resource', function($resource) {
-  return $resource(BaseUrl + "users/:id",
+  return $resource(BaseUrl + "api_users/:id",
   {
     id: '@id'
   },
   {
     friends: {
-      url: BaseUrl + "users/friends",
+      url: BaseUrl + "api_users/friends",
       method: 'GET',
       params: {},
       isArray: true
     },
     leaderBoard: {
-      url: BaseUrl + "users/leader_board",
+      url: BaseUrl + "api_users/leader_board",
       method: 'GET',
       params: {},
       isArray: false
     },
     Profile: {
-      url: BaseUrl + "users/:id/profile",
+      url: BaseUrl + "api_users/:id/profile",
       method: 'GET',
       params: {
         id: '@id'
