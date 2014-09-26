@@ -2,19 +2,22 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
     User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
       $scope.avatar = "";
-      $scope.attributes = {_method: "PUT", user: {phone_number: data.phone_number, user_profile_attributes: {location: data.location, blurb: data.blurb}}};
+      $scope.attributes = {phone_number: data.phone_number, location: data.location, blurb: data.blurb};
     });
     
     $scope.updateDetails = function(){
       if($scope.avatar != ""){
         var options = new FileUploadOptions();
         options.fileKey = "file";
-          options.fileName = "filename.jpg";
-          options.mimeType = "image/jpeg";
-          options.chunkedMode = false;
-          options.params = $scope.attributes;
+        options.fileName = "filename.jpg";
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = false;
+        var params = {};
+        params._method = "PUT";
+        params.user = $scope.attributes;
+        options.params = params;
           
-        $cordovaFile.uploadFile(BaseUrl + 'users/' + $rootScope.currentUser.id, $scope.avatar, options).then(function(result) {
+        $cordovaFile.uploadFile(BaseUrl + 'api_users/' + $rootScope.currentUser.id, $scope.avatar, options).then(function(result) {
             alert("upload success");
           }, function(error) {
             alert("An error has occurred: Code = " + error.code);
