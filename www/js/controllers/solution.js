@@ -37,7 +37,7 @@ function solutionCtrl($scope, $timeout, Solution, $location){
   
 	$scope.grabSolution = function(){		
 		Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
-  		$scope.showGrab = false;
+  		$scope.showSolution = false;
 			$scope.cancelTimer();
   		$scope.currentSolution.purchased = true;
   		$scope.$parent.selectedSolution.purchased = true;  		
