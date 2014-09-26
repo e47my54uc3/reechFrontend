@@ -5,9 +5,10 @@
   		<div class="winter inner-box has_header">
     		<div class="item item-icon-left item-icon-right item-positive">
     			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
-    			<div class="title text-center">Solution</div>
-    			<i class="icon ion-android-hand" ng-if="!currentSolution.purchased"></i>
-          <i class="icon ion-android-hand dark" ng-if="currentSolution.purchased"></i>
+    			<div class="title text-center">Solution</div>   
+          <span class="col col-offset-90">{{currentSolution.hi5_count}} 		
+            <img  src="img/High-Fives.png" ng-click="solutionHi5()"></img>
+          </span>
   			</div>    
         <div ng-if="showSolution">
     		  <div class="row" >
