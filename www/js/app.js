@@ -26,6 +26,8 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     else {
       $location.path("/login");
     }
+
+    //OpenFB.init('1493228840925351');
   });
 
   $rootScope.back = function() {
