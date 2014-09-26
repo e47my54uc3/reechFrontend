@@ -3,8 +3,7 @@ function solutionCtrl($scope, $timeout, Solution, $location){
 	$scope.previewTime = 8;
 	$scope.setPreviewSolution = function(){    
     Solution.previewSolution({solution_id: $scope.currentSolution.id}, function(){
-      $scope.currentSolution.previewed = true;
-      $scope.$parent.selectedSolution.previewed = true;     
+      $scope.preview_set = true;   
     });    
   }
   if($scope.$parent.selectedSolution) {
@@ -33,11 +32,15 @@ function solutionCtrl($scope, $timeout, Solution, $location){
   });
   $scope.cancelTimer = function(){
   	$timeout.cancel( timer );
+    if($scope.preview_set){
+      $scope.currentSolution.previewed = true;
+      $scope.$parent.selectedSolution.previewed = true;  
+    }      
   }
   
 	$scope.grabSolution = function(){		
 		Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
-  		$scope.showSolution = false;
+  		$scope.showSolution = true;
 			$scope.cancelTimer();
   		$scope.currentSolution.purchased = true;
   		$scope.$parent.selectedSolution.purchased = true;  		
