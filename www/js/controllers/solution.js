@@ -45,6 +45,7 @@ function solutionCtrl($scope, $timeout, Solution, $location){
   	});  	
 	}
 	$scope.setOrginalOwnerDetails = function(){
+    $scope.$parent.selectedSolution.solution_provide_id = $scope.currentSolution.solution_owner_id;
 		$scope.$parent.selectedSolution.solution_provider_name = $scope.currentSolution.solution_owner;
   	$scope.$parent.selectedSolution.solver_image = $scope.currentSolution.solution_owner_image; 		
 	}
