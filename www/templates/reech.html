@@ -1,8 +1,13 @@
 <ion-view title="Reech">
 	<ion-content>
-			<main-header></main-header>
-		</ion-content>
+		<form ng-submit="setInvite()">
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label" ng-class="{'assertive': errors.message.invite_code}">Invite code</span>
+					<input type="text" ng-model="inviteCode">
+				</label>
+
+			</div>
+		</form>
+	</ion-content>
 </ion-view>
-
-
-

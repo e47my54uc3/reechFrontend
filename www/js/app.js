@@ -15,19 +15,35 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    //Check if authenticated on page load.
+    //Set the landing page on page load.
 
-    if(localStorage.currentUser) {
-      $rootScope.currentUser = JSON.parse(localStorage.currentUser);
-      $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
-      $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
-      $location.path("/categories");
+    if (!localStorage.inviteCode){
+      $location.path("/reech");
+    }
+
+    else if(localStorage.currentUser) {
+      $rootScope.setCurrentUser();
     }
     else {
       $location.path("/login");
     }
 
   });
+
+  $rootScope.setCurrentUser = function() {
+    $rootScope.currentUser = JSON.parse(localStorage.currentUser);
+    $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
+    $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+    $location.path("/categories");
+  }
+
+  $rootScope.signout = function() {
+    $rootScope.currentUser = '';
+    localStorage.currentUser = '';
+    $http.defaults.headers.common["X-User-Email"]= '';
+    $http.defaults.headers.common["X-User-Token"]= '';
+    $location.path("/login");
+  }
 
   $rootScope.back = function() {
     if($rootScope.previousState)
@@ -62,7 +78,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('reech', {
       url: '/reech',
-
+      controller: 'reechCtrl',
       templateUrl: 'templates/reech.html'
     })
     .state('login', {
@@ -133,7 +149,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // if none of the above states are matched, use this as the fallback
 
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/reech');
 
 
 

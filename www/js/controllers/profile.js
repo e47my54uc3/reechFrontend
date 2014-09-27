@@ -72,12 +72,4 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $location, $cordova
         }
       });
     };
-
-    //Move this to rootScope later.
-
-    $scope.logout = function(){
-      $rootScope.currentUser = '';
-      localStorage.currentUser = '';
-      $location.path("/login");
-    }
 }
