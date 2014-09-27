@@ -24,7 +24,8 @@ function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, So
   	}
 
   	$scope.submit = function(){
-  		$scope.model.question_id = $scope.$parent.selectedQuestion.question_id;
+  		$scope.model.question_id = $scope.$parent.selectedQuestion.question.question_id;
+      alert($scope.model.question_id);
   		Solution.save({'solution': $scope.model}, function(data){
   			var alertPopup = $ionicPopup.alert({
      			title: 'Solution',

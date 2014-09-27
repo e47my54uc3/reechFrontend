@@ -37,7 +37,7 @@
   </div>
   <ion-scroll direction="x">
   <div class="row">
-    <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" ng-click="openSolutionModal(solution)">      
+    <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" ng-click="openSolutionModal(solution)">
       <div class="row stable">
         <a class="item-avatar item-text-wrap">
           <img class="full-image" ng-src="{{solution.solver_image ? solution.solver_image : 'img/no-image.png'}}"><span class="dark item-text-wrap">{{solution.solution_provider_name}}</span>
@@ -49,7 +49,7 @@
         </ion-scroll>
       </div>
       <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
-        <i class="ion-chatbubbles assertive "></i>        
+        <i class="ion-chatbubbles assertive "></i>
         <i class="ion-android-hand royal notification">{{solution.hi5_count}} </i>
       </div>
       <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
@@ -62,4 +62,5 @@
   </div>
   </ion-scroll>
   </ion-content>
+  
 </ion-modal-view>
