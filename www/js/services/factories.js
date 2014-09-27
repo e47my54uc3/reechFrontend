@@ -58,6 +58,12 @@ reech.factory('User', ['$resource', function($resource) {
       params: {},
       isArray: false
     },
+    validateCode: {
+      url: BaseUrl + "api_users/validate_code",
+      method: 'GET',
+      params: {},
+      isArray: false
+    },
     leaderBoard: {
       url: BaseUrl + "api_users/leader_board",
       method: 'GET',
