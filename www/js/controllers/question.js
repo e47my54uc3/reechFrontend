@@ -1,4 +1,4 @@
-function questionCtrl($scope, $ionicModal, Question) {
+function questionCtrl($scope, $ionicModal, Question, $rootScope) {
   $scope.question = {};
   if($scope.$parent.selectedQuestion) {
     Question.get({id: $scope.$parent.selectedQuestion}, function(response){
@@ -40,6 +40,7 @@ function questionCtrl($scope, $ionicModal, Question) {
   $scope.starQuestion = function(){
     Question.starQuestion({'question_id': $scope.selectedQuestion.question.id}, function(response){
       $scope.selectedQuestion.current_user_starred_question = true;
+      $rootScope.setProfile();
     });
   }
 }

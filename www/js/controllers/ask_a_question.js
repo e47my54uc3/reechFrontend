@@ -4,9 +4,9 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 	$scope.avatar = "";
 	$scope.test = localStorage.currentUser;
 	$scope.takePicture = function(type) {
-	    var options = { 
-	        quality : 75, 
-	        destinationType : Camera.DestinationType.FILE_URI, 
+	    var options = {
+	        quality : 75,
+	        destinationType : Camera.DestinationType.FILE_URI,
 	        allowEdit : true,
 	        encodingType: Camera.EncodingType.JPEG,
 	        targetWidth: 100,
@@ -34,7 +34,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 
   	$scope.createQuestion = function(){
 		$scope.question.posted_by_uid = $rootScope.currentUser.reecher_id;
-		$scope.question.posted_by = ($rootScope.currentUser.first_name + $rootScope.currentUser.last_name);	
+		$scope.question.posted_by = ($rootScope.currentUser.first_name + $rootScope.currentUser.last_name);
   		if($scope.avatar != ""){
   			var options = new FileUploadOptions();
 	  		options.fileKey = "file";
@@ -44,7 +44,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 	        var params = {};
 	        params.question = $scope.question;
 	        options.params = params;
-	        
+
 	  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
 			    alert("upload success");
 			}, function(error) {
@@ -54,6 +54,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		}else{
 			Question.save({question: $scope.question}, function(res){
 	  			alert("Question successfully posted.");
+					$rootScope.setProfile();
 	  			$location.path("/questions");
 	  		}, function(err){
 	  			alert("Error occured while posting the question. Please try again.");
