@@ -39,7 +39,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
   $rootScope.signout = function() {
     $rootScope.currentUser = '';
-    localStorage.currentUser = '';
+    localStorage.removeItem('currentUser');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
     $location.path("/login");
