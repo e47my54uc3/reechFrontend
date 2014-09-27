@@ -1,10 +1,10 @@
-function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $stateParams, $cordovaFile){
+function profilesCtrl($scope, $ionicPopup, User, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile){
     User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
       $scope.avatar = "";
       $scope.attributes = {phone_number: data.phone_number, location: data.location, blurb: data.blurb};
     });
-    
+
     $scope.updateDetails = function(){
       if($scope.avatar != ""){
         var options = new FileUploadOptions();
@@ -16,7 +16,7 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
         params._method = "PUT";
         params.user = $scope.attributes;
         options.params = params;
-          
+
         $cordovaFile.uploadFile(BaseUrl + 'api_users/' + $rootScope.currentUser.id, $scope.avatar, options).then(function(result) {
             alert("upload success");
           }, function(error) {
@@ -31,10 +31,10 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
     }
 
     $scope.takePicture = function() {
-      var options = { 
-          quality : 75, 
+      var options = {
+          quality : 75,
           destinationType : Camera.DestinationType.FILE_URI,
-          sourceType : Camera.PictureSourceType.PHOTOLIBRARY, 
+          sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
           allowEdit : true,
           encodingType: Camera.EncodingType.JPEG,
           targetWidth: 100,
@@ -59,7 +59,7 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
       , {icon: 'ion-android-mail'}
     ]}
     ];
-    
+
     $scope.showConfirm = function() {
       var confirmPopup = $ionicPopup.confirm({
         templateUrl: 'templates/help.html'
@@ -72,4 +72,12 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
         }
       });
     };
+
+    //Move this to rootScope later.
+
+    $scope.logout = function(){
+      $rootScope.currentUser = '';
+      localStorage.currentUser = '';
+      $location.path("/login");
+    }
 }

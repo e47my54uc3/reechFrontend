@@ -19,7 +19,7 @@
   		</div>
   	</div>
 		<div class="list card">
-				
+
 			<a class="item item-icon-left">
 				<i class="icon icon ion-ios7-telephone"></i>
 			  <input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.phone_number" placeholder="phone number">
@@ -32,7 +32,7 @@
 			<a class="item item-icon-left">
 			  <i class="icon icon ion-document-text"></i>
         <textarea ng-readonly="currentUser.id != profile.id" placeholder="About me blurb (150 characters)" maxlength="150" ng-model="attributes.blurb"></textarea>
-					
+
  		</a>
  	</div>
   <button ng-if="currentUser.id == profile.id" ng-click ="updateDetails()" class="button button-block button-energized">
@@ -45,12 +45,12 @@
                   item="brand">
           {{brand.title}}
           <br>
-         
+
             <div ng-repeat="app in brand.apps" item="app" style='display: inline-block; margin: 10px;'>
               <i class="{{app.icon}}" style='font-size: 30px;'></i>
               {{app.title}}
             </div>
-      
+
         </ion-item>
       </ion-list>
     </center>
@@ -58,5 +58,8 @@
  	<button ng-click ="showConfirm()" class="button button-full button-positive">
   Need Help? Contact Us
   </button>
-	</ion-view>
+  <button ng-click ="logout()" class="button button-full button-positive">
+	  Logout
+	</button>
 </ion-content>
+</ion-view>
