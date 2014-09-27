@@ -64,6 +64,12 @@ reech.factory('User', ['$resource', function($resource) {
       params: {},
       isArray: false
     },
+    currentUserProfile: {
+      url: BaseUrl + "api_users/current_user_profile",
+      method: 'GET',
+      params: {},
+      isArray: false
+    },
     leaderBoard: {
       url: BaseUrl + "api_users/leader_board",
       method: 'GET',

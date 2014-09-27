@@ -8,11 +8,11 @@
       </ion-scroll>
     </div>
     <div class="item item-divider assertive-bg">Friends</div>
-  
+
       <ion-scroll>
         <a class="item" href="#" ng-repeat="friend in friends">{{friend.first_name}} {{friend.last_name}}</a>
       </ion-scroll>
- 
+
   </div>
 </ion-content>
 <div class="bar bar-footer bar-stable">
@@ -20,14 +20,14 @@
   <button class="button button-clear col-25"><a class="navbarConnections_bottom">My Reech</a></button>
   <button class="button button-clear col-25"><a class="navbarConnections_bottom">Phonebook</a></button>
   <button class="button button-clear col-30"><a class="navbarConnections_bottom">Find my friends</a></h4></button>
-  <span class="col"> 
+  <span class="col">
     <a class="item-icon-right curios">
       <span class="curio_container">
         <img src="img/curio.png" class="curio_img"></img>
-      <div class="curio_text">500</div>
+      <div class="curio_text">{{currentUserProfile.curio_points}}</div>
     </a>
   </span>
-     
+
   </ion-content>
 
 </ion-view>

@@ -15,6 +15,7 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
           $rootScope.currentUser = JSON.parse(localStorage.currentUser);
           $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
           $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+          $rootScope.setProfile();
           $location.path("/categories");
         });
       }, function(){
@@ -28,6 +29,7 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
   			$rootScope.currentUser = JSON.parse(localStorage.currentUser);
   			$http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
   			$http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+        $rootScope.setProfile();
    			$location.path("/categories");
  			console.log(user.user);
     	}, function(error) {

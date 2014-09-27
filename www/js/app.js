@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -34,15 +34,29 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     $rootScope.currentUser = JSON.parse(localStorage.currentUser);
     $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
     $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+    if(localStorage.currentUserProfile){
+      $rootScope.currentUserProfile = JSON.parse(localStorage.currentUserProfile);
+    }
+    else {
+      $rootScope.setProfile();
+    }
     $location.path("/categories");
   }
 
   $rootScope.signout = function() {
     $rootScope.currentUser = '';
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserProfile');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
     $location.path("/login");
+  }
+
+  $rootScope.setProfile = function() {
+    User.currentUserProfile(function(response){
+      localStorage.currentUserProfile = JSON.stringify(response);
+      $rootScope.currentUserProfile = JSON.parse(localStorage.currentUserProfile);
+    });
   }
 
   $rootScope.back = function() {
