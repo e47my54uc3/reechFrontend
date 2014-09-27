@@ -6,19 +6,22 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
   else {
 
   	$scope.facebookLogin = function () {
-      if(!window.cordova) {
-        facebookConnectPlugin.browserInit('1493228840925351');
-      }
-      facebookConnectPlugin.login(["public_info", "email"], function(response){
-        User.authorizeFacebook({email: response.email, uid: response.id, first_name: response.first_name, last_name: response.last_name}, function(user){
-          localStorage.currentUser = JSON.stringify(user);
-          $rootScope.currentUser = JSON.parse(localStorage.currentUser);
-          $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
-          $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
-          $rootScope.setProfile();
-          $location.path("/categories");
-        });
-      }, function(){
+
+      facebookConnectPlugin.login(["public_info", "me"], function(response){
+        response = response.authResponse;
+        alert(JSON.stringify(response));
+        alert(response.email);
+        if (response.email){
+          User.authorizeFacebook({email: response.email, uid: response.id, first_name: response.first_name, last_name: response.last_name}, function(user){
+            localStorage.currentUser = JSON.stringify(user);
+            $rootScope.currentUser = JSON.parse(localStorage.currentUser);
+            $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
+            $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
+            $rootScope.setProfile();
+            $location.path("/categories");
+          });
+        }
+      }, function(error){
         alert("Error logging in.");
       })
   	}
