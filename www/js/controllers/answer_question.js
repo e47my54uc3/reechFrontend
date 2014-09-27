@@ -1,10 +1,11 @@
-function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, Solution) {  
-  $scope.model = {is_public: true, solver_id: $scope.currentUser.reecher_id, solver: $scope.currentUser.full_name};  
+function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, Solution) {
+
+  $scope.model = {is_public: true, solver_id: $scope.currentUser.reecher_id, solver: $scope.currentUser.full_name};
   $scope.takePicture = function() {
-	    var options = { 
-	        quality : 75, 
-	        destinationType : Camera.DestinationType.DATA_URL, 
-	        sourceType : Camera.PictureSourceType.PHOTOLIBRARY, 
+	    var options = {
+	        quality : 75,
+	        destinationType : Camera.DestinationType.DATA_URL,
+	        sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
 	        allowEdit : true,
 	        encodingType: Camera.EncodingType.JPEG,
 	        targetWidth: 100,
@@ -21,7 +22,7 @@ function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, So
 	    	alert(err);
 	    });
   	}
-  	
+
   	$scope.submit = function(){
   		$scope.model.question_id = $scope.$parent.selectedQuestion.question_id;
   		Solution.save({'solution': $scope.model}, function(data){

@@ -18,10 +18,10 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     //Set the landing page on page load.
 
     if (!localStorage.inviteCode){
-      $location.path("/reech");
+      //$location.path("/reech");
     }
 
-    else if(localStorage.currentUser) {
+    if(localStorage.currentUser) {
       $rootScope.setCurrentUser();
     }
     else {
@@ -149,7 +149,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     // if none of the above states are matched, use this as the fallback
 
 
-    $urlRouterProvider.otherwise('/reech');
+    $urlRouterProvider.otherwise('/login');
 
 
 
