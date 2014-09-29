@@ -1,76 +1,80 @@
 <ion-view title="Profile" ng-controller="profilesCtrl">
-	<ion-content>
-  	<div class = "row positive-bg" style="height: 100px">
-  		<div class= "col col-10">
-  			<a ng-click="back()"><i class="icon ion-chevron-left stable"></i></a>
-  		</div>
-  		<div class= "col col-25">
+	<ion-content class="has-footer">
+   
+    	<div class = "row positive-bg" style="height: 100px">
+    		<div class= "col col-10">
+    			<a ng-click="back()"><i class="icon ion-chevron-left stable"></i></a>
+    		</div>
+    		<div class= "col col-25">
+          <center>
+    			<img src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
+    		</div>
+    		<div class ="col">
+    			<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
+    			<div class="row" style="height: 40px; border-top:2px solid white">
+    				<div class="col stable">{{profile.questions_count || 0}} Q</div>
+    				<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
+    				<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
+    				<div class="col divider-left stable">{{profile.curio_points}} C</div>
+    			</div>
+    		</div>
+    	</div>
+      
+    		<div class="list card">
+
+    			<a class="item item-icon-left">
+    				<i class="icon icon ion-ios7-telephone"></i>
+    			  <input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.phone_number" placeholder="phone number">
+    			</a>
+
+    			<a class="item item-icon-left">
+    				<i class="icon icon ion-ios7-home"></i>
+    				<input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.location" placeholder="Location">
+    			</a>
+    			<a class="item item-icon-left">
+    			  <i class="icon icon ion-document-text"></i>
+            <textarea ng-readonly="currentUser.id != profile.id" placeholder="About me blurb (150 characters)" maxlength="150" ng-model="attributes.blurb"></textarea>
+
+     		 </a>
+     	  </div>
+        <button ng-if="currentUser.id == profile.id" ng-click ="updateDetails()" class="button button-block button-energized">
+        Update
+        </button>
         <center>
-  			<img src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
-  		</div>
-  		<div class ="col">
-  			<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
-  			<div class="row" style="height: 40px; border-top:2px solid white">
-  				<div class="col stable">{{profile.questions_count || 0}} Q</div>
-  				<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
-  				<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
-  				<div class="col divider-left stable">{{profile.curio_points}} C</div>
-  			</div>
-  		</div>
-  	</div>
-		<div class="list card">
+          <ion-list scroll="false" ng-if="currentUser.id == profile.id">
+            <ion-item ng-repeat="brand in brands"
+                      item="brand">
+              {{brand.title}}
+              <br>
 
-			<a class="item item-icon-left">
-				<i class="icon icon ion-ios7-telephone"></i>
-			  <input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.phone_number" placeholder="phone number">
-			</a>
+                <div ng-repeat="app in brand.apps" item="app" style='display: inline-block; margin: 10px;'>
+                  <i class="{{app.icon}}" style='font-size: 30px;'></i>
+                  {{app.title}}
+                </div>
 
-			<a class="item item-icon-left">
-				<i class="icon icon ion-ios7-home"></i>
-				<input ng-readonly="currentUser.id != profile.id" type="text" ng-model="attributes.location" placeholder="Location">
-			</a>
-			<a class="item item-icon-left">
-			  <i class="icon icon ion-document-text"></i>
-        <textarea ng-readonly="currentUser.id != profile.id" placeholder="About me blurb (150 characters)" maxlength="150" ng-model="attributes.blurb"></textarea>
+            </ion-item>
+          </ion-list>
+        </center>
 
- 		</a>
- 	</div>
-  <button ng-if="currentUser.id == profile.id" ng-click ="updateDetails()" class="button button-block button-energized">
-  Update
-  </button>
+     	  <button ng-click ="showConfirm()" class="button button-full button-positive">
+          Need Help? Contact Us
+        </button>
+        <button ng-click ="signout()" class="button button-full button-positive">
+    	    Logout
+    	  </button>
+        <br />
+     
 
-  <center>
-      <ion-list scroll="false" ng-if="currentUser.id == profile.id">
-        <ion-item ng-repeat="brand in brands"
-                  item="brand">
-          {{brand.title}}
-          <br>
-
-            <div ng-repeat="app in brand.apps" item="app" style='display: inline-block; margin: 10px;'>
-              <i class="{{app.icon}}" style='font-size: 30px;'></i>
-              {{app.title}}
-            </div>
-
-        </ion-item>
-      </ion-list>
-    </center>
-
- 	<button ng-click ="showConfirm()" class="button button-full button-positive">
-  Need Help? Contact Us
-  </button>
-  <button ng-click ="signout()" class="button button-full button-positive">
-	  Logout
-	</button>
-</ion-content>
-<div class="tabs tabs-striped tabs-assertive tabs-color-light">
-  <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile">
-    <i>Profile</i>
-  </a>
-  <a class="tab-item" href="#/leader_board">
-    <i>Leaderboard</i>
-  </a>
-  <a class="tab-item" href="#/user_settings">
-    <i>Settings</i>
-  </a>
-</div>
+  </ion-content>
+  <div class="tabs tabs-striped tabs-assertive tabs-color-light">
+    <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile">
+      <i>Profile</i>
+    </a>
+    <a class="tab-item" href="#/leader_board">
+      <i>Leaderboard</i>
+    </a>
+    <a class="tab-item" href="#/user_settings">
+      <i>Settings</i>
+    </a>
+  </div>
 </ion-view>
