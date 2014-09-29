@@ -39,7 +39,7 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
   });
   $scope.starQuestion = function(){
     Question.starQuestion({'question_id': $scope.selectedQuestion.question.id}, function(response){
-      $scope.selectedQuestion.current_user_starred_question = true;
+      $scope.selectedQuestion.current_user_starred_question = response.stared;
       $rootScope.setProfile();
     });
   }
