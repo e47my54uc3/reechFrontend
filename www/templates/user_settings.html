@@ -107,7 +107,19 @@
   <label class="item item-input">
     <input type="password" placeholder="Confirm new password" ng-model="user.password_confirmation"></input>
   </label>
-  <button class="button button-positive" ng-click="changePassword()" ng-disabled="user.password != user.password_confirmation">Change password</button>
+  <button class="button button-positive button-full" ng-click="changePassword()" ng-disabled="user.password != user.password_confirmation">Change password</button>
 </div>
 </ion-content>
+
+    <div class="tabs tabs-striped tabs-assertive tabs-color-light">
+      <a class="tab-item" href="#/user/{{currentUser.id}}/profile">
+        <i>Profile</i>
+      </a>
+      <a class="tab-item" href="#/leader_board">
+        <i>Leaderboard</i>
+      </a>
+      <a class="tab-item   active" href="#/user_settings">
+        <i>Settings</i>
+      </a>
+    </div>
 </ion-view>
