@@ -4,7 +4,9 @@ function registrationCtrl($scope, $rootScope, $location, Auth, $http){
     email: '',
     password: '',
     password_confirmation: '',
-    phone_number: ''
+    phone_number: '',
+    invite_id: localStorage.inviteId,
+    invite_code: localStorage.inviteCode
   }
 
   $scope.register = function() {
@@ -15,7 +17,7 @@ function registrationCtrl($scope, $rootScope, $location, Auth, $http){
       $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
       $location.path("/categories");
     }, function(error) {
-      console.log(error);
+      console.log(error.data);
     });
   }
 
