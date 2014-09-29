@@ -1,5 +1,6 @@
 function questionCtrl($scope, $ionicModal, Question, $rootScope) {
   $scope.question = {};
+  var index;
   if($scope.$parent.selectedQuestion) {
     Question.get({id: $scope.$parent.selectedQuestion}, function(response){
       $scope.selectedQuestion = response;
@@ -37,10 +38,12 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
   $scope.$on('solutionModal.hidden', function() {
     $scope.solutionModal.remove();
   });
+  
   $scope.starQuestion = function(){
     Question.starQuestion({'question_id': $scope.selectedQuestion.question.id}, function(response){
       $scope.selectedQuestion.current_user_starred_question = response.stared;
       $rootScope.setProfile();
+      $scope.$parent.setStar($scope.selectedQuestion.question.id, response.stared)      
     });
   }
 }
