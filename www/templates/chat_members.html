@@ -1,0 +1,17 @@
+<ion-modal-view>
+    <ion-header-bar>
+    	<a class="button button-clear button-dark" ng-click="closeModal()"><i class="icon ion-close-round"></i></a>
+    	<h1 class="title">Chat members</h1>
+    </ion-header-bar>
+    <ion-content>
+    	<div class="list">
+            <div ng-repeat="chat_member in currentSolution.chat_members" class="item item-button-right">
+                {{chat_member.first_name}} {{chat_member.last_name}}
+                <button reech-modal modal-template="'/templates/chat.html'" modal-before-open="setCurrentChatMember(chat_member.id)" ng-click="openModal()" class="button button-positive">
+                  <i class="icon ion-chatbubbles"></i>
+                </button>
+            </div>
+        </div>
+    </ion-content>
+	
+</ion-modal-view>

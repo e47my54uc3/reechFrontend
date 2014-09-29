@@ -25,6 +25,7 @@ function solutionCtrl($scope, $timeout, Solution, $location, $rootScope){
   }
   if($scope.$parent.selectedSolution) {
   	$scope.currentSolution = $scope.$parent.selectedSolution;
+    $scope.currentChatMemberId = $scope.currentSolution.solution_owner_id;
     $scope.showSolution =  !$scope.currentSolution.previewed ||  $scope.currentSolution.current_user_is_solver || $scope.currentSolution.purchased;
     if(!$scope.currentSolution.previewed && !$scope.currentSolution.current_user_is_solver && !$scope.currentSolution.purchased)
     {
@@ -65,5 +66,9 @@ function solutionCtrl($scope, $timeout, Solution, $location, $rootScope){
     $scope.modal.remove();
     $scope.$parent.closeSolutionModal();
     $location.path(url);
+  }
+
+  $scope.setCurrentChatMember = function(user_id){
+    $scope.currentChatMemberId = user_id;
   }
 }

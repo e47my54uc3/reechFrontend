@@ -8,7 +8,8 @@ reech.directive('reechModal', function($ionicModal, $compile, $parse){
 				if(attrs.modalBeforeOpen != ""){
 					$parse(attrs.modalBeforeOpen)($scope);
 				}
-				$ionicModal.fromTemplateUrl(attrs.modalTemplate, {
+				
+				$ionicModal.fromTemplateUrl($scope.$eval(attrs.modalTemplate), {
 					scope: $scope,
 					animation: 'slide-in-up'
 				}).then(function(modal) {
