@@ -1,16 +1,17 @@
 <ion-view title="Connections">
 <main-header></main-header>
 
-<ion-tabs class=" tabs-dark">
+<ion-tabs class="has-footer tabs-dark">
 
   <ion-tab title="My Reech">
-    <div class="list">
+    <div class="list has-subheader  row250">
         <div class="item item-divider">
         Groups
         </div>
         <ul class="list">
-          <li ng-repeat="group in groups" class="item">
-            {{group.name}}   
+          <ion-scroll>
+          <li ng-repeat="group in [0,1,2,3,4,5,6,7]" class="item">
+            {{group}}   
             <span class="item-note">
               <a href="#"><i class="icon ion-close-round"></i></a>
             </span>
@@ -21,16 +22,17 @@
               <button reech-modal modal-template="'/templates/group_members.html'" modal-before-open="beforeGroupModal(group.id)" class="button button-small button-light" ng-click="openModal()">
                 {{group.members.length}} {{group.members.length > 1 ? 'members' : 'member'}}
               </button>
-            </span>
-            
+            </span>           
           </li>
+          </ion-scroll> 
         </ul>
     </div>
-    <div class="list">
+    <div class="list has-subheader row250">
         <div class="item item-divider">
         Friends
         </div>
         <ul class="list">
+          <ion-scroll>
           <li ng-repeat="friend in friends_list" class="item">
             {{friend.first_name}} {{friend.last_name}}   
             
@@ -41,6 +43,7 @@
             </span>
             
           </li>
+        </ion-scroll>
         </ul>
     </div>
   </ion-tab>
