@@ -18,6 +18,14 @@ reech.factory('Question', ['$resource', function($resource) {
         question_id: '@question_id'
       },
       isArray: false
+    },
+    linkQuestionToExpert: {
+      url: BaseUrl + "questions/:question_id/link_question_to_expert",
+      method: 'POST',
+      params: {
+        question_id: '@question_id'
+      },
+      isArray: false
     }
   }
   );

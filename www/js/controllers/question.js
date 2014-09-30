@@ -46,4 +46,10 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
       $scope.$parent.setStar($scope.selectedQuestion.question.id, response.stared)      
     });
   }
+  $scope.$on('audien-modalClosed', function(){
+    Question.linkQuestionToExpert({question_id: $scope.selectedQuestion.question.id, audien_details: $scope.question.audien_details}, function
+      (response){
+      alert("Experts Linked!");
+    });
+  });
 }

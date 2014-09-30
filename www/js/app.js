@@ -23,6 +23,8 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       }, function(err) {
           alert(err);
           });
+    }else{
+      $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
     }
 
     if (!localStorage.inviteCode){
