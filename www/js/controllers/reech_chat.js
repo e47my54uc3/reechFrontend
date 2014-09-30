@@ -17,8 +17,4 @@ function reechChatCtrl($scope, $rootScope, ReechChat, $interval){
 			$scope.current_message = {from_user_id: $rootScope.currentUser.id, to_user_id: $scope.$parent.currentChatMemberId, message: '', solution_id: $scope.$parent.currentSolution.id, status: 0};
 		})
 	}
-
-	$interval(function(){console.log("success");
-		$scope.chats = ReechChat.query({solution_id: $scope.$parent.currentSolution.id});
-	}, 7000)
 }
