@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,6 +16,14 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       StatusBar.styleDefault();
     }
     //Set the landing page on page load.
+    if (window.cordova) {
+      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "id"]}).then(function(result) {
+        $rootScope.contacts = result;
+        console.log(JSON.stringify(result));
+      }, function(err) {
+          alert(err);
+          });
+    }
 
     if (!localStorage.inviteCode){
       $location.path("/reech");

@@ -7,7 +7,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
 			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
-			
+
 
 			$scope.openAudienModal = function() {
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
@@ -18,7 +18,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 					$scope.audien_modal = modal;
 					$scope.audien_modal.show();
 				});
-				
+
 			};
 
 			$scope.closeAudienModal = function() {
@@ -77,6 +77,50 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 				}
 			}
 
+			$scope.setContacts = function(fetchedContacts){
+				$scope.contacts = new Object();
+				for(var i=0; i < fetchedContacts.length; i++){
+					var name = fetchedContacts[i].displayName != null ? fetchedContacts[i].displayName : 'No name';
+					var index = name.substring(0, 1).toUpperCase();
+
+					if(name.length > 20){
+						name = name.substring(0, 20) + '...';
+					}
+
+					if(fetchedContacts[i].phoneNumbers != null){
+						for(var j=0; j<fetchedContacts[i].phoneNumbers.length; j++){
+							var number = fetchedContacts[i].phoneNumbers[j].value;
+
+							if($scope.contacts[index] == 'undefined'){
+								$scope.contacts[index] = new Array();
+							}
+
+							$scope.contacts[index][$scope.contacts[index].length] = {"name": name, "number": number, type: "phone_number"};
+						}
+					}
+
+					if(fetchedContacts[i].emails != null){
+						for(var j=0; j<fetchedContacts[i].emails.length; j++){
+							var email = fetchedContacts[i].emails[j].value;
+
+							if($scope.contacts[index] == 'undefined'){
+								$scope.contacts[index] = new Array();
+							}
+
+							$scope.contacts[index][$scope.contacts[index].length] = {"name": name, "email": email, type: "email"};
+						}
+					}
+				}
+
+				$scope.arrayKeys = new Array();
+				for (var key in $scope.contacts )
+							{
+									$scope.arrayKeys[$scope.arrayKeys.length] = key;
+							}
+							$scope.arrayKeys = $scope.arrayKeys.sort();
+			}
+
+
 			$scope.newInvite = function(){
 				if($scope.new_invite.email == "" && $scope.new_invite.phone_number == ""){
 					alert("Please enter email or mobile number.")
@@ -90,19 +134,12 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 					$scope.new_invite = {email: "", phone_number: ""};
 					alert("success");
 				}
-				
+
 			}
 
-			try{
-				$cordovaContacts.find({filter: "", multiple: true, fields: ["displayName", "phoneNumbers", "emails"]}).then(function(result) {
-					$scope.contacts = result;
-				}, function(err) {
-	    			alert(err);
-	      		});
-			}catch(e){}
 			
 
 
-		}		
+		}
 	}
 });
