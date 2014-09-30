@@ -4,6 +4,34 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 	$scope.group = {group_id: "", associated_user_id: ""};
 	$scope.new_group = {member_reecher_ids: [], reecher_id: "", name: ""};
 	$scope.refresh_page = false;
+	$scope.audien_details = {emails: [], phone_numbers: []};
+
+	$scope.sendRequest = function(){
+		User.sendReechRequest({audien_details: $scope.audien_details}, function(res){
+			if(res.status == 200){
+				alert("Reech request was successfully sent.");
+				$scope.audien_details = {emails: [], phone_numbers: []};
+			}
+		}, function(err){
+			alert("Error");
+		});
+	}
+
+	$scope.updateNumberAudienSelection = function(event, number){
+		if(event.target.checked){
+			$scope.audien_details.phone_numbers[$scope.audien_details.phone_numbers.length] = number;
+		}else{
+			$scope.audien_details.phone_numbers.splice($scope.audien_details.phone_numbers.indexOf(number), 1);
+		}
+	}
+
+	$scope.updateEmailAudienSelection = function(event, email){
+		if(event.target.checked){
+			$scope.audien_details.emails[$scope.audien_details.emails.length] = email;
+		}else{
+			$scope.audien_details.emails.splice($scope.audien_details.emails.indexOf(email), 1);
+		}
+	}
 
 	$scope.beforeGroupModal = function(group_id) {
 		$scope.current_group = $filter('columnWith')($scope.groups, 'id', group_id)[0];

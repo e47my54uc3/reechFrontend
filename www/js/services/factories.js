@@ -98,6 +98,12 @@ reech.factory('User', ['$resource', function($resource) {
         id: '@id'
       },
       isArray: false
+    },
+    sendReechRequest: {
+      url: BaseUrl + "api_users/send_reech_request",
+      method: 'POST',
+      params: {},
+      isArray: false
     }
   }
   );

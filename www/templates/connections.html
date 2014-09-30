@@ -49,6 +49,21 @@
   </ion-tab>
 
   <ion-tab title="Contacts">
+    <ion-content>
+      <div class="list has-subheader">
+        <button ng-disabled="audien_details.emails.length == 0 && audien_details.phone_numbers.length == 0" ng-click="sendRequest()" class="button button-block button-positive">
+          Send request
+        </button>
+        <div class="item item-divider">
+        My Contacts
+        </div>
+        <div ng-repeat="contact in contacts | limitTo: 10">
+          <ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone_number.value)" ng-checked="audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
+          <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+        </div>
+
+      </div>
+    </ion-content>
   
   </ion-tab>
 
