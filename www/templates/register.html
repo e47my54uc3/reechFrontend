@@ -1,26 +1,45 @@
 <ion-view title="Register">
   <ion-content>
-    <form ng-submit="register()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label" ng-class="{'assertive': errors.message.phone_number}">Phone Number</span>
-          <input type="text" ng-model="user.phone_number">
-        </label>
-        <label class="item item-input">
-          <span class="input-label" ng-class="{'assertive': errors.message.phone_number}"> Email </span>
-          <input type="text" ng-model="user.email">
-        </label>
-        <label class="item item-input">
-          <span class="input-label" ng-class="{'assertive': errors.message.password}">Password</span>
-          <input type="password" ng-model="user.password">
-        </label>
-        <label class="item item-input">
-          <span class="input-label" ng-class="{'assertive': errors.message.password}">Confirm Password</span>
-          <input type="password" ng-model="user.password_confirmation">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Signup</button>
-        </label>
+    <form name="registration" ng-submit="register()">
+      <div class="row">  
+        <div class="list col col-77">
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.first_name}">First Name</span>
+            <input type="text" ng-model="user.first_name">
+          </label>
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.last_name}">Last Name</span>
+            <input type="text" ng-model="user.last_name">
+          </label>
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.phone_number}">Phone Number</span>
+            <input type="text" ng-model="user.phone_number">
+          </label>
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.phone_number}"> Email </span>
+            <input type="email" ng-model="user.email">
+          </label>
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.password}">Password</span>
+            <input type="password" ng-model="user.password">
+          </label>
+          <label class="item item-input">
+            <span class="input-label" ng-class="{'assertive': errors.message.password}">Confirm Password</span>
+            <input type="password" ng-model="user.password_confirmation">
+          </label>
+          <label class="item">
+            <button class="button button-block button-positive" ng-disabled="((user.password != user.password_confirmation) || user.password.length <8 || user.phone_number == '' || user.email =='' || registration.$invalid)" type="submit">Signup</button>
+          </label>
+        </div>
+        <div class="col col-33">          
+          <a class="item item-thumbnail-right full-image">
+            <img ng-src="{{user_profile.picture ? user_profile.picture : ''}}">
+          </a>
+          <div class="row">
+            <a class="col col-50 button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
+            <a class="col col-50 button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
+          </div>
+        </div>
       </div>
     </form>
   </ion-content>
