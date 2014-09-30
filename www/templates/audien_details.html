@@ -31,7 +31,7 @@
 				<div class="item item-divider">
 				My Contacts
 				</div>
-				<div ng-repeat="contact in contacts | limitTo: 10">
+				<div ng-repeat="contact in contacts">
 					<ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone_number.value)" ng-checked="question.audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
 					<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)" ng-checked="question.audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
 				</div>
