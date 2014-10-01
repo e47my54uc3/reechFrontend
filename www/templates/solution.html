@@ -6,7 +6,7 @@
     		<div class="item item-icon-left item-icon-right item-positive">
     			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
     			<div class="title text-center">Solution</div>
-          <span class="col col-offset-90">{{currentSolution.hi5_count}}
+          <span class="col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver">{{currentSolution.hi5_count}}
             <img  src="img/High-Fives.png" ng-click="solutionHi5()"></img>
           </span>
   			</div>
