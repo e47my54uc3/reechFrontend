@@ -3,7 +3,7 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){
-			$scope.new_invite = {email: "", phone_number: ""};
+			$scope.new_invites = [{email: "", phone_number: ""}];			
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
 			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
@@ -117,19 +117,28 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 
 
 			$scope.newInvite = function(){
-				if($scope.new_invite.email == "" && $scope.new_invite.phone_number == ""){
-					alert("Please enter email or mobile number.")
-				}
-				else if($scope.new_invite.email != ""){
-					$scope.question.audien_details.emails[$scope.question.audien_details.emails.length] = $scope.new_invite.email;
-					$scope.new_invite = {email: "", phone_number: ""};
-					alert("success");
-				}else if($scope.new_invite.phone_number != ""){
-					$scope.question.audien_details.phone_numbers[$scope.question.audien_details.emails.length] = $scope.new_invite.phone_number;
-					$scope.new_invite = {email: "", phone_number: ""};
-					alert("success");
-				}
-
+				angular.forEach($scope.new_invites, function(new_invite, index){
+					if((new_invite.email == "" || !new_invite.email)&& new_invite.phone_number == ""){
+						alert("Please enter email or mobile number.")
+					}
+					else if(new_invite.email != ""){
+						if($scope.question.audien_details.emails.indexOf(new_invite.email) < 0)
+							$scope.question.audien_details.emails[$scope.question.audien_details.emails.length] = new_invite.email;
+							//alert("success");
+					}
+					if(new_invite.phone_number != ""){
+						if($scope.question.audien_details.phone_numbers.indexOf(new_invite.phone_number) < 0)
+							$scope.question.audien_details.phone_numbers[$scope.question.audien_details.phone_numbers.length] = new_invite.phone_number;
+						//alert("success");
+					}
+					$scope.new_invites[index] = {email: "", phone_number: ""};
+				});				
+			}
+			$scope.addInvite = function(){
+				$scope.new_invites.push({email: "", phone_number: ""});
+			}
+			$scope.removeInvite = function(index){
+				$scope.new_invites.splice(index, 1);
 			}
 
 

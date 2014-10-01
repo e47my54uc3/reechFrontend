@@ -40,22 +40,31 @@
 		</ion-content>
 		</ion-tab>
 
-		<ion-tab title="Invite" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline">
-			<ion-content>
-				<div class="list">
+		<ion-tab title="Invite" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline">		
+			<ion-content class="has-header">
+				<button ng-click="addInvite()" class="button button-block button-positive">
+					Add Invite
+				</button>
+				<div class="list" ng-repeat="new_invite in new_invites">
 					<label class="item item-input">
-						<input ng-model="new_invite.email" type="text" placeholder="Email">
+						<input ng-model="new_invite.email" type="email" placeholder="Email">
 					</label>
 					<label class="item item-input col-center">
-					<div class="row"><div class="col col-offset-50">or</div></div>
+					<div class="row">
+						<div class="col col-offset-50">or</div>
+						<button ng-click="removeInvite($index)" class="button button-small button-positive">
+							Remove Invite
+						</button>
+				  </div>
 					</label>
 					<label class="item item-input">
 						<input ng-model="new_invite.phone_number" type="text" placeholder="Phone number">
 					</label>
-					<button ng-click="newInvite()" class="button button-block button-positive">
-						Invite
-					</button>
 				</div>
+				<button ng-click="newInvite()" class="button button-block button-positive">
+					Invite
+				</button>
+				
 			</ion-content>
 		</ion-tab>
 
