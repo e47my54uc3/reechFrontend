@@ -1,4 +1,4 @@
-reech.directive('selectCategories', function($ionicModal, $cordovaContacts, $state, $stateParams, $filter, $location){
+reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordovaContacts, $state, $stateParams, $filter, $location){
 	return{
 		restrict: 'A',
 		scope: false,
@@ -14,9 +14,12 @@ reech.directive('selectCategories', function($ionicModal, $cordovaContacts, $sta
 				});
 			};
 			$scope.closeCategoriesModel = function() {
-				if($scope.categoriesModal != undefined)
+				if($scope.categoriesModal)
 					$scope.categoriesModal.remove();
 			};
+			$ionicPlatform.onHardwareBackButton(function(){
+				$scope.closeCategoriesModel();
+			});
 			$scope.$on('categoriesModal.hidden', function() {
 				$scope.categoriesModal.remove();
 			});			

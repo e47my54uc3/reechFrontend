@@ -1,4 +1,4 @@
-function solutionCtrl($scope, $timeout, Solution, $location, $rootScope){
+function solutionCtrl($scope, $ionicPlatform, $timeout, Solution, $location, $rootScope){
 	var timer;
 	$scope.previewTime = 8;
 	$scope.setPreviewSolution = function(){
@@ -71,4 +71,9 @@ function solutionCtrl($scope, $timeout, Solution, $location, $rootScope){
   $scope.setCurrentChatMember = function(user_id){
     $scope.currentChatMemberId = user_id;
   }
+
+   $ionicPlatform.onHardwareBackButton(function(){
+      if($scope.$parent.solutionModal)
+        $scope.$parent.closeSolutionModal();
+    });
 }

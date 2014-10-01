@@ -1,4 +1,4 @@
-function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, Solution, $rootScope) {
+function answerQuestionCtrl($scope, $ionicPlatform, $ionicPopup, $cordovaCamera, Solution, $rootScope) {
 
   $scope.model = {is_public: true, solver_id: $scope.currentUser.reecher_id, solver: $scope.currentUser.full_name};
   $scope.takePicture = function() {
@@ -38,4 +38,8 @@ function answerQuestionCtrl($scope, $ionicModal, $ionicPopup, $cordovaCamera, So
 
   		});
   	}
+    $ionicPlatform.onHardwareBackButton(function(){
+      if($scope.$parent.answerModal)
+        $scope.$parent.closeAnswerModal();
+    });
 }

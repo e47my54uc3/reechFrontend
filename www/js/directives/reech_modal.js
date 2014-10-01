@@ -1,5 +1,5 @@
 //<button reech-modal modal-template-url="" modal-before-open="" modal-on-close=""></button>
-reech.directive('reechModal', function($ionicModal, $compile, $parse){
+reech.directive('reechModal', function($ionicModal, $ionicPlatform, $compile, $parse){
 	return{
 		restrict: 'AE',
 		scope: false,
@@ -25,6 +25,11 @@ reech.directive('reechModal', function($ionicModal, $compile, $parse){
 				}
 				$scope.modal.remove();
 			};
+
+			$ionicPlatform.onHardwareBackButton(function(){
+				if($scope.modal)
+					$scope.closeModal();
+			});
 
 		}
 	}

@@ -33,7 +33,8 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
     });
   };
   $scope.closeSolutionModal = function() {
-    $scope.solutionModal.remove();
+    if($scope.solutionModal)
+      $scope.solutionModal.remove();
   };
   $scope.$on('solutionModal.hidden', function() {
     $scope.solutionModal.remove();
@@ -49,7 +50,7 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
   $scope.$on('audien-modalClosed', function(){
     Question.linkQuestionToExpert({question_id: $scope.selectedQuestion.question.id, audien_details: $scope.question.audien_details}, function
       (response){
-      alert("Experts Linked!");
     });
   });
+
 }

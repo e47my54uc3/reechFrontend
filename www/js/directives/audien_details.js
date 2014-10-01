@@ -1,4 +1,4 @@
-reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaContacts, $rootScope){
+reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Group, $cordovaContacts, $rootScope){
 	return{
 		restrict: 'A',
 		scope: false,
@@ -29,10 +29,14 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 					$rootScope.$broadcast('audien-modalClosed');
 				}
 			};
-
+			$ionicPlatform.onHardwareBackButton(function(){
+				if($scope.audien_modal)
+					$scope.audien_modal.remove();
+			});
 			$scope.resetAudiens = function(){
 				$scope.question.audien_details = $scope.temp_audien;
-				$scope.closeAudienModal();
+				if($scope.audien_modal)
+					$scope.audien_modal.remove();
 			}
 
 			$scope.updateGroupSelection = function(event, group_id){
