@@ -24,7 +24,9 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
           alert(err);
           });
     }else{
-      $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
     }
 
     if (!localStorage.inviteCode){
@@ -50,7 +52,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     else {
       $rootScope.setProfile();
     }
-    $location.path("/categories");
+    $location.path("/connections");
   }
 
   $rootScope.signout = function() {
@@ -81,6 +83,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
   });
+  
 })
 
 

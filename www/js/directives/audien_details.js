@@ -23,23 +23,11 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 
 			$scope.closeAudienModal = function() {
 				$scope.new_invite = {email: "", phone_number: ""};
-				if($scope.audien_modal != undefined){
-					$scope.audien_modal.remove();					
-					$rootScope.$broadcast('audien-modalClosed');
-				}					
+
+				if($scope.audien_modal){
+					$scope.audien_modal.remove();
+				}
 			};
-
-			//Cleanup the modal when we're done with it!
-			$scope.$on('$destroy', function() {
-				if($scope.audien_modal != undefined)
-				  $scope.audien_modal.remove();				
-			});
-
-			// Execute action on hide modal
-			$scope.$on('modal.hidden', function() {
-				if($scope.audien_modal != undefined)
-				  $scope.audien_modal.remove();				
-			});
 
 			$scope.resetAudiens = function(){
 				$scope.question.audien_details = $scope.temp_audien;
@@ -139,7 +127,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 
 			}
 
-			
+
 
 
 		}

@@ -11,7 +11,7 @@
         <ul class="list">
           <ion-scroll>
           <li ng-repeat="group in groups" class="item">
-            {{group.name}}   
+            {{group.name}}
             <span class="item-note">
               <a href="#"><i class="icon ion-close-round"></i></a>
             </span>
@@ -22,9 +22,9 @@
               <button reech-modal modal-template="'/templates/group_members.html'" modal-before-open="beforeGroupModal(group.id)" class="button button-small button-light" ng-click="openModal()">
                 {{group.members.length}} {{group.members.length > 1 ? 'members' : 'member'}}
               </button>
-            </span>           
+            </span>
           </li>
-          </ion-scroll> 
+          </ion-scroll>
         </ul>
     </div>
     <div class="list has-subheader row250">
@@ -34,14 +34,14 @@
         <ul class="list">
           <ion-scroll>
           <li ng-repeat="friend in friends_list" class="item">
-            {{friend.first_name}} {{friend.last_name}}   
-            
+            {{friend.first_name}} {{friend.last_name}}
+
             <span class="item-note padding-left">
               <button modal-template="'/templates/user_groups.html'" modal-before-open="beforeMemberModal(friend.id)" modal-on-close="executeOnClose()" class="button button-small button-light" reech-modal ng-click="openModal()">
                 {{friend.groups.length}} {{friend.groups.length > 1 ? 'groups' : 'group'}}
               </button>
             </span>
-            
+
           </li>
         </ion-scroll>
         </ul>
@@ -57,21 +57,20 @@
         <div class="item item-divider">
         My Contacts
         </div>
-        <div ng-repeat="contact in contacts | limitTo: 10">
+        <div ng-repeat="contact in contacts | limitTo:1">
           <ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone_number.value)" ng-checked="audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
           <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
         </div>
 
       </div>
     </ion-content>
-  
+
   </ion-tab>
 
   <ion-tab title="Find Friends">
-  
+
   </ion-tab>
 
 </ion-tabs>
 
 </ion-view>
-
