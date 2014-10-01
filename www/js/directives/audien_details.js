@@ -26,6 +26,7 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 
 				if($scope.audien_modal){
 					$scope.audien_modal.remove();
+					$rootScope.$broadcast('audien-modalClosed');
 				}
 			};
 
@@ -133,3 +134,5 @@ reech.directive('audienDetails', function($ionicModal, User, Group, $cordovaCont
 		}
 	}
 });
+
+	

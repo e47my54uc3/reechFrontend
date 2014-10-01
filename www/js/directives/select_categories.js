@@ -53,6 +53,7 @@ reech.directive('selectCategories', function($ionicModal, $cordovaContacts, $sta
 				$scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
 				$scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
 				$scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
+				$scope.categories = $filter('orderBy')($scope.categories, 'title');
 				$scope.closeCategoriesModel();
 			}
 			$scope.filterCategories();
