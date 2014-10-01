@@ -28,13 +28,14 @@
 		<ion-tab title="My Contacts" icon-on="ion-ios7-personadd" icon-off="ion-ios7-personadd-outline">
 			<ion-content>
 			<div class="list">
-				<div class="item item-divider">
-				My Contacts
+				<div ng-repeat-start="(initialLetter, lists) in contacts" class="item item-divider">
+				{{initialLetter}}
 				</div>
-				<div ng-repeat="contact in (contacts | limitTo:1)">
-					<ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone_number.value)" ng-checked="question.audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
-					<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)" ng-checked="question.audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+				<div ng-repeat="contact in lists">
+					<ion-checkbox ng-if="contact.type == 'phone_number'" ng-click="updatePhoneNumberSelection($event, contact.number)" ng-checked="question.audien_details.phone_numbers.indexOf(contact.number) != -1">{{contact.name}}  {{contact.number}}</ion-checkbox>
+					<ion-checkbox ng-if="contact.type == 'email'" ng-click="updateEmailSelection($event, contact.email)" ng-checked="question.audien_details.emails.indexOf(contact.email) != -1">{{contact.name}}  {{contact.email}}</ion-checkbox>
 				</div>
+				<div ng-repeat-end></div>
 
 			</div>
 		</ion-content>

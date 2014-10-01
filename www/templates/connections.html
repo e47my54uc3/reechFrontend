@@ -54,14 +54,14 @@
         <button ng-disabled="audien_details.emails.length == 0 && audien_details.phone_numbers.length == 0" ng-click="sendRequest()" class="button button-block button-positive">
           Send request
         </button>
-        <div class="item item-divider">
-        My Contacts
+        <div ng-repeat-start="(initialLetter, lists) in contacts" class="item item-divider">
+        {{initialLetter}}
         </div>
-        <div ng-repeat="contact in contacts | limitTo:1">
-          <ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone_number.value)" ng-checked="audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
-          <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+        <div ng-repeat="contact in lists">
+          <ion-checkbox ng-if="contact.type == 'phone_number'" ng-click="updateNumberAudienSelection($event, contact.number)" ng-checked="audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.name}}  {{contact.number}}</ion-checkbox>
+          <ion-checkbox ng-if="contact.type == 'email'" ng-click="updateEmailAudienSelection($event, contact.email)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.name}}  {{contact.email}}</ion-checkbox>
         </div>
-
+        <div ng-repeat-end></div>
       </div>
     </ion-content>
 

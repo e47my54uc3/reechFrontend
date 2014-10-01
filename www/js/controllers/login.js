@@ -18,10 +18,8 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
   			$http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
         $rootScope.setProfile();
    			$location.path("/categories");
- 			console.log(user.user);
-    	}, function(error) {
-  			console.log("In errors.");
-        alert("Username and password do not match.")
+ 			}, function(error) {
+  			alert("Username and password do not match.")
     	});
   	}
   }

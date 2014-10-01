@@ -17,12 +17,48 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     }
     //Set the landing page on page load.
     if (window.cordova) {
-      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "id"]}).then(function(result) {
-        $rootScope.contacts = result;
-        console.log(JSON.stringify(result));
+      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers"]}).then(function(result) {
+        var fetchedContacts = result;
+          $rootScope.contacts = new Object();
+
+          for(var i=0; i < fetchedContacts.length; i++){
+            if(fetchedContacts[i].displayName != null && fetchedContacts[i].displayName != ""){
+              var name = fetchedContacts[i].displayName;
+              var index = name.substring(0, 1).toUpperCase();
+
+              if(name.length > 20){
+                name = name.substring(0, 20) + '...';
+              }
+
+              if(fetchedContacts[i].phoneNumbers != null){
+                for(var j=0; j<fetchedContacts[i].phoneNumbers.length; j++){
+                  var number = fetchedContacts[i].phoneNumbers[j].value;
+
+                  if(!$rootScope.contacts[index]){
+                    $rootScope.contacts[index] = new Array();
+                  }
+
+                  $rootScope.contacts[index].push({"name": name, "number": number, type: "phone_number"});
+                }
+              }
+
+              if(fetchedContacts[i].emails != null){
+                for(var j=0; j<fetchedContacts[i].emails.length; j++){
+                  var email = fetchedContacts[i].emails[j].value;
+
+                  if(!$rootScope.contacts[index]){
+                    $rootScope.contacts[index] = new Array();
+                  }
+
+                  $rootScope.contacts[index].push({"name": name, "email": email, type: "email"});
+                }
+              }
+            }
+          }
       }, function(err) {
-          alert(err);
-          });
+        alert(err);
+      });
+      
     }else{
       $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
