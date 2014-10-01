@@ -46,7 +46,7 @@
 				<div class="list" ng-repeat="new_invite in new_invites">
 					<button ng-click="addInvite($index)" class="ion-ios7-plus-outline button button-clear icon">					
 					</button>
-					<button ng-click="removeInvite($index)" class="button icon ion-minus-circled button-clear">
+					<button ng-click="removeInvite($index)" class="button icon ion-minus-circled button-clear" ng-if="new_invites.length > 1">
 					</button>					
 					<label class="item item-input item-select">
 						<div class="input-label">
