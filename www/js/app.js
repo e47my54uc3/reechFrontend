@@ -63,7 +63,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
     }else{
       // This is for browser testing only.
-      $rootScope.device = {device_token: "forbrowseronly", platform: "Android" }
+      $rootScope.device = {device_token: "forbrowseronly2", platform: "Android" }
       $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];

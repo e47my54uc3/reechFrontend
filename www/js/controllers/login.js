@@ -10,7 +10,7 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
         facebookConnectPlugin.login(["email"], function(response){
           console.log(JSON.stringify(response));
           if(response.authResponse && response.authResponse.accessToken){
-            User.authorizeFacebook({access_token: response.authResponse.accessToken}, function(response){
+            User.authorizeFacebook({access_token: response.authResponse.accessToken, device: $rootScope.device}, function(response){
               localStorage.currentUser = JSON.stringify(response);
               $rootScope.currentUser = JSON.parse(localStorage.currentUser);
               $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
@@ -20,14 +20,14 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User){
             });
           }
           else {
-            alert("Not authenticated. Try again laetr")
+            alert("Not authenticated. Try again later")
           }
         }, function(error){
           alert("Something went wrong. Try again later.")
         });
       }
   	}
-  	$scope.credentials = {};
+  	$scope.credentials = {device: $rootScope.device};
   	$scope.login = function(){
   		Auth.login($scope.credentials).then(function(user) {
   		  localStorage.currentUser = JSON.stringify(user.user);

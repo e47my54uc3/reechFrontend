@@ -8,7 +8,8 @@ function registrationCtrl($scope, $rootScope, $location, Auth, $http, $cordovaCa
     password_confirmation: '',
     phone_number: '',
     invite_id: localStorage.inviteId,
-    invite_code: localStorage.inviteCode    
+    invite_code: localStorage.inviteCode,
+    device: $rootScope.device    
   };
   $scope.user_profile = {picture: ''}
   $scope.takePicture = function(type) {
@@ -67,7 +68,7 @@ function registrationCtrl($scope, $rootScope, $location, Auth, $http, $cordovaCa
         console.log(error.data);
       });
     }
-    
+
   }
 
 }
