@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,6 +17,8 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     }
     //Set the landing page on page load.
     if (window.cordova) {
+      //setup device
+      $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
       $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers"]}).then(function(result) {
         var fetchedContacts = result;
           $rootScope.contacts = new Object();
@@ -58,8 +60,10 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       }, function(err) {
         alert(err);
       });
-      
+
     }else{
+      // This is for browser testing only.
+      $rootScope.device = {device_token: "forbrowseronly", platform: "Android" }
       $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
@@ -119,7 +123,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
   });
-  
+
 })
 
 
