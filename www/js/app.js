@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
+reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise', 'ngLodash'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,54 +19,21 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     if (window.cordova) {
       //setup device
       $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
-      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers"]}).then(function(result) {
-        var fetchedContacts = result;
-          $rootScope.contacts = new Object();
-
-          for(var i=0; i < fetchedContacts.length; i++){
-            if(fetchedContacts[i].displayName != null && fetchedContacts[i].displayName != ""){
-              var name = fetchedContacts[i].displayName;
-              var index = name.substring(0, 1).toUpperCase();
-
-              if(name.length > 20){
-                name = name.substring(0, 20) + '...';
-              }
-
-              if(fetchedContacts[i].phoneNumbers != null){
-                for(var j=0; j<fetchedContacts[i].phoneNumbers.length; j++){
-                  var number = fetchedContacts[i].phoneNumbers[j].value;
-
-                  if(!$rootScope.contacts[index]){
-                    $rootScope.contacts[index] = new Array();
-                  }
-
-                  $rootScope.contacts[index].push({"name": name, "number": number, type: "phone_number"});
-                }
-              }
-
-              if(fetchedContacts[i].emails != null){
-                for(var j=0; j<fetchedContacts[i].emails.length; j++){
-                  var email = fetchedContacts[i].emails[j].value;
-
-                  if(!$rootScope.contacts[index]){
-                    $rootScope.contacts[index] = new Array();
-                  }
-
-                  $rootScope.contacts[index].push({"name": name, "email": email, type: "email"});
-                }
-              }
-            }
-          }
-      }, function(err) {
+      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
+       $rootScope.contacts = result;
+       console.log(JSON.stringify(result))
+       }, function(err) {
         alert(err);
       });
 
     }else{
       // This is for browser testing only.
       $rootScope.device = {device_token: "forbrowseronly2", platform: "Android" }
-      $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.contacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {id: "3", rawId: "3", displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.contacts = lodash.sortBy($rootScope.contacts, function(item) {return item.displayName.toLowerCase(); })
+      $rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
     }
 
     if (!localStorage.inviteCode){
@@ -92,7 +59,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     else {
       $rootScope.setProfile();
     }
-    $location.path("/connections");
+    $location.path("/categories");
   }
 
   $rootScope.signout = function() {
