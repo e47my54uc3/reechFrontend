@@ -10,7 +10,8 @@ function loginCtrl($scope, $rootScope, $location, Auth, $http, $window, User, $c
         facebookConnectPlugin.login(["email"], function(response){
           if(response.authResponse && response.authResponse.accessToken){
             $cordovaSpinnerDialog.show();
-            User.authorizeFacebook({access_token: response.authResponse.accessToken, device: $rootScope.device}, function(response){
+            User.authorizeFacebook({access_token: response.authResponse.accessToken, device: $rootScope.device, invite_id: localStorage.inviteId,
+            invite_code: localStorage.inviteCode,}, function(response){
               localStorage.currentUser = JSON.stringify(response);
               $rootScope.currentUser = JSON.parse(localStorage.currentUser);
               $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
