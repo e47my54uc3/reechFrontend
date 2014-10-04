@@ -36,11 +36,17 @@ img.photo {
     width: 55px;
 }
 
+.no-padding-margin {
+  padding: 0px;
+  margin:0px;
+}
+
 .bar-header {
 top: 0;
 border-top-width: 0;
 border-bottom-width: 0px;
 }
+
 
 .bar.bar-positive {
 border-color: #325692;
