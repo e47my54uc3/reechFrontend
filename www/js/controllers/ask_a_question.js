@@ -1,6 +1,6 @@
 function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $location, $cordovaFile){
 	$scope.categories = Category.query();
-	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: ''};
+	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: '', is_public: true};
 	$scope.avatar = "";
 	$scope.test = localStorage.currentUser;
 	$scope.takePicture = function(type) {
