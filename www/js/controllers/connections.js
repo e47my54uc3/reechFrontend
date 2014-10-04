@@ -6,6 +6,10 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 	$scope.refresh_page = false;
 	$scope.audien_details = {emails: [], phone_numbers: []};
 
+	//Initialize this on route change
+	$rootScope.contacts = [];
+  $rootScope.noMoreItemsAvailable = false;
+
 	$scope.sendRequest = function(){
 		User.sendReechRequest({audien_details: $scope.audien_details}, function(res){
 			if(res.status == 200){

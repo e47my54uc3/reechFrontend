@@ -20,8 +20,10 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       //setup device
       $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
       $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
-       $rootScope.contacts = result;
-       console.log(JSON.stringify(result))
+       $rootScope.allContacts = result;
+       $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return (item.displayName ? item.displayName.toLowerCase() : item.displayName); })
+       //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
+       $rootScope.contacts = [];
        }, function(err) {
         alert(err);
       });
@@ -29,11 +31,27 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     }else{
       // This is for browser testing only.
       $rootScope.device = {device_token: "forbrowseronly2", platform: "Android" }
-      $rootScope.contacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      $rootScope.allContacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {id: "3", rawId: "3", displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
-      $rootScope.contacts = lodash.sortBy($rootScope.contacts, function(item) {return item.displayName.toLowerCase(); })
-      $rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
+      {id: "3", rawId: "3", displayName: '', phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return toString(item.displayName).toLowerCase(); })
+      //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
+      $rootScope.contacts = [];
+    }
+    // Infinite scroll of contacts in all places.
+    $rootScope.loadMore = function() {
+      var loadContacts = $rootScope.contacts.length;
+      for(var i=1; i <= 10; i++){
+        if($rootScope.allContacts.length > loadContacts + i - 1) {
+          $rootScope.contacts.push($rootScope.allContacts[loadContacts + i - 1]);
+        }
+        else {
+          $rootScope.noMoreItemsAvailable = true;
+          break;
+        }
+      }
+
+      $rootScope.$broadcast('scroll.infiniteScrollComplete');
     }
 
     if (!localStorage.inviteCode){

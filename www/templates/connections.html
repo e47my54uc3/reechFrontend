@@ -1,6 +1,5 @@
 <ion-view title="Connections">
 <main-header></main-header>
-
 <ion-tabs class="has-footer tabs-dark">
 
   <ion-tab title="My Reech">
@@ -50,19 +49,19 @@
 
   <ion-tab title="Contacts">
     <ion-content>
-      <div class="list has-subheader">
-        <button ng-disabled="audien_details.emails.length == 0 && audien_details.phone_numbers.length == 0" ng-click="sendRequest()" class="button button-block button-positive">
-          Send request
-        </button>
-        <div collection-repeat="(initialLetter, values) in contacts" >
-
-
-        <div collection-repeat="contact in values">
-          <ion-checkbox ng-repeat="number in contact.phoneNumbers">{{contact.displayName}}  {{number.value}}</ion-checkbox>
-          <ion-checkbox ng-repeat="email in contact.emails" >{{contact.displayName}}  {{email.value}}</ion-checkbox>
+      <div class="list has-subheader" >
+        <div ng-repeat="contact in contacts">
+          <ion-checkbox ng-repeat="phone in contact.phoneNumbers">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
+          <ion-checkbox ng-repeat="email in contact.emails">{{contact.displayName}}  {{email.value}}</ion-checkbox>
         </div>
       </div>
-      </div>
+      <ion-infinite-scroll
+      ng-if="!noMoreItemsAvailable"
+      on-infinite="loadMore()"
+      icon="ion-loading-c"
+      distance="10%">
+      </ion-infinite-scroll>
+
     </ion-content>
 
   </ion-tab>

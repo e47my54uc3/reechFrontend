@@ -3,11 +3,14 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){
-			$scope.new_invites = [{email: "", phone_number: "", type: "email"}];			
+			$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
 			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
 
+      //Initialize this whenever directive is loaded.
+			$rootScope.contacts = [];
+			$rootScope.noMoreItemsAvailable = false;
 
 			$scope.openAudienModal = function() {
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
@@ -88,7 +91,7 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 						//alert("success");
 					}
 					$scope.resetNewInvite(index);
-				});				
+				});
 			}
 			$scope.addInvite = function(index){
 				$scope.new_invites.splice(index+1, 0, {email: "", phone_number: "", type: "email"});
@@ -102,5 +105,3 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		}
 	}
 });
-
-	
