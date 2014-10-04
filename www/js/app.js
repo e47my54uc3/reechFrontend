@@ -41,7 +41,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     // Infinite scroll of contacts in all places.
     $rootScope.loadMore = function() {
       var loadContacts = $rootScope.contacts.length;
-      for(var i=1; i <= 10; i++){
+      for(var i=1; i <= 20; i++){
         if($rootScope.allContacts.length > loadContacts + i - 1) {
           $rootScope.contacts.push($rootScope.allContacts[loadContacts + i - 1]);
         }
