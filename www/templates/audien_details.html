@@ -27,10 +27,10 @@
 
 		<ion-tab title="My Contacts" icon-on="ion-ios7-personadd" icon-off="ion-ios7-personadd-outline">
 			<ion-content>
-				<div class="list has-subheader" >
+				<div class="list" >
 					<div ng-repeat="contact in contacts">
-						<ion-checkbox ng-repeat="phone in contact.phoneNumbers" >{{contact.displayName}}  {{phone.value}}</ion-checkbox>
-						<ion-checkbox ng-repeat="email in contact.emails" >{{contact.displayName}}  {{email.value}}</ion-checkbox>
+						<ion-checkbox ng-repeat="phone in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone.value)" ng-checked="question.audien_details.phone_numbers.indexOf(phone.value) != -1">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
+						<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)" ng-checked="question.audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
 					</div>
 				</div>
 				<ion-infinite-scroll
