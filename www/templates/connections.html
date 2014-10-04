@@ -50,9 +50,12 @@
   <ion-tab title="Contacts">
     <ion-content>
       <div class="list has-subheader" >
+         <button ng-disabled="audien_details.emails.length == 0 && audien_details.phone_numbers.length == 0" ng-click="sendRequest()" class="button button-block button-positive">
+          Send request
+        </button>
         <div ng-repeat="contact in contacts">
-          <ion-checkbox ng-repeat="phone in contact.phoneNumbers">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
-          <ion-checkbox ng-repeat="email in contact.emails">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+          <ion-checkbox ng-repeat="phone in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone.value)" ng-checked="audien_details.phone_numbers.indexOf(phone.value) != -1">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
+          <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
         </div>
       </div>
       <ion-infinite-scroll

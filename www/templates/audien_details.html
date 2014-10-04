@@ -29,8 +29,8 @@
 			<ion-content>
 				<div class="list has-subheader" >
 					<div ng-repeat="contact in contacts">
-						<ion-checkbox ng-repeat="phone in contact.phoneNumbers">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
-						<ion-checkbox ng-repeat="email in contact.emails">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+						<ion-checkbox ng-repeat="phone in contact.phoneNumbers" >{{contact.displayName}}  {{phone.value}}</ion-checkbox>
+						<ion-checkbox ng-repeat="email in contact.emails" >{{contact.displayName}}  {{email.value}}</ion-checkbox>
 					</div>
 				</div>
 				<ion-infinite-scroll
