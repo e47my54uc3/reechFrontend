@@ -1,4 +1,6 @@
 function reechCtrl($scope, $rootScope, $location, User){
+  if(localStorage.inviteCode)
+    $location.path("/login");
   $scope.inviteForm = {};
   $rootScope.currentState = 'reech';
 
