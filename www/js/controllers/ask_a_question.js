@@ -28,9 +28,9 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 	    });
   	}
 
-		$scope.noAudience = function(){
+		$scope.audienceCount = function(){
 		 var audience = $scope.question.audien_details;
-		 return !(audience.emails.length || audience.groups.length || audience.reecher_ids.length || audience.phone_numbers.length);
+		 return (audience.emails.length + audience.groups.length + audience.reecher_ids.length + audience.phone_numbers.length);
 		}
 
   	$scope.cancelQuestion = function(){
