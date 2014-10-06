@@ -3,7 +3,7 @@ reech.directive('mainHeader',function($state){
     restrict : 'E',
     templateUrl: 'templates/main_header.html',
     link: function(scope, element, attrs){
-    	scope.currentPage = $state.current.name;
+    	
     }
   }
 });

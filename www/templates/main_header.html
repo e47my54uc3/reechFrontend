@@ -1,15 +1,28 @@
-<div class="bar bar-header row no-padding-margin">
+<div class="bar bar-header row no-padding-margin" ng-if="currentState != 'ask_a_question'">
   <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80"></div>
 	<div class="bar bar-subheader bar-energized top_navbar col col-80">
 		<div class="row no-padding-margin">
-			<a href="#/categories" class="col col-33"><icon class="ion-grid button_bar_icons " ng-class="{'positive': currentPage == 'categories'}"></icon></a>
-			<a href="#/connections" class="col col-33"><icon class="ion-ios7-people button_bar_icons" ng-class="{'positive': currentPage == 'connections'}"></icon></a>
-			<a href="#/notifications" class="col col-33"><icon class="ion-speakerphone button_bar_icons" ng-class="{'positive': currentPage == 'notifications'}"></icon></a>
+			<a href="#/categories" class="col col-33"><icon class="ion-grid button_bar_icons stable" ng-class="{'positive': currentState == 'categories'}"></icon></a>
+			<a href="#/connections" class="col col-33"><icon class="ion-ios7-people button_bar_icons stable" ng-class="{'positive': currentState == 'connections'}"></icon></a>
+			<a href="#/notifications" class="col col-33"><icon class="ion-speakerphone button_bar_icons stable" ng-class="{'positive': currentState == 'notifications'}"></icon></a>
 		</div>
 	</div>
   <div class="col col-20 col-offset-80 header-pic">
 		<a href="#/ask_a_question" >
 			<center><img src = "img/pic.png" class = "photo" /></center>
 		</a>
+	</div>
+</div>
+
+<div class="bar bar-header row no-padding-margin" ng-if="currentState == 'ask_a_question'">
+	<div class="col col-20 header-pic">
+		<a ng-click="back()" >
+			<center><img src = "img/pic.png" class = "photo" /></center>
+		</a>
+	</div>
+	<div class="item item-divider item-positive no-padding-margin ng-binding col col-80 col-offset-20"></div>
+	<div class="bar bar-subheader bar-energized top_navbar col col-80 col-offset-20">
+		<div class="row no-padding-margin">
+		</div>
 	</div>
 </div>
