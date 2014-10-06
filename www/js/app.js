@@ -185,8 +185,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('ask_a_question', {
       url: '/ask_a_question',
-      templateUrl: 'templates/ask_a_question.html',
-      controller: 'askAQuestionCtrl'
+      templateUrl: 'templates/ask_a_question.html'
     })
     .state('connections', {
       url: '/connections',
