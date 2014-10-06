@@ -1,5 +1,8 @@
 <div class="bar bar-header row no-padding-margin" ng-if="currentState != 'ask_a_question'">
-  <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80"></div>
+  <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80">
+		<a class="button" href="#/user/{{currentUser.id}}/profile"><img src = "img/User-icon1.png" class ="logo" /></a>
+		<h1 class="title" style="color: white;">Areas of Interest</h1>
+	</div>
 	<div class="bar bar-subheader bar-energized top_navbar col col-80">
 		<div class="row no-padding-margin">
 			<a href="#/categories" class="col col-33"><icon class="ion-grid button_bar_icons stable" ng-class="{'positive': currentState == 'categories'}"></icon></a>
