@@ -1,22 +1,15 @@
-<div class="row bar bar-header">
-	<div class="col col-80">
-		<div class="bar bar-header bar-positive col col-80">
-			<a class="button top_navbarCategories" href="#/user/{{currentUser.id}}/profile"><img src = "img/User-icon1.png" class ="logo" /></a> 
-			<h1 class="title"><b ng-if="currentState == 'categories'">Areas of Interests</b>
-			<select select-categories  ng-if="currentState != 'categories'" ng-change="loadQuestions(selectedCategoryId)" ng-model="selectedCategoryId" class="style-select" ng-options=" ''+category.id as category.title for category in categories">
-				<option value="">All</option>
-			</select>			
-			</h1>
-
-			<button class ="button icon ion-search divider-left"></button>
-		</div>
-		<div class="bar bar-subheader bar-energized top_navbar col col-80">
-			<a class="button top_navbarCategories" href="#/categories"><icon class="ion-grid button_bar_icons " ng-class="{'positive': currentPage == 'categories'}"></icon></a>
-			<a class="button top_navbarFriends" href="#/connections"><icon class="ion-ios7-people button_bar_icons" ng-class="{'positive': currentPage == 'connections'}"></icon></a>
-			<a class="button top_navbarNotifs" href="#/notifications" ><icon class="ion-speakerphone button_bar_icons" ng-class="{'positive': currentPage == 'notifications'}"></icon></a>
+<div class="bar bar-header row no-padding-margin">
+  <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80"></div>
+	<div class="bar bar-subheader bar-energized top_navbar col col-80">
+		<div class="row no-padding-margin">
+			<a href="#/categories" class="col col-33"><icon class="ion-grid button_bar_icons " ng-class="{'positive': currentPage == 'categories'}"></icon></a>
+			<a href="#/connections" class="col col-33"><icon class="ion-ios7-people button_bar_icons" ng-class="{'positive': currentPage == 'connections'}"></icon></a>
+			<a href="#/notifications" class="col col-33"><icon class="ion-speakerphone button_bar_icons" ng-class="{'positive': currentPage == 'notifications'}"></icon></a>
 		</div>
 	</div>
-	<a href="#/ask_a_question" class="col col-20 custom-div button">
-		<img src = "img/pic.png" class = "photo" />
-	</a>
+  <div class="col col-20 col-offset-80 header-pic">
+		<a href="#/ask_a_question" >
+			<center><img src = "img/pic.png" class = "photo" /></center>
+		</a>
+	</div>
 </div>
