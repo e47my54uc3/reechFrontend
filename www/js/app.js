@@ -62,7 +62,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $rootScope.setCurrentUser();
     }
     else {
-      $location.path("/login");
+      $location.path("/landing");
     }
 
   });
@@ -86,7 +86,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     localStorage.removeItem('currentUserProfile');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
-    $location.path("/login");
+    $location.path("/landing1");
   }
 
   $rootScope.setProfile = function() {
@@ -132,6 +132,10 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/reech',
       controller: 'reechCtrl',
       templateUrl: 'templates/reech.html'
+    })
+    .state('landing', {
+      url: '/landing',
+      templateUrl: 'templates/landing.html'
     })
     .state('login', {
       url: '/login',
@@ -221,8 +225,8 @@ reech.config(function($httpProvider) {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
           localStorage.currentUser = '';
-          if ($location.path().indexOf('login') < 0) {
-            $location.path('/login');
+          if ($location.path().indexOf('landing') < 0) {
+            $location.path('/landing');
           }
         }
         if (rejection.status == 403) {
