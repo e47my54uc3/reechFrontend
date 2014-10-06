@@ -1,23 +1,18 @@
 <ion-view title="Categories">
 
 	<ion-content class="has-subheader has-footer">
-		<test ng-repeat="number in []|range: ceil(categories.length/2)">
-			<div class="row no-padding-margin">
-				<div class="col col-50 no-padding-margin" ng-repeat="column in [0,1]" ng-click="loadQuestions(categories[2*number + column].id)" >
-					<div ng-if="categories[2*number + column]" class="card no-padding-margin">
-						<div class="item item-divider no-padding-margin ng-binding">
-							{{categories[2*number + column].title}}
-							<div class="badge badge-assertive notification">10</div>
-						</div>
-            <div class="item item-text-wrap no-padding-margin" style="min-height: 150px; background: url('img/categories/{{(categories[2*number + column].title.replace('&', '_').split(' ').join('')|lowercase)}}.jpg') no-repeat;background-size: 100% 100%;">
-            </div>
-						<div class="item item-divider no-padding-margin ng-binding">
-              	{{categories[2*number + column].question_count}} Q
-						</div>
+		<div class="row no-padding-margin" ng-repeat="number in []|range: ceil(categories.length/2)" style="margin-top: 2px;">
+			<div class="col col-50 no-padding-margin" ng-repeat="column in [0,1]" ng-click="loadQuestions(categories[2*number + column].id)" >
+				<div ng-if="categories[2*number + column]" class="card no-padding-margin" style="min-height: 150px; background: url('img/categories/{{(categories[2*number + column].title.replace('&', '_').split(' ').join('')|lowercase)}}.jpg') no-repeat;background-size: 100% 100%;">
+					<div class="item item-divider item-dark no-padding-margin ng-binding semi-transparent" style=" color: white;">
+						{{categories[2*number + column].title}}
+					</div>
+					<div class="item item-divider item-dark no-padding-margin ng-binding semi-transparent" style=" color: white; margin-top: 100px;">
+						{{categories[2*number + column].question_count}} Q
 					</div>
 				</div>
 			</div>
-		</test>
+		</div>
 	</ion-content>
 	<div class="bar bar-footer bar-stable">
 	  	<button class="button button-clear col-10 navbar_bottom" select-categories ng-click="openCategoriesModel()"><i class="ion-ios7-gear-outline" style="font-size: 25px"></i></button>

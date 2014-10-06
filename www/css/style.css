@@ -26,6 +26,12 @@
   background: #e87f59;
   height: 200%
 }
+.semi-transparent
+{
+  opacity:.80;
+  -moz-opacity:.80;
+  filter:alpha(opacity=80);
+}
 img.logo {
     width: 26px;
     padding-top: 5px;
