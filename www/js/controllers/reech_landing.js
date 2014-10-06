@@ -1,5 +1,6 @@
 function reechCtrl($scope, $rootScope, $location, User){
   $scope.inviteForm = {};
+  $rootScope.currentState = 'reech';
 
   $scope.registerInvite = function(){
     User.validateCode({code: $scope.inviteForm.code}, function(response){
