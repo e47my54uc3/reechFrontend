@@ -2,7 +2,7 @@ function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $locat
     User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
       $scope.avatar = "";
-      $scope.attributes = {phone_number: data.phone_number, location: data.location, blurb: data.blurb};
+      $scope.attributes = {location: data.location, blurb: data.blurb, profile_id: data.profile_id};
     });
     $scope.openProfileModal = function() {
       $ionicModal.fromTemplateUrl('templates/profile.html', {
@@ -42,8 +42,8 @@ function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $locat
           }, function (progress) {
         });
       }else{
-        User.update($scope.attributes, function(data){
-          alert("saved!");
+        User.update({id: $rootScope.currentUser.id, user: $scope.attributes}, function(data){
+          alert("Profile updated successfully!");
         });
       }
     }
