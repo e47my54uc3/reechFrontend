@@ -1,39 +1,29 @@
-<ion-modal-view>
+<ion-modal-view >
     <ion-header-bar class="bar-positive">
     <a class="button button-clear" ng-click="closeCategoriesModel()"><i class="icon ion-ios7-close-outline"></i></a>
       <h1 class="title"> Categories </h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="has-header has-footer">
       <div class="list">        
         <label class="item item-input">
           <input type="text" ng-model="qCategory" placeholder="search for category..."></input>
         </label>  
-        <ion-scroll class="row250">  
+         
           <div class="item item-checkbox" ng-repeat="category in allCategories | filter: qCategory">
            <label class="checkbox">
              <input type="checkbox" ng-click="addCategory(category.id)" ng-checked="isCategorySelected(category.id)"/>
            </label> {{category.title}}
          </div>
-       </ion-scroll>
-      </div>  
-      <!-- Personal Groups -->
-      <!-- <div class="list list-inset">
-        <label class="item item-input">
-          <input type="text" ng-model="qGroup" placeholder="search for category..."></input>
-        </label>    
-        <div class="item item-checkbox" ng-repeat="category in categories | filter: qGroup">
-         <label class="checkbox">
-           <input type="checkbox" ng-click="addCategory(category.id)" ng-checked="isCategorySelected(category.id)"/>
-         </label> {{category.title}}
-       </div>
-      </div> -->  
-      <div class="row">
+      
+      </div>   
+   
+    </ion-content>
+    <ion-footer-bar style="height:50px;">
         <a class="button col col-50 button-balanced" ng-click="selectAllCategories()"> 
           All
         </a> 
         <a class="button col col-50 button-positive" ng-click="submit()"> 
           Done!
         </a>   
-      </div>
-    </ion-content>
+    </ion-subfooter-bar>
   </ion-modal-view>
