@@ -1,7 +1,28 @@
-<ion-view title="Ask a Question">
-<main-header></main-header>
+<ion-view title="Ask a Question" ng-controller='askAQuestionCtrl'>
+	<div class="bar bar-header row no-padding-margin">
+		<div class="col col-20 header-pic">
+			<a ng-click="back()" >
+				<center><img src = "img/pic.png" class = "photo" /></center>
+			</a>
+		</div>
+		<div class="item item-divider item-positive no-padding-margin ng-binding col col-80 col-offset-20">
+			<h1 class="title" style="color: white">Ask a question </h1>
+		</div>
+		<div class="bar bar-subheader bar-energized top_navbar col col-80 col-offset-20">
+			<a audien-details ng-click="openAudienModal()" class="button"><i class="icon ion-person-add"></i>({{audienceCount()}})</a>
+			Anonymize to others:
+			<label class="toggle">
+       <input type="checkbox" ng-model="question.is_public" ng-disabled="audienceCount() < 1">
+        <div class="track">
+          <div class="handle"></div>
+        </div>
+      </label>
+		</div>
+	</div>
+
 	<ion-content class="has-subheader">
 		<div class="list">
+
 			<label class="item item-input item-select">
 				<div class="input-label">
   					Category :
@@ -16,24 +37,20 @@
 					<img ng-src="{{avatar == '' ? 'img/default-image.png' : (avatar)}}" height="100">
 				</div>
 			</div>
+
 			<label class="item item-input">
 				<textarea ng-model="question.post" placeholder="Tap to ask a question ..." rows="10"></textarea>
 			</label>
 		</div>
-		
+
 		<div class="button-bar">
 				<a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
 				<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
-				<a audien-details ng-click="openAudienModal()" class="button"><i class="icon ion-person-add"></i></a>
 		</div>
-		
+
 	</ion-content>
 	<ion-footer-bar align-title="left" class="bar bar-footer bar-stable askbar">
-		<div class="buttons item-button-left" ng-click="cancelQuestion()">
-			<button class="button button-clear button-assertive navbar_bottom askbarbtn">Cancel</button>
-		</div>
-		<div class="buttons item-button-right" ng-click="createQuestion()">
-			<button class="button button-clear button-askgreen navbar_bottom askbarbtn askright">Ask</button>
-		</div>
+		<button class="button button-assertive" ng-click="cancelQuestion()">Cancel</button>
+		<button class="button button-balanced" ng-click="createQuestion()">Ask</button>
 	</ion-footer-bar>
 </ion-view>

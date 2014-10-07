@@ -21,6 +21,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
+    <script src="lib/ng-lodash/build/ng-lodash.min.js"></script>
 
 
     <!-- your app's js -->
@@ -37,6 +38,7 @@
     <script src="js/filters/timeago.js"></script>
     <script src="js/filters/arrays.js"></script>
     <script src="js/controllers/reech_landing.js"></script>
+    <script src="js/controllers/landing_ctrl.js"></script>
     <script src="js/controllers/login.js"></script>
     <script src="js/controllers/registration.js"></script>
     <script src="js/controllers/questions.js"></script>
@@ -48,14 +50,13 @@
     <script src="js/controllers/friends.js"></script>
     <script src="js/controllers/leader_board.js"></script>
     <script src="js/controllers/profile.js"></script>
-    <script src="js/controllers/landing.js"></script>
     <script src="js/controllers/question.js"></script>
     <script src="js/controllers/connections.js"></script>
     <script src="js/controllers/notifications.js"></script>
     <script src="js/controllers/reech_chat.js"></script>
   </head>
   <body ng-app="reech">
-
-    <ion-nav-view></ion-nav-view>
+    <main-header></main-header>
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
   </body>
 </html>

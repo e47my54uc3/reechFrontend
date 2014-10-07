@@ -27,27 +27,29 @@
 
 		<ion-tab title="My Contacts" icon-on="ion-ios7-personadd" icon-off="ion-ios7-personadd-outline">
 			<ion-content>
-			<div class="list">
-				<div class="item item-divider">
-				My Contacts
+				<div class="list" >
+					<div ng-repeat="contact in contacts">
+						<ion-checkbox ng-repeat="phone in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone.value)" ng-checked="question.audien_details.phone_numbers.indexOf(phone.value) != -1">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
+						<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)" ng-checked="question.audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+					</div>
 				</div>
-				<div ng-repeat="contact in (contacts | limitTo:1)">
-					<ion-checkbox ng-repeat="phone_number in contact.phoneNumbers" ng-click="updatePhoneNumberSelection($event, phone_number.value)" ng-checked="question.audien_details.phone_numbers.indexOf(phone_number.value) != -1">{{contact.displayName}}  {{phone_number.value}}</ion-checkbox>
-					<ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailSelection($event, email.value)" ng-checked="question.audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
-				</div>
-
-			</div>
+				<ion-infinite-scroll
+				ng-if="!noMoreItemsAvailable"
+				on-infinite="loadMore()"
+				icon="ion-loading-c"
+				distance="10%">
+				</ion-infinite-scroll>
 		</ion-content>
 		</ion-tab>
 
-		<ion-tab title="Invite" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline">		
+		<ion-tab title="Invite" icon-on="ion-ios7-plus" icon-off="ion-ios7-plus-outline">
 			<ion-content class="has-header has-footer">
-				
+
 				<div class="list" ng-repeat="new_invite in new_invites">
-					<button ng-click="addInvite($index)" class="ion-ios7-plus-outline button button-clear icon">					
+					<button ng-click="addInvite($index)" class="ion-ios7-plus-outline button button-clear icon">
 					</button>
 					<button ng-click="removeInvite($index)" class="button icon ion-minus-circled button-clear" ng-if="new_invites.length > 1">
-					</button>					
+					</button>
 					<label class="item item-input item-select">
 						<div class="input-label">
 							<input ng-model="new_invite[new_invite.type]" type="text" placeholder="{{new_invite.type}}">
@@ -60,7 +62,7 @@
 				<button ng-click="newInvite()" class="button button-block button-positive">
 					Invite
 				</button>
-				
+
 			</ion-content>
 		</ion-tab>
 

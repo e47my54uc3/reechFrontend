@@ -1,10 +1,10 @@
 <ion-view title="Questions" ng-controller="questionsCtrl">
-<main-header></main-header>
+
   <ion-content class="has-subheader has-footer" on-swipe-up="loadMore()">
     <ion-list >
       <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
       <div class="button-bar button-clear">
-        <a href="#/user/{{question.posted_by_user_id}}/profile" class="col-50 item item-clear item-icon-left" >
+        <a href="{{question.clickable ? '#/user/' + question.posted_by_user_id + '/profile' : '#/categories/' + currentCategory + '/questions'}}" class="col-50 item item-clear item-icon-left" >
           <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
           <span class="postedby">{{question.posted_by}}</span>
         </a>

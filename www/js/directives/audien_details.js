@@ -3,11 +3,14 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){
-			$scope.new_invites = [{email: "", phone_number: "", type: "email"}];			
+			$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
 			$scope.friends_list = User.friends();
 			$scope.groups = Group.query();
 			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
 
+      //Initialize this whenever directive is loaded.
+			$rootScope.contacts = [];
+			$rootScope.noMoreItemsAvailable = false;
 
 			$scope.openAudienModal = function() {
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
@@ -72,50 +75,6 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 				}
 			}
 
-			$scope.setContacts = function(fetchedContacts){
-				$scope.contacts = new Object();
-				for(var i=0; i < fetchedContacts.length; i++){
-					var name = fetchedContacts[i].displayName != null ? fetchedContacts[i].displayName : 'No name';
-					var index = name.substring(0, 1).toUpperCase();
-
-					if(name.length > 20){
-						name = name.substring(0, 20) + '...';
-					}
-
-					if(fetchedContacts[i].phoneNumbers != null){
-						for(var j=0; j<fetchedContacts[i].phoneNumbers.length; j++){
-							var number = fetchedContacts[i].phoneNumbers[j].value;
-
-							if($scope.contacts[index] == 'undefined'){
-								$scope.contacts[index] = new Array();
-							}
-
-							$scope.contacts[index][$scope.contacts[index].length] = {"name": name, "number": number, type: "phone_number"};
-						}
-					}
-
-					if(fetchedContacts[i].emails != null){
-						for(var j=0; j<fetchedContacts[i].emails.length; j++){
-							var email = fetchedContacts[i].emails[j].value;
-
-							if($scope.contacts[index] == 'undefined'){
-								$scope.contacts[index] = new Array();
-							}
-
-							$scope.contacts[index][$scope.contacts[index].length] = {"name": name, "email": email, type: "email"};
-						}
-					}
-				}
-
-				$scope.arrayKeys = new Array();
-				for (var key in $scope.contacts )
-							{
-									$scope.arrayKeys[$scope.arrayKeys.length] = key;
-							}
-							$scope.arrayKeys = $scope.arrayKeys.sort();
-			}
-
-
 			$scope.newInvite = function(){
 				angular.forEach($scope.new_invites, function(new_invite, index){
 					if((new_invite.email == "" || !new_invite.email)&& new_invite.phone_number == ""){
@@ -132,7 +91,7 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 						//alert("success");
 					}
 					$scope.resetNewInvite(index);
-				});				
+				});
 			}
 			$scope.addInvite = function(index){
 				$scope.new_invites.splice(index+1, 0, {email: "", phone_number: "", type: "email"});
@@ -143,11 +102,6 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 			$scope.resetNewInvite = function(index){
 				$scope.new_invites[index] = {email: "", phone_number: "", type: $scope.new_invites[index].type ? $scope.new_invites[index].type : "email"};
 			}
-
-
-
 		}
 	}
 });
-
-	

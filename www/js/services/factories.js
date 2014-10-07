@@ -62,7 +62,7 @@ reech.factory('User', ['$resource', function($resource) {
     },
     authorizeFacebook: {
       url: BaseUrl + "api_users/auth_face_book",
-      method: 'GET',
+      method: 'POST',
       params: {},
       isArray: false
     },

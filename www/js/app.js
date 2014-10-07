@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise'])
+reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise', 'ngLodash'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -17,16 +17,41 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     }
     //Set the landing page on page load.
     if (window.cordova) {
-      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "id"]}).then(function(result) {
-        $rootScope.contacts = result;
-        console.log(JSON.stringify(result));
-      }, function(err) {
-          alert(err);
-          });
+      //setup device
+      $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
+      $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
+       $rootScope.allContacts = result;
+       $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return (item.displayName ? item.displayName.toLowerCase() : item.displayName); })
+       //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
+       $rootScope.contacts = [];
+       }, function(err) {
+        alert(err);
+      });
+
     }else{
-      $rootScope.contacts = [{displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {displayName: "rest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {displayName: "gest1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      // This is for browser testing only.
+      $rootScope.device = {device_token: "forbrowseronly2", platform: "Android" }
+      $rootScope.allContacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "kurapatijayaram@gmail.com"}]},
+      {id: "3", rawId: "3", displayName: '', phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return toString(item.displayName).toLowerCase(); })
+      //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
+      $rootScope.contacts = [];
+    }
+    // Infinite scroll of contacts in all places.
+    $rootScope.loadMore = function() {
+      var loadContacts = $rootScope.contacts.length;
+      for(var i=1; i <= 20; i++){
+        if($rootScope.allContacts.length > loadContacts + i - 1) {
+          $rootScope.contacts.push($rootScope.allContacts[loadContacts + i - 1]);
+        }
+        else {
+          $rootScope.noMoreItemsAvailable = true;
+          break;
+        }
+      }
+
+      $rootScope.$broadcast('scroll.infiniteScrollComplete');
     }
 
     if (!localStorage.inviteCode){
@@ -37,7 +62,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $rootScope.setCurrentUser();
     }
     else {
-      $location.path("/login");
+      $location.path("/landing");
     }
 
   });
@@ -52,7 +77,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     else {
       $rootScope.setProfile();
     }
-    $location.path("/connections");
+    $location.path("/categories");
   }
 
   $rootScope.signout = function() {
@@ -61,7 +86,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     localStorage.removeItem('currentUserProfile');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
-    $location.path("/login");
+    $location.path("/landing1");
   }
 
   $rootScope.setProfile = function() {
@@ -83,7 +108,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
   });
-  
+
 })
 
 
@@ -107,6 +132,11 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/reech',
       controller: 'reechCtrl',
       templateUrl: 'templates/reech.html'
+    })
+    .state('landing', {
+      url: '/landing',
+      templateUrl: 'templates/landing.html',
+      controller: 'landingCtrl'
     })
     .state('login', {
       url: '/login',
@@ -159,8 +189,7 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('ask_a_question', {
       url: '/ask_a_question',
-      templateUrl: 'templates/ask_a_question.html',
-      controller: 'askAQuestionCtrl'
+      templateUrl: 'templates/ask_a_question.html'
     })
     .state('connections', {
       url: '/connections',
@@ -196,8 +225,8 @@ reech.config(function($httpProvider) {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
           localStorage.currentUser = '';
-          if ($location.path().indexOf('login') < 0) {
-            $location.path('/login');
+          if ($location.path().indexOf('landing') < 0) {
+            $location.path('/landing');
           }
         }
         if (rejection.status == 403) {

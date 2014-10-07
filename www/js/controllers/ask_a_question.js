@@ -1,6 +1,6 @@
 function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $location, $cordovaFile){
 	$scope.categories = Category.query();
-	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: ''};
+	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: '', is_public: true};
 	$scope.avatar = "";
 	$scope.test = localStorage.currentUser;
 	$scope.takePicture = function(type) {
@@ -28,8 +28,13 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 	    });
   	}
 
+		$scope.audienceCount = function(){
+		 var audience = $scope.question.audien_details;
+		 return (audience.emails.length + audience.groups.length + audience.reecher_ids.length + audience.phone_numbers.length);
+		}
+
   	$scope.cancelQuestion = function(){
-  		$location.path("/questions");
+  		$location.path("/categories");
   	}
 
   	$scope.createQuestion = function(){

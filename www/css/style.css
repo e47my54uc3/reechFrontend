@@ -22,6 +22,24 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#e86c57',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   copy
 }
+.header-pic {
+  background: #e87f59;
+  height: 200%
+}
+.semi-transparent
+{
+  opacity:.80;
+  -moz-opacity:.80;
+  filter:alpha(opacity=80);
+}
+
+.centered {
+  position: fixed;
+  left: 50%;
+  margin-top: 60%;
+  margin-left: -70px;
+}
+
 img.logo {
     width: 26px;
     padding-top: 5px;
@@ -36,11 +54,17 @@ img.photo {
     width: 55px;
 }
 
+.no-padding-margin {
+  padding: 0px;
+  margin:0px;
+}
+
 .bar-header {
 top: 0;
 border-top-width: 0;
 border-bottom-width: 0px;
 }
+
 
 .bar.bar-positive {
 border-color: #325692;
