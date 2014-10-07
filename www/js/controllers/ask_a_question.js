@@ -38,32 +38,39 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
   	}
 
   	$scope.createQuestion = function(){
-		$scope.question.posted_by_uid = $rootScope.currentUser.reecher_id;
-		$scope.question.posted_by = ($rootScope.currentUser.first_name + $rootScope.currentUser.last_name);
-  		if($scope.avatar != ""){
-  			var options = new FileUploadOptions();
-	  		options.fileKey = "file";
-	        options.fileName = "filename.jpg";
-	        options.mimeType = "image/jpeg";
-	        options.chunkedMode = false;
-	        var params = {};
-	        params.question = $scope.question;
-	        options.params = params;
+  		if($scope.question.category_id == null){
+  			alert("Please select one category.");
+  		}else if($scope.question.post == null){
+  			alert("Please enter your question.");
+  		}else{
+  			$scope.question.posted_by_uid = $rootScope.currentUser.reecher_id;
+			$scope.question.posted_by = ($rootScope.currentUser.first_name + $rootScope.currentUser.last_name);
+	  		if($scope.avatar != ""){
+	  			var options = new FileUploadOptions();
+		  		options.fileKey = "file";
+		        options.fileName = "filename.jpg";
+		        options.mimeType = "image/jpeg";
+		        options.chunkedMode = false;
+		        var params = {};
+		        params.question = $scope.question;
+		        options.params = params;
 
-	  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
-			    alert("upload success");
-			}, function(error) {
-				alert("An error has occurred: Code = " + error.code);
-	    	}, function (progress) {
-			});
-		}else{
-			Question.save({question: $scope.question}, function(res){
-	  			alert("Question successfully posted.");
-					$rootScope.setProfile();
-	  			$location.path("/questions");
-	  		}, function(err){
-	  			alert("Error occured while posting the question. Please try again.");
-	  		});
-		}
+		  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
+				    alert("upload success");
+				}, function(error) {
+					alert("An error has occurred: Code = " + error.code);
+		    	}, function (progress) {
+				});
+			}else{
+				Question.save({question: $scope.question}, function(res){
+		  			alert("Question successfully posted.");
+						$rootScope.setProfile();
+		  			$location.path("/questions");
+		  		}, function(err){
+		  			alert("Error occured while posting the question. Please try again.");
+		  		});
+			}
+  		}
+		
   	}
 }
