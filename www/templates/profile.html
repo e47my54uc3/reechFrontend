@@ -59,7 +59,7 @@
      	  <button ng-click ="showConfirm()" class="button button-full button-positive">
           Need Help? Contact Us
         </button>
-        <button ng-click ="signout()" class="button button-full button-positive">
+        <button ng-if="currentUser.id == profile.id" ng-click ="signout()" class="button button-full button-positive">
     	    Logout
     	  </button>
         <br />

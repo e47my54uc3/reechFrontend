@@ -34,7 +34,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		}
 
   	$scope.cancelQuestion = function(){
-  		$location.path("/questions");
+  		$location.path("/categories");
   	}
 
   	$scope.createQuestion = function(){

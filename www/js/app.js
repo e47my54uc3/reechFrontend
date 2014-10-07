@@ -32,7 +32,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       // This is for browser testing only.
       $rootScope.device = {device_token: "forbrowseronly2", platform: "Android" }
       $rootScope.allContacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
-      {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
+      {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "kurapatijayaram@gmail.com"}]},
       {id: "3", rawId: "3", displayName: '', phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
       $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return toString(item.displayName).toLowerCase(); })
       //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
