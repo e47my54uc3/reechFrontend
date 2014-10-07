@@ -10,7 +10,7 @@
         </a>
         <a class="col col-33 post_time">{{question.updated_at | timeago}}</a>
       </div>
-      <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-before-open="beforeQuestionDetailsModal(question.id)">
+      <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-on-close="modalClosed();" modal-before-open="beforeQuestionDetailsModal(question.id)">
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
         <div class="col col-25">
           <a class="item-thumbnail">
@@ -20,7 +20,7 @@
       </div>
       <div class="button-bar button-clear">
           <div class="col col-offset-0"><icon class="ion-ios7-star staricon" ng-class="{positive: question.is_starred}" ng-click="starQuestion(question.id);"></icon></div>
-          <div class="col col-offset-25"><icon class="ion-link linkicon" ng-class="{positive: question.is_linked}"></icon>{{question.linked_count}}</div>
+          <div class="col col-offset-25" ng-click="setlinkQuestionId(question.id); openAudienModal()"><icon class="ion-link linkicon" ng-class="{positive: question.is_linked}"  audien-details></icon>{{question.linked_count}}</div>
           <div class="col col-offset-25"><icon class="ion-ios7-chatboxes" ng-class="{chaticon: question.has_conversation}"></icon></div>
           <div class="col col-offset-25"><icon class="ion-ios7-checkmark" ng-class="{solvedicon: question.has_solution}"></icon></div>
       </div>

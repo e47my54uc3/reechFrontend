@@ -29,7 +29,7 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 
 				if($scope.audien_modal){
 					$scope.audien_modal.remove();
-					$rootScope.$broadcast('audien-modalClosed');
+					$rootScope.$broadcast('audien-modalClosed', $scope.question);
 				}
 			};
 			$ionicPlatform.onHardwareBackButton(function(){

@@ -1,5 +1,4 @@
 function questionCtrl($scope, $ionicModal, Question, $rootScope) {
-  $scope.question = {};
   var index;
   if($scope.$parent.selectedQuestion) {
     Question.get({id: $scope.$parent.selectedQuestion}, function(response){
@@ -46,11 +45,6 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope) {
       $rootScope.setProfile();
       $scope.$parent.setStar($scope.selectedQuestion.question.id, response.stared)      
     });
-  }
-  $scope.$on('audien-modalClosed', function(){
-    Question.linkQuestionToExpert({question_id: $scope.selectedQuestion.question.id, audien_details: $scope.question.audien_details}, function
-      (response){
-    });
-  });
+  }  
 
 }

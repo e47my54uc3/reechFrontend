@@ -1,4 +1,4 @@
-function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile){
+function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile, $ionicPlatform){
     User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
       $scope.avatar = "";

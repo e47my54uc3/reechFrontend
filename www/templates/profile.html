@@ -69,13 +69,13 @@
 
   </ion-content>
   <div class="tabs tabs-striped tabs-assertive tabs-color-light" ng-if="currentUser.id == profile.id">
-    <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile">
+    <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile" ng-click="profileModal.remove()">
       <i>Profile</i>
     </a>
-    <a class="tab-item" href="#/leader_board">
+    <a class="tab-item" href="#/leader_board" ng-click="profileModal.remove()">
       <i>Leaderboard</i>
     </a>
-    <a class="tab-item" href="#/user_settings">
+    <a class="tab-item" href="#/user_settings" ng-click="profileModal.remove()">
       <i>Settings</i>
     </a>
   </div>
