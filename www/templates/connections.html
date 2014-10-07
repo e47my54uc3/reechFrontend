@@ -54,8 +54,9 @@
           Send request
         </button>
         <div ng-repeat="contact in contacts">
-          <ion-checkbox ng-repeat="phone in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone.value)" ng-checked="audien_details.phone_numbers.indexOf(phone.value) != -1">{{contact.displayName}}  {{phone.value}}</ion-checkbox>
-          <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}</ion-checkbox>
+          <ion-checkbox ng-repeat="phone in contact.phoneNumbers" ng-click="updateNumberAudienSelection($event, phone.value)" ng-checked="audien_details.phone_numbers.indexOf(phone.value) != -1">{{contact.displayName}}  {{phone.value}}<span ng-if="(friends_list | firstIndex:{'phone_number': phone.value}) > -1" class="item-icon-right"><i class="icon ion-checkmark-round"></i></span></ion-checkbox>
+          <ion-checkbox ng-repeat="email in contact.emails" ng-click="updateEmailAudienSelection($event, email.value)" ng-checked="audien_details.emails.indexOf(email.value) != -1">{{contact.displayName}}  {{email.value}}<span ng-if="(friends_list | firstIndex:{'email': email.value}) > -1" class="item-icon-right"><i class="icon ion-checkmark-round"></i></span></ion-checkbox>
+
         </div>
       </div>
       <ion-infinite-scroll
@@ -69,9 +70,9 @@
 
   </ion-tab>
 
-  <ion-tab title="Find Friends">
+  <!-- <ion-tab title="Find Friends">
 
-  </ion-tab>
+  </ion-tab> -->
 
 </ion-tabs>
 

@@ -5,7 +5,7 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 	$scope.new_group = {member_reecher_ids: [], reecher_id: "", name: ""};
 	$scope.refresh_page = false;
 	$scope.audien_details = {emails: [], phone_numbers: []};
-
+	
 	//Initialize this on route change
 	$rootScope.contacts = [];
   $rootScope.noMoreItemsAvailable = false;
