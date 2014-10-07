@@ -40,28 +40,29 @@ reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordo
 			
 			$scope.selectAllCategories = function(){
 				var selectedCategories = [];
-				$scope.allCategories = JSON.parse(localStorage.categories);
+				$scope.allCategories = JSON.parse(localStorage.categories);				
 				angular.forEach($scope.allCategories, function(data){
 					selectedCategories.push(data.id);
 				});
 				localStorage.selectedCategoriesIds = JSON.stringify(selectedCategories);
-				$scope.categories = $scope.allCategories;				
+				$scope.allCategories.splice($filter('firstIndex')($scope.allCategories, {id: '', title: 'All'}), 1);
 				$scope.closeCategoriesModel();	
 			}
       $scope.submit = function(){
       	localStorage.selectedCategoriesIds = JSON.stringify($scope.selectedCategories);
       	$scope.filterCategories();
       }
-			$scope.filterCategories = function(){				
+			$scope.filterCategories = function(){			
 				$scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
 				$scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
 				$scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
 				$scope.categories = $filter('orderBy')($scope.categories, 'title');
+				$scope.allCategories.splice($filter('firstIndex')($scope.allCategories, {id: '', title: 'All'}), 1);
 				$scope.closeCategoriesModel();
 			}
 			$scope.filterCategories();
 			$scope.loadQuestions = function(categoryId) {
-				if(categoryId == null)
+				if(categoryId == '')
 					$location.path("/questions");
 				else
   				$location.path("categories/" + categoryId + "/questions");								

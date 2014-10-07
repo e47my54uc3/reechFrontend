@@ -1,9 +1,9 @@
-<ion-view title="Profile" ng-controller="profilesCtrl">
+<ion-modal-view title="Profile">
 	<ion-content class="has-footer">
    
     	<div class = "row positive-bg" style="height: 100px">
     		<div class= "col col-10">
-    			<a ng-click="back()"><i class="icon ion-chevron-left stable"></i></a>
+    			<a ng-click="closeProfileModal()"><i class="icon ion-chevron-left stable"></i></a>
     		</div>
     		<div class= "col col-25">
           <center>
@@ -15,7 +15,7 @@
     				<div class="col stable">{{profile.questions_count || 0}} Q</div>
     				<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
     				<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
-    				<div class="col divider-left stable">{{profile.curio_points}} C</div>
+    				<div class="col divider-left stable" ng-if="currentUser.id == profile.id">{{profile.curio_points}} C</div>
     			</div>
     		</div>
     	</div>
@@ -37,7 +37,8 @@
 
      		 </a>
      	  </div>
-        <button ng-if="currentUser.id == profile.id" ng-click ="updateDetails()" class="button button-block button-energized">
+        <div ng-if="currentUser.id == profile.id">
+        <button ng-click ="updateDetails()" class="button button-block button-energized">
         Update
         </button>
         <center>
@@ -62,11 +63,12 @@
         <button ng-click ="signout()" class="button button-full button-positive">
     	    Logout
     	  </button>
+      </div>
         <br />
      
 
   </ion-content>
-  <div class="tabs tabs-striped tabs-assertive tabs-color-light">
+  <div class="tabs tabs-striped tabs-assertive tabs-color-light" ng-if="currentUser.id == profile.id">
     <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile">
       <i>Profile</i>
     </a>
@@ -77,4 +79,4 @@
       <i>Settings</i>
     </a>
   </div>
-</ion-view>
+</ion-modal-view>

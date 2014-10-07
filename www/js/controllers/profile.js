@@ -1,10 +1,28 @@
-function profilesCtrl($scope, $ionicPopup, User, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile){
+function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile){
     User.Profile({id: $stateParams.id}, function(data){
       $scope.profile = data;
       $scope.avatar = "";
       $scope.attributes = {phone_number: data.phone_number, location: data.location, blurb: data.blurb};
     });
-
+    $scope.openProfileModal = function() {
+      $ionicModal.fromTemplateUrl('templates/profile.html', {
+        scope: $scope,
+        animation: 'slide-in-left'
+      }).then(function(modal) {
+        $scope.profileModal = modal;
+        $scope.profileModal.show();
+      });
+    };
+    $scope.openProfileModal();
+    $scope.closeProfileModal = function() {
+      if($scope.profileModal){
+        $scope.profileModal.remove();
+        $scope.back(); 
+      }
+    };
+    $ionicPlatform.onHardwareBackButton(function(){
+      $scope.closeProfileModal();
+    });
     $scope.updateDetails = function(){
       if($scope.avatar != ""){
         var options = new FileUploadOptions();

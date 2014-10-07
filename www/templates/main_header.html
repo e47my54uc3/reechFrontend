@@ -4,7 +4,6 @@
 			<a class="button top_navbarCategories" href="#/user/{{currentUser.id}}/profile"><img src = "img/User-icon1.png" class ="logo" /></a> 
 			<h1 class="title"><b ng-if="currentState == 'categories'">Areas of Interests</b>
 			<select select-categories  ng-if="currentState != 'categories'" ng-change="loadQuestions(selectedCategoryId)" ng-model="selectedCategoryId" class="style-select" ng-options=" ''+category.id as category.title for category in categories">
-				<option value="">All</option>
 			</select>			
 			</h1>
 
