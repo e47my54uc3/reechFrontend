@@ -135,7 +135,8 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('landing', {
       url: '/landing',
-      templateUrl: 'templates/landing.html'
+      templateUrl: 'templates/landing.html',
+      controller: 'landingCtrl'
     })
     .state('login', {
       url: '/login',
