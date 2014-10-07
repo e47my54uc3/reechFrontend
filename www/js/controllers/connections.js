@@ -1,4 +1,4 @@
-function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $rootScope){
+function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $rootScope, $ionicPopup){
 	$scope.friends_list = User.friends();
 	$scope.groups = Group.query();
 	$scope.group = {group_id: "", associated_user_id: ""};
@@ -54,7 +54,9 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 
 	$scope.executeOnClose = function(){
 		if($scope.refresh_page){
-			window.location.reload();
+			//window.location.reload("#/connections");
+			//$state.transitionTo('connections');
+			$state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
 		}
 	}
 
@@ -77,10 +79,36 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 
 	$scope.createGroup = function(){
 		Group.save({group: $scope.new_group}, function(res){
-			$scope.refresh_page = true;
-			alert("Group created successfully");
+			if(res.status == 200){
+				var user = $scope.friends_list[$filter('firstIndex')($scope.friends_list, {reecher_id: $scope.new_group.member_reecher_ids[0]})];
+				$scope.groups.push({id: res.groups.id, name: res.groups.name, members: [{id: user.id, first_name: user.first_name, last_name: user.last_name, reecher_id: user.reecher_id}]});
+				user.groups.push({id: res.groups.id, name: res.groups.name, reecher_id: res.groups.reecher_id});
+				$scope.beforeMemberModal(user.id);
+				$scope.new_group = {member_reecher_ids: [$scope.new_group.member_reecher_ids[0]], reecher_id: $rootScope.currentUser.reecher_id, name: ""};
+				alert("Group created successfully");
+			}else{
+				alert("Please try again");
+			}
 		}, function(err){
 			alert("error");
 		});
 	}
+
+	$scope.showConfirm = function(group_id, group_name) {
+		var confirmPopup = $ionicPopup.confirm({
+			title: 'Delete group : ' + group_name,
+			template: 'Are you sure you want to delete this group?'
+		});
+		confirmPopup.then(function(res) {
+			if(res) {
+				Group.delete({id: group_id}, function(res){
+					alert("Successfully deleted.");
+					$scope.friends_list = User.friends();
+					$scope.groups = Group.query();
+				})
+			} else {
+				console.log('You are not sure');
+			}
+		});
+	};
 }

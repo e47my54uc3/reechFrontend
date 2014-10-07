@@ -12,7 +12,7 @@
           <li ng-repeat="group in groups" class="item">
             {{group.name}}
             <span class="item-note">
-              <a href="#"><i class="icon ion-close-round"></i></a>
+              <div ng-click="showConfirm(group.id, group.name)"><i class="icon ion-close-round"></i></div>
             </span>
             <span class="item-note">
               <div></div>

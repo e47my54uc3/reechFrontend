@@ -13,8 +13,8 @@ reech.directive('reechModal', function($ionicModal, $ionicPlatform, $compile, $p
 					scope: $scope,
 					animation: 'slide-in-up'
 				}).then(function(modal) {
-					$scope.modal = modal;
-					$scope.modal.show();
+					$scope.reech_modal = modal;
+					$scope.reech_modal.show();
 				});
 				
 			};
@@ -23,7 +23,7 @@ reech.directive('reechModal', function($ionicModal, $ionicPlatform, $compile, $p
 				if(attrs.modalOnClose != ""){
 					$parse(attrs.modalOnClose)($scope);
 				}
-				$scope.modal.remove();
+				$scope.reech_modal.remove();
 			};
 
 			$ionicPlatform.onHardwareBackButton(function(){
