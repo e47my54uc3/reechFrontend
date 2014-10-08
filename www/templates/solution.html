@@ -3,19 +3,19 @@
   <div class="main-box">
   	<div class="box-image" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
   		<div class="winter inner-box has_header">
-    		<div class="item item-icon-left item-icon-right item-positive">
+    		<div class="item item-icon-left item-icon-right item-positive" style="height: 50px;">
     			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
     			<div class="title text-center">Solution</div>
-          <span class="col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver">{{currentSolution.hi5_count}}
-            <img  src="img/High-Fives.png" ng-click="solutionHi5()"></img>
+          <span class="h3 stable col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" style="position:absolute;margin-top: -28px;margin-left:80%;">{{currentSolution.hi5_count}}  
+            <img  src="img/High-Fives.png" ng-click="solutionHi5()" ></img>    
           </span>
   			</div>
         <div ng-if="showSolution">
     		  <div class="row" >
       		  <div class="col col-50 stable">
         		  <a class="item-avatar item-text-wrap">
-          		  <img class="user-avatar full-image" ng-src="{{currentSolution.solver_image ? currentSolution.solver_image : 'img/no-image.png'}}"  ng-click="currentSolution.profile_pic_clickable && goTo('user/{{currentSolution.solution_provider_id}}/profile')"><span class="item-text-wrap">
-          		{{currentSolution.solution_provider_name}}</span>
+          		  <img style="margin-top: 21px;" class="user-avatar full-image" ng-src="{{currentSolution.solver_image ? currentSolution.solver_image : 'img/no-image.png'}}"  ng-click="currentSolution.profile_pic_clickable && openProfileModal(solution.solution_provider_id)"><span class="item-text-wrap">
+          		{{currentSolution.solution_provider_name}}</span></img>
         		  </a>
       		  </div>
       		  <div class="button-bar col-20">

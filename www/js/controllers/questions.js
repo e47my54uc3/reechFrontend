@@ -40,9 +40,17 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   }
   
   $scope.$on('audien-modalClosed', function(event, args){ 
-    $scope.linkQuestionToExpert($scope.modalOpened ? $scope.selectedQuestion : $scope.linkQuestionId, args);
+    if(!$scope.isAudienDetailsEmpty(args))
+      $scope.linkQuestionToExpert($scope.modalOpened ? $scope.selectedQuestion : $scope.linkQuestionId, args);
   });
-
+  $scope.isAudienDetailsEmpty = function(question){
+    var isEmpty = true;
+    angular.forEach(question.audien_details, function(value, key){
+      if(value.length)
+        isEmpty = false;
+    });    
+    return isEmpty;
+  }
   $scope.linkQuestionToExpert= function(question_id, question){    
     Question.linkQuestionToExpert({question_id: question_id, audien_details: question.audien_details}, function(response){
       index = $filter('firstIndex')($scope.questions, {'id': question_id});
