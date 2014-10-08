@@ -3,16 +3,17 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){
-			$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
-			$scope.friends_list = User.friends();
-			$scope.groups = Group.query();
-			$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
-
-      //Initialize this whenever directive is loaded.
-			$rootScope.contacts = [];
-			$rootScope.noMoreItemsAvailable = false;
+			
 
 			$scope.openAudienModal = function() {
+				$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
+			  $scope.friends_list = User.friends();
+			  $scope.groups = Group.query();
+			  $scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
+
+        //Initialize this whenever directive is loaded.
+			  $rootScope.contacts = [];
+			  $rootScope.noMoreItemsAvailable = false;
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
 				$ionicModal.fromTemplateUrl('templates/audien_details.html', {
 					scope: $scope,
@@ -25,8 +26,6 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 			};
 
 			$scope.closeAudienModal = function() {
-				$scope.new_invite = {email: "", phone_number: ""};
-
 				if($scope.audien_modal){
 					$scope.audien_modal.remove();
 					$rootScope.$broadcast('audien-modalClosed', $scope.question);
