@@ -40,8 +40,10 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   }
   
   $scope.$on('audien-modalClosed', function(event, args){ 
-    if(!$scope.isAudienDetailsEmpty(args))
+    if(!$scope.isAudienDetailsEmpty(args)){
       $scope.linkQuestionToExpert($scope.modalOpened ? $scope.selectedQuestion : $scope.linkQuestionId, args);
+      $scope.init();
+    }
   });
   $scope.isAudienDetailsEmpty = function(question){
     var isEmpty = true;
