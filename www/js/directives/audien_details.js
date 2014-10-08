@@ -16,8 +16,7 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 			}
 		    $scope.init();
 			$scope.openAudienModal = function() {
-
-				$scope.temp_audien = angular.copy($scope.question.audien_details);
+        $scope.temp_audien = angular.copy($scope.question.audien_details);
 				$ionicModal.fromTemplateUrl('templates/audien_details.html', {
 					scope: $scope,
 					animation: 'slide-in-up'

@@ -3,13 +3,18 @@
   <ion-content class="has-subheader has-footer" on-swipe-up="loadMore()">
     <ion-list >
       <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
-      <div class="button-bar button-clear">
-        <a ng-click="question.clickable && openProfileModal(question.posted_by_user_id)" class="col-50 item item-clear item-icon-left" >
+      <div class="row">
+        <div ng-click="question.clickable && openProfileModal(question.posted_by_user_id)" class=" col-10 item item-clear item-icon-left" >
           <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
-          <span class="postedby">{{question.posted_by}}</span>
-        </a>
-        <a class="col col-33">{{question.updated_at | timeago}}</a>
-      </div>
+        </div>  
+        <div class="col col-33 postedby" ng-click="question.clickable && openProfileModal(question.posted_by_user_id)">{{question.posted_by}}<br />
+          <ng-pluralize class="item-text-wrap" count="question.linkers.length" when="{'0': '',
+       '1': '{{question.linkers[0]}} linked you to question.',
+       'other': '{{question.linkers[0]}}+ {{question.linkers.length-1}} members linked you to question'}"></ng-pluralize>           
+        </div>
+        
+        <div class="col col-33 post_time">{{question.updated_at | timeago}}</div>
+      </div><br/>
       <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-on-close="modalClosed();" modal-before-open="beforeQuestionDetailsModal(question.id)">
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
         <div class="col col-25">
