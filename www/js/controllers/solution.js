@@ -62,11 +62,7 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, Solution, $location, $ro
 		$scope.$parent.selectedSolution.solution_provider_name = $scope.currentSolution.solution_owner;
   	$scope.$parent.selectedSolution.solver_image = $scope.currentSolution.solution_owner_image;
 	}
-  $scope.goTo = function(url){
-    $scope.modal.remove();
-    $scope.$parent.closeSolutionModal();
-    $location.path(url);
-  }
+
 
   $scope.setCurrentChatMember = function(user_id){
     $scope.currentChatMemberId = user_id;
