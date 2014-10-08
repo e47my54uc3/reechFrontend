@@ -13,7 +13,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      StatusBar.hide();
     }
     //Set the landing page on page load.
     if (window.cordova) {
@@ -103,13 +103,13 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $state.go('questions');
   };
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
-    
+
     $rootScope.previousState = fromState.name;
     $rootScope.previousStateParams = fromParams;
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
   });
-  
+
 
 })
 
