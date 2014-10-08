@@ -7,13 +7,13 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 
 			$scope.openAudienModal = function() {
 				$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
-			  $scope.friends_list = User.friends();
-			  $scope.groups = Group.query();
-			  $scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
+				$scope.friends_list = User.friends();
+				$scope.groups = Group.query();
+				$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
 
-        //Initialize this whenever directive is loaded.
-			  $rootScope.contacts = [];
-			  $rootScope.noMoreItemsAvailable = false;
+				//Initialize this whenever directive is loaded.
+				$rootScope.contacts = [];
+				$rootScope.noMoreItemsAvailable = false;
 				$scope.temp_audien = angular.copy($scope.question.audien_details);
 				$ionicModal.fromTemplateUrl('templates/audien_details.html', {
 					scope: $scope,

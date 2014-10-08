@@ -5,10 +5,12 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 	$scope.new_group = {member_reecher_ids: [], reecher_id: "", name: ""};
 	$scope.refresh_page = false;
 	$scope.audien_details = {emails: [], phone_numbers: []};
+	$scope.new_invite_details = {emails: [], phone_numbers: []};
+	$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
 	
 	//Initialize this on route change
 	$rootScope.contacts = [];
-  $rootScope.noMoreItemsAvailable = false;
+  	$rootScope.noMoreItemsAvailable = false;
 
 	$scope.sendRequest = function(){
 		User.sendReechRequest({audien_details: $scope.audien_details}, function(res){
@@ -52,14 +54,6 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 		$scope.new_group = {member_reecher_ids: [member_id], name: "", reecher_id: $rootScope.currentUser.reecher_id};
 	}
 
-	$scope.executeOnClose = function(){
-		if($scope.refresh_page){
-			//window.location.reload("#/connections");
-			//$state.transitionTo('connections');
-			$state.transitionTo($state.current, $stateParams, { reload: true, inherit: true, notify: true });
-		}
-	}
-
 	$scope.updateSelection = function(event, group_id){
 		if(event.target.checked){
 			$scope.group.group_id[$scope.group.group_id.length] = group_id;
@@ -94,6 +88,47 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 		});
 	}
 
+	$scope.newInvite = function(){
+		var flag = 1;
+		angular.forEach($scope.new_invites, function(new_invite, index){
+			if((new_invite.email == "" || !new_invite.email)&& new_invite.phone_number == ""){
+				alert("Please enter email or mobile number.");
+				flag = 0;
+			}
+			else if(new_invite.email != ""){
+				if($scope.new_invite_details.emails.indexOf(new_invite.email) < 0)
+					$scope.new_invite_details.emails[$scope.new_invite_details.emails.length] = new_invite.email;
+			}
+			else if(new_invite.phone_number != ""){
+				if($scope.new_invite_details.phone_numbers.indexOf(new_invite.phone_number) < 0)
+					$scope.new_invite_details.phone_numbers[$scope.new_invite_details.phone_numbers.length] = new_invite.phone_number;
+			}
+			$scope.resetNewInvite(index);
+		});
+		if(flag){
+			User.sendReechRequest({audien_details: $scope.new_invite_details}, function(res){
+				if(res.status == 200){
+					alert("Reech request was successfully sent.");
+					$scope.new_invite_details = {emails: [], phone_numbers: []};
+				}
+			}, function(err){
+				alert("Error");
+			});
+		}
+	}
+
+	$scope.addInvite = function(index){
+		$scope.new_invites.splice(index+1, 0, {email: "", phone_number: "", type: "email"});
+	}
+
+	$scope.removeInvite = function(index){
+		$scope.new_invites.splice(index, 1);
+	}
+
+	$scope.resetNewInvite = function(index){
+		$scope.new_invites[index] = {email: "", phone_number: "", type: $scope.new_invites[index].type ? $scope.new_invites[index].type : "email"};
+	}
+
 	$scope.showConfirm = function(group_id, group_name) {
 		var confirmPopup = $ionicPopup.confirm({
 			title: 'Delete group : ' + group_name,
@@ -106,8 +141,6 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 					$scope.friends_list = User.friends();
 					$scope.groups = Group.query();
 				})
-			} else {
-				console.log('You are not sure');
 			}
 		});
 	};
