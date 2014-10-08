@@ -3,10 +3,10 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 		restrict: 'A',
 		scope: false,
 		link: function($scope, element, attrs){
+			$scope.friends_list = User.friends();
+			$scope.groups = Group.query();
 			$scope.init = function(){
 				$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
-				$scope.friends_list = User.friends();
-				$scope.groups = Group.query();
 				$scope.question.audien_details = {emails: [], groups: [], reecher_ids: [], phone_numbers: []};
 
 				//Initialize this whenever directive is loaded.
