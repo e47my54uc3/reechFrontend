@@ -1,7 +1,7 @@
 <ion-modal-view>
   <ion-content ng-controller="questionCtrl">
   <div class="main-box">
-    <div class="box-image" back-img="selectedQuestion.question.image_url ? selectedQuestion.question.image_url : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+    <div class="box-image" back-img="selectedQuestion.question.avatar_file_name ? selectedQuestion.question.avatar_file_name : 'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
       <div class="winter inner-box">
         <div class="item item-icon-left item-icon-right winter">
           <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
@@ -10,8 +10,8 @@
 
         <div class="row">
           <div class="col col-50 stable">
-            <a class="item-avatar item-text-wrap">
-              <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.owner_image ? selectedQuestion.question.owner_image : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.question_referee}}</span>
+            <a class="item-avatar item-text-wrap" ng-click="selectedQuestion.question.clickable && openProfileModal(selectedQuestion.question.posted_by_user_id)">
+              <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.posted_by_avatar ? selectedQuestion.question.posted_by_avatar : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.posted_by}}</span>
             </a>
           </div>
           <div class="button-bar col-20">
@@ -61,5 +61,4 @@
   </div>
   </ion-scroll>
   </ion-content>
-  
 </ion-modal-view>
