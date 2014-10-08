@@ -1,11 +1,4 @@
-<ion-view title="userSettings" ng-controller="userSettingsCtrl">
-<ion-content class="has-footer">
-<div class="bar bar-header bar-positive">
-  <button class="button-icon ion-arrow-left-c button back-button" ng-if="showBackButton" ng-click="back()">
-  </button>
-  <div class="h1 title energized">{{currentUser.first_name}} {{currentUser.last_name}}</div>
-</div>
-<div class="list has-header">
+<div class="list" ng-controller="userSettingsCtrl">
   <div class="item item-divider assertive-bg">
     Send a push notification when
   </div>
@@ -112,17 +105,3 @@
     <br /><br />
   </ion-scroll>
 </div>
-</ion-content>
-
-    <div class="tabs tabs-striped tabs-assertive tabs-color-light">
-      <a class="tab-item" href="#/user/{{currentUser.id}}/profile">
-        <i>Profile</i>
-      </a>
-      <a class="tab-item" href="#/leader_board">
-        <i>Leaderboard</i>
-      </a>
-      <a class="tab-item   active" href="#/user_settings">
-        <i>Settings</i>
-      </a>
-    </div>
-</ion-view>

@@ -1,26 +1,30 @@
-<ion-modal-view title="Profile">
-	<ion-content class="has-footer">
-   
-    	<div class = "row positive-bg" style="height: 100px">
-    		<div class= "col col-10">
-    			<a ng-click="closeProfileModal()"><i class="icon ion-chevron-left stable"></i></a>
-    		</div>
-    		<div class= "col col-25">
-          <center>
-    			<img src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
-    		</div>
-    		<div class ="col">
-    			<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
-    			<div class="row" style="height: 40px; border-top:2px solid white">
-    				<div class="col stable">{{profile.questions_count || 0}} Q</div>
-    				<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
-    				<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
-    				<div class="col divider-left stable" ng-if="currentUser.id == profile.id">{{profile.curio_points}} C</div>
-    			</div>
-    		</div>
-    	</div>
+<ion-modal-view ng-controller="profilesCtrl">
+	<ion-header-bar>
+	<div class = "bar bar-positive" style="top: 0px; height: 95px">
+		<div class= "col col-10">
+			<a ng-click="closeProfileModal()"><button class="button button-icon ion-chevron-left"></button></a>
+		</div>
+		<div class= "col col-25">
+			<center>
+				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
+			</div>
+			<div class ="col">
+				<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
+				<div class="row" style="height: 40px; border-top:2px solid white">
+					<div class="col stable">{{profile.questions_count || 0}} Q</div>
+					<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
+					<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
+					<div class="col divider-left stable" ng-if="currentUser.id == profile.id">{{profile.curio_points}} C</div>
+				</div>
+			</div>
+		</div>
       
-    		<div class="list card">
+	</ion-header-bar>
+	<ion-tabs class="tabs-striped tabs-assertive ">
+
+		<ion-tab title="Profile">
+			<ion-content class="has-subheader">
+			<div class="list card">
 
     			<a class="item item-icon-left">
     				<i class="icon icon ion-ios7-telephone"></i>
@@ -66,17 +70,22 @@
       </div>
         <br />
      
+		</ion-content>
 
-  </ion-content>
-  <div class="tabs tabs-striped tabs-assertive tabs-color-light" ng-if="currentUser.id == profile.id">
-    <a class="tab-item  active" href="#/user/{{currentUser.id}}/profile" ng-click="profileModal.remove()">
-      <i>Profile</i>
-    </a>
-    <a class="tab-item" href="#/leader_board" ng-click="profileModal.remove()">
-      <i>Leaderboard</i>
-    </a>
-    <a class="tab-item" href="#/user_settings" ng-click="profileModal.remove()">
-      <i>Settings</i>
-    </a>
-  </div>
+		</ion-tab>
+
+		<ion-tab title="LeaderBoard" ng-if="currentUser.id == profile.id">
+			<ion-content  class="has-subheader">
+				<ng-include src="'templates/leader_board.html'"></ng-include>
+		</ion-content>
+		</ion-tab>
+
+		<ion-tab title="Settings" ng-if="currentUser.id == profile.id">
+			<ion-content class="has-subheader">
+				<ng-include src="'templates/user_settings.html'"></ng-include>
+			</ion-content>
+		</ion-tab>
+
+	</ion-tabs>
+
 </ion-modal-view>

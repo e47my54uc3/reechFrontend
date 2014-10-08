@@ -1,70 +1,46 @@
-<ion-view title="Leaderboard">
-	
-<ion-content class="has-footer">
-<div class="bar bar-header positive-bg">
-  
-        <a ng-click="back()"><i class="icon ion-chevron-left stable"></i></a>
-        <div class="h1 title stable" style='display: inline-block;'><img class="logoLeaderboard"ng-src="{{current_user.avatar_file_name ? current_user.avatar_file_name : 'img/no-image.png'}}"/><div class= "col-top">{{leaderBoard.current_user.first_name}} {{leaderBoard.current_user.last_name}}           
-      </div></div>
+<div ng-controller="leaderBoardCtrl">
+  <div class="item item-divider assertive-bg connectionsHeader">Most helpfull people in your community </div>
+  <div class="row">
+    <button class="col button button-light" ng-class="{' button-calm': boardType == 'today'}" ng-click="boardType='today'">Today</button>
+    <button class="col button button-light" ng-class="{' button-calm': boardType == 'week'}" ng-click="boardType='week'">This Week</button>
+    <button class="col button button-light" ng-click="boardType='month'" ng-class="{' button-calm': boardType == 'month'}">This Month</button>
+  </div>
+  <div class="item item-divider assertive-bg connectionsHeader"><center>YOUR POSITION</center></div>
+  <li class="row item">
+
+   <div class="row">
+
+    <div class="col col-10 col-center assertive-bg item-icon-left">
+      {{leaderBoard.current_user.rank}}
     </div>
-  <div class="content has-header ionic-pseudo">
-    <div class="item item-divider assertive-bg connectionsHeader">Most helpfull people in your community </div>
-      <div class="row">
-  		  <button class="col button button-light" ng-class="{' button-calm': boardType == 'today'}" ng-click="$parent.boardType='today'">Today</button>
-  		  <button class="col button button-light" ng-class="{' button-calm': boardType == 'week'}" ng-click="$parent.boardType='week'">This Week</button>
-  		  <button class="col button button-light" ng-click="$parent.boardType='month'" ng-class="{' button-calm': boardType == 'month'}">This Month</button>
-  	 	</div>
-  	  <div class="item item-divider assertive-bg connectionsHeader"><center>YOUR POSITION</center></div>
-     	<li class="row item">
+    <div class="col">
+     <a class="item-avatar">  
+       <img class="col-offset-10" ng-src="{{current_user.avatar_file_name ? current_user.avatar_file_name : 'img/no-image.png'}}"/> 
+     </a>    {{leaderBoard.current_user.first_name}} {{leaderBoard.current_user.last_name}}                 
+   </div>
 
-  	   	<div class="row">
-          
-            <div class="col col-10 col-center assertive-bg item-icon-left">
-              {{leaderBoard.current_user.rank}}
-            </div>
-            <div class="col">
-  	   			  <a class="item-avatar">  
-  	   			 	  <img class="col-offset-10" ng-src="{{current_user.avatar_file_name ? current_user.avatar_file_name : 'img/no-image.png'}}"/> 
-  	   			  </a>    {{leaderBoard.current_user.first_name}} {{leaderBoard.current_user.last_name}}                 
-            </div>
 
-  	   		
-  	   		<center><div class="col "><img src = "img/Q.png" /><br />{{leaderBoard.current_user.scores[boardType].questions_asked || 0}}</div></center>
-  	   		<center><div class="col"><img src = "img/A.png" /><br />{{leaderBoard.current_user.scores[boardType].answers_given || 0}}</div></center>
-  	   		<center><div class="col"><img src = "img/High-Fives.png" /><br />{{leaderBoard.current_user.scores[boardType].high_fives || 0}}</div></center>
-  	   	</div>
-     	</li>
-      
-      <div class="item item-divider assertive-bg connectionsHeader"><center>TOP 5</center></div>
-      <div>
-      	<ul class="list">
-      		<li class="item" ng-repeat="user in leaderBoard.top">
-      			<div class="row">
-      				<div class="col col-75">
-      				<a class="item-avatar">
-      					<img ng-src="{{user.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
-      				</a>{{user.first_name}} {{user.last_name}} </div>
-      				<center><div class="col"><img src = "img/Q.png" /><br />{{user.scores[boardType].questions_asked || 0}}</h6></div></center>
-      				<center><div class="col"><img src = "img/A.png" /><br />{{user.scores[boardType].answers_given || 0 }}</h6></div></center>
-      				<center><div class="col"><img src = "img/High-Fives.png" /><br />{{user.scores[boardType].high_fives || 0}}</h6></div></center>
-      			</div>
-      		</li>
-      	</ul>
-  	  </div>
-      </div>  
+   <center><div class="col "><img src = "img/Q.png" /><br />{{leaderBoard.current_user.scores[boardType].questions_asked || 0}}</div></center>
+   <center><div class="col"><img src = "img/A.png" /><br />{{leaderBoard.current_user.scores[boardType].answers_given || 0}}</div></center>
+   <center><div class="col"><img src = "img/High-Fives.png" /><br />{{leaderBoard.current_user.scores[boardType].high_fives || 0}}</div></center>
+ </div>
+</li>
 
-    </ion-content>
+<div class="item item-divider assertive-bg connectionsHeader"><center>TOP 5</center></div>
+<div>
+ <ul class="list">
+  <li class="item" ng-repeat="user in leaderBoard.top">
+   <div class="row">
+    <div class="col col-75">
+      <a class="item-avatar">
+       <img ng-src="{{user.avatar_file_name ? question.avatar_file_name : 'img/no-image.png'}}">
+     </a>{{user.first_name}} {{user.last_name}} </div>
+     <center><div class="col"><img src = "img/Q.png" /><br />{{user.scores[boardType].questions_asked || 0}}</h6></div></center>
+     <center><div class="col"><img src = "img/A.png" /><br />{{user.scores[boardType].answers_given || 0 }}</h6></div></center>
+     <center><div class="col"><img src = "img/High-Fives.png" /><br />{{user.scores[boardType].high_fives || 0}}</h6></div></center>
+   </div>
+ </li>
+</ul>
+</div>
+</div>  
 
-  	<div class="tabs tabs-striped tabs-assertive tabs-color-light">
-      <a class="tab-item" href="#/user/{{currentUser.id}}/profile">
-        <i>Profile</i>
-      </a>
-      <a class="tab-item active" href="#/leader_board">
-        <i>Leaderboard</i>
-      </a>
-      <a class="tab-item" href="#/user_settings">
-        <i>Settings</i>
-      </a>
-    </div>
-  
-</ion-view>

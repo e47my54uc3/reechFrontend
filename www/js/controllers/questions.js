@@ -5,6 +5,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $scope.pageOptions = {page: 1, per_page: 3};
   $scope.linkQuestionId = '';
   $scope.modalOpened = false;
+  $scope.question = {};
   var index;
   $scope.fetchQuestions = function(){
     Question.query({scope: $scope.currentScope, category_id: $scope.currentCategory}, function(data){
@@ -44,7 +45,8 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
 
   $scope.linkQuestionToExpert= function(question_id, question){    
     Question.linkQuestionToExpert({question_id: question_id, audien_details: question.audien_details}, function(response){
-     
+      index = $filter('firstIndex')($scope.questions, {'id': question_id});
+      $scope.questions[index].is_linked = true;
     });
   }
 

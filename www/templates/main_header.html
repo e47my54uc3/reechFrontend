@@ -1,6 +1,6 @@
 <div class="bar bar-header row no-padding-margin" ng-if="currentState != 'ask_a_question' && currentState != 'reech' && currentState != 'login' && currentState != 'sign_up' && currentState != 'landing'">
   <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80">
-		<a class="button" href="#/user/{{currentUser.id}}/profile"><img src = "img/User-icon1.png" class ="logo" /></a>
+		<a class="button" ng-click="openProfileModal(currentUser.id)"><img src = "img/User-icon1.png" class ="logo" /></a>
 		<h1 class="title" style="color: white;">Areas of Interest</h1>
 	</div>
 	<div class="bar bar-subheader bar-energized top_navbar col col-80">

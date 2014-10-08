@@ -1,23 +1,15 @@
-function profilesCtrl($scope, $ionicPopup, User, $ionicModal, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile, $ionicPlatform){
-    User.Profile({id: $stateParams.id}, function(data){
+function profilesCtrl($scope, $ionicPopup, User, $rootScope, $location, $cordovaCamera, $stateParams, $cordovaFile, $ionicPlatform){
+
+    User.Profile({id: $rootScope.currentProfileId}, function(data){
+
       $scope.profile = data;
       $scope.avatar = "";
       $scope.attributes = {location: data.location, blurb: data.blurb, profile_id: data.profile_id};
     });
-    $scope.openProfileModal = function() {
-      $ionicModal.fromTemplateUrl('templates/profile.html', {
-        scope: $scope,
-        animation: 'slide-in-left'
-      }).then(function(modal) {
-        $scope.profileModal = modal;
-        $scope.profileModal.show();
-      });
-    };
-    $scope.openProfileModal();
+    
     $scope.closeProfileModal = function() {
       if($scope.profileModal){
         $scope.profileModal.remove();
-        $scope.back(); 
       }
     };
     $ionicPlatform.onHardwareBackButton(function(){

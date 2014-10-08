@@ -103,11 +103,13 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $state.go('questions');
   };
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
+    
     $rootScope.previousState = fromState.name;
     $rootScope.previousStateParams = fromParams;
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
   });
+  
 
 })
 
@@ -164,19 +166,6 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       url: '/friends',
       templateUrl: 'templates/friends.html',
       controller: 'friendsCtrl'
-    })
-    .state('user_settings', {
-      url: '/user_settings',
-      templateUrl: 'templates/user_settings.html'
-    })
-    .state('profile', {
-      url: '/user/:id/profile',      
-      controller: 'profilesCtrl'
-    })
-    .state('leader_board', {
-      url: '/leader_board',
-      templateUrl: 'templates/leader_board.html',
-      controller: 'leaderBoardCtrl'
     })
     .state('categories', {
       url: '/categories',
