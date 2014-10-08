@@ -8,7 +8,7 @@
           <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
           <span class="postedby">{{question.posted_by}}</span>
         </a>
-        <a class="col col-33 post_time">{{question.updated_at | timeago}}</a>
+        <a class="col col-33">{{question.updated_at | timeago}}</a>
       </div>
       <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-on-close="modalClosed();" modal-before-open="beforeQuestionDetailsModal(question.id)">
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
