@@ -1,6 +1,6 @@
 function answerQuestionCtrl($scope, $ionicPlatform, $ionicPopup, $cordovaCamera, Solution, $rootScope) {
 
-  $scope.model = {is_public: true, solver_id: $scope.currentUser.reecher_id, solver: $scope.currentUser.full_name};
+  $scope.model = {is_public: true, solver_id: $scope.currentUser.reecher_id, solver: $scope.currentUser.first_name+" "+$scope.currentUser.last_name};
   $scope.takePicture = function() {
 	    var options = {
 	        quality : 75,

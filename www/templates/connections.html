@@ -70,9 +70,29 @@
 
   </ion-tab>
 
-  <!-- <ion-tab title="Find Friends">
-
-  </ion-tab> -->
+  <ion-tab title="Find Friends">
+    <ion-content class="has-subheader">
+      <div class="list" ng-repeat="new_invite in new_invites">
+          <button ng-click="addInvite($index)" class="ion-ios7-plus-outline button button-clear icon">
+          </button>
+          <button ng-click="removeInvite($index)" class="button icon ion-minus-circled button-clear" ng-if="new_invites.length > 1">
+          </button>
+          <div class="item item-input item-select">
+            <div class="input-label">
+              <input ng-model="new_invite[new_invite.type]" type="text" placeholder="{{new_invite.type}}">
+            </div>
+            <select ng-change="new_invite=resetNewInvite($index)" ng-model="new_invite.type">
+              <option value="email">email</option>
+              <option value="phone_number">phone number</option>
+            </select>       
+          </div>
+            
+        </div>
+      <button ng-click="newInvite()" class="button button-block button-positive">
+        Invite
+      </button>
+    </ion-content>
+  </ion-tab>
 
 </ion-tabs>
 
