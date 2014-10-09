@@ -277,8 +277,10 @@ a.user-avatar{
   font-size: 15px;
   position: absolute;
   color: black;
-  //top: 30%;
-  left: 20%;
+}
+.link-text {
+  font-size: 11px;
+  color: grey;
 }
 .avatar {
   width: 22%;
