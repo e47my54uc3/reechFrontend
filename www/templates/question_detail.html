@@ -37,7 +37,7 @@
       <a class="button col button-balanced ion-link button-clear" audien-details ng-click="openAudienModal()">Link Expert</a>
     </div>
   </div>
-  <ion-scroll direction="x">
+  <ion-scroll direction="x" ng-if="selectedQuestion.solutions.length">
   <div class="row">
     <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" >
       <div class="row stable">
