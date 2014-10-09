@@ -1,7 +1,7 @@
 <div class="bar bar-header row no-padding-margin" ng-if="currentState != 'ask_a_question' && currentState != 'reech' && currentState != 'login' && currentState != 'sign_up' && currentState != 'landing'">
   <div class="bar bar-header bar-positive no-padding-margin ng-binding col col-80">
 		<a class="button" ng-click="openProfileModal(currentUser.id)"><img src = "img/User-icon1.png" class ="logo" /></a>
-		<h1 class="title" style="color: white;">{{headerTitle}} <icon ng-if="currentState == 'questions' || currentState == 'category_questions'" class="button-icon ion-chevron-down stable"></h1>
+		<h1 class="title" style="color: white;" ng-click="selectCategoriesModal()">{{headerTitle}} <icon ng-if="currentState == 'questions' || currentState == 'category_questions'" class="button-icon ion-chevron-down stable"></h1>
 	</div>
 	<div class="bar bar-subheader bar-energized top_navbar col col-80">
 		<div class="row no-padding-margin">
