@@ -15,7 +15,7 @@
 
         <div class="col col-33 post_time">{{question.updated_at | timeago}}</div>
       </div><br/>
-      <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-on-close="modalClosed();" modal-before-open="beforeQuestionDetailsModal(question.id)">
+      <div class="row" reech-modal modal-template="'templates/question_detail.html'" ng-click="openModal()" modal-before-open="beforeQuestionDetailsModal(question.id)">
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
         <div class="col col-25">
           <a class="item-thumbnail">

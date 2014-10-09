@@ -26,9 +26,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
     $scope.selectedQuestion = question_id;
     $scope.modalOpened = true;
   };
-  $scope.modalClosed = function(){
-    $scope.modalOpened = false;
-  }
+  
   $scope.setStar = function(question_id, stared){
     index = $filter('firstIndex')($scope.questions, {'id': question_id});
     $scope.questions[index].is_starred = stared;
@@ -44,9 +42,10 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   }
 
   $scope.$on('audien-modalClosed', function(event, args){
-    if(!$scope.isAudienDetailsEmpty(args)){
-      $scope.linkQuestionToExpert($scope.modalOpened ? $scope.selectedQuestion : $scope.linkQuestionId, args);
-      $scope.init();
+    if(!$scope.modalOpened && !$scope.isAudienDetailsEmpty(args)){
+      $scope.linkQuestionToExpert( $scope.linkQuestionId, args);
+      $scope.init();      
+      $scope.modalOpened = false;
     }
   });
   $scope.isAudienDetailsEmpty = function(question){
@@ -57,7 +56,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
     });
     return isEmpty;
   }
-  $scope.linkQuestionToExpert= function(question_id, question){
+  $scope.linkQuestionToExpert = function(question_id, question){
     Question.linkQuestionToExpert({question_id: question_id, audien_details: question.audien_details}, function(response){
       index = $filter('firstIndex')($scope.questions, {'id': question_id});
       $scope.questions[index].is_linked = true;
