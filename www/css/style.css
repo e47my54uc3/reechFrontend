@@ -281,6 +281,8 @@ a.user-avatar{
 .link-text {
   font-size: 11px;
   color: grey;
+  //top: 30%;
+  left: 20%;
 }
 .avatar {
   width: 22%;
@@ -292,8 +294,8 @@ a.user-avatar{
   font-size: 10px;
   color: black;
   position: absolute;
-  right:-8%;
-  top:0;
+  //right:-8%;
+  //top:0;
 }
 .question_text {
   font-family: "HelveticaNeueLightCondensed", "HelveticaNeue-Light-Condensed", "Helvetica Neue Light Condensed", "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnRegular', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial" , sans-serif !important;
