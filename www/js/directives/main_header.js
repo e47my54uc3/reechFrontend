@@ -14,14 +14,6 @@ reech.directive('mainHeader',function($state, $ionicModal, $rootScope, $filter){
 		      $rootScope.profileModal.show();
 		    });
 		  };
-      $rootScope.selectCategoriesModal = function(){
-        if($rootScope.currentState == 'questions' || $rootScope.currentState == 'category_questions') {
-          var selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
-          var allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
-          var categories = $filter('columnIn')(allCategories, 'id', selectedCategories);
-          alert("open modal");
-        }
-      }
     }
   }
 });
