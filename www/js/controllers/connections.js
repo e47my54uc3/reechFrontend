@@ -7,7 +7,8 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $
 	$scope.audien_details = {emails: [], phone_numbers: []};
 	$scope.new_invite_details = {emails: [], phone_numbers: []};
 	$scope.new_invites = [{email: "", phone_number: "", type: "email"}];
-	
+	$rootScope.headerTitle = "Connections";
+
 	//Initialize this on route change
 	$rootScope.contacts = [];
   	$rootScope.noMoreItemsAvailable = false;

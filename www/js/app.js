@@ -12,9 +12,6 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
-      StatusBar.hide();
-    }
     //Set the landing page on page load.
     if (window.cordova) {
       //setup device
