@@ -13,7 +13,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   var index;
   $scope.fetchQuestions = function(){
     Question.query({scope: $scope.currentScope, category_id: $scope.currentCategory}, function(data){
-      $scope.questions = data;      
+      $scope.questions = data;
     });
   }
 
