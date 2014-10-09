@@ -9,9 +9,9 @@
         </div>
         <div class="col col-50" ng-click="question.clickable && openProfileModal(question.posted_by_user_id)">
           <span class="postedby">{{question.posted_by}}</span><br />
-          <ng-pluralize class="item-text-wrap link-text" count="question.linkers.length" offset=1 when="{'0': '',
+          <ng-pluralize class="item-text-wrap link-text" count="question.linkers.length"  when="{'0': '',
        '1': '{{question.linkers[0]}} linked you to question.',
-       'other': '{{question.linkers[0]}} +{} members linked you to question'}"></ng-pluralize>
+       'other': '{{question.linkers[0]}} +{{question.linkers.length-1}} members linked you to question'}"></ng-pluralize>
         </div>
 
         <div class="col col-33 post_time">{{question.updated_at | timeago}}</div>
