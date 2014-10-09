@@ -3,12 +3,13 @@
 <ion-tabs class="has-footer tabs-dark">
 
   <ion-tab title="My Reech">
-    <div class="list has-subheader  row250">
+  <ion-content>
+    <div class="list has-subheader">
         <div class="item item-divider">
         Groups
         </div>
+        <ion-scroll style="height:212px;">
         <ul class="list">
-          <ion-scroll>
           <li ng-repeat="group in groups" class="item">
             {{group.name}}
             <span class="item-note">
@@ -23,15 +24,16 @@
               </button>
             </span>
           </li>
-          </ion-scroll>
         </ul>
+        </ion-scroll>
     </div>
-    <div class="list has-subheader row250">
+    
+    <div class="list has-subheader">
         <div class="item item-divider">
         Friends
         </div>
-        <ul class="list">
-          <ion-scroll>
+        <ion-scroll style="height: 212px;">
+        <ul>
           <li ng-repeat="friend in friends_list" class="item">
             {{friend.first_name}} {{friend.last_name}}
 
@@ -40,11 +42,10 @@
                 {{friend.groups.length}} {{friend.groups.length > 1 ? 'groups' : 'group'}}
               </button>
             </span>
-
           </li>
-        </ion-scroll>
         </ul>
-    </div>
+        </ion-scroll>
+    </div></ion-content>
   </ion-tab>
 
   <ion-tab title="Contacts">
