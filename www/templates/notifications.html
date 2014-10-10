@@ -5,7 +5,7 @@
 			<div class="item item-divider">
 				Notifications
 			</div>
-			<div ng-if="notifications.length > 0" reech-modal modal-template="'/templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'item-stable'}}">
+			<div ng-if="notifications.length > 0" reech-modal modal-template="'templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'item-stable'}}">
 				{{notification.message}}
 			</div>
 			<div ng-if="notifications.length == 0" class="item">
