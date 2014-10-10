@@ -225,17 +225,19 @@ reech.config(function(AuthProvider) {
 });
 
 reech.config(function($httpProvider) {
-  var interceptor = function($q, $location) {
+  var interceptor = function($q, $location, $injector) {
     return {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
           delete localStorage.currentUser;
           if ($location.path().indexOf('landing') < 0) {
-            $location.path('/landing');
+            $state = $injector.get($state);
+            $state.go('landing');
           }
         }
         if (rejection.status == 403) {
-          $location.path('/categories');
+          $state = $injector.get($state);
+          $state.go('categories');
         }
         return $q.reject(rejection);
       }
