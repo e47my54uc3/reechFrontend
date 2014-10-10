@@ -5,7 +5,7 @@
       <ion-item ng-repeat="question in questions" style="padding: 0px !important;">
       <div class="row">
         <div ng-click="question.clickable && openProfileModal(question.posted_by_user_id)" class=" col-10 item item-clear item-icon-left" >
-          <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; top: 0 !important;"></img>
+          <img ng-src="{{question.posted_by_avatar ? question.posted_by_avatar : 'img/no-image.png'}}" class="icon" style="left: 0 !important; height: 32px; top: 0 !important;"></img>
         </div>
         <div class="col col-50" ng-click="question.clickable && openProfileModal(question.posted_by_user_id)">
           <span class="postedby">{{question.posted_by}}</span><br />
@@ -20,7 +20,7 @@
         <div class="col col-75 item-text-wrap dark question_text">{{question.post}}</div>
         <div class="col col-25">
           <a class="item-thumbnail">
-            <img class="full-image" ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/clear-image.png'}}">
+            <img class="full-image" ng-src="{{question.avatar_file_name ? question.avatar_file_name : 'img/default-image.png'}}">
           </a>
         </div>
       </div>
