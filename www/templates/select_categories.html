@@ -9,10 +9,10 @@
           <input type="text" ng-model="qCategory" placeholder="search for category..."></input>
         </label>  
          
-          <div class="item item-checkbox" ng-repeat="category in allCategories | filter: qCategory">
+          <div class="item item-checkbox" ng-repeat="category in allCategories | filter: qCategory" ng-click="currentState != 'categories' && (loadQuestions(category.id) || closeCategoriesModel()) ">
            <label class="checkbox" ng-if="currentState == 'categories'">
              <input type="checkbox" ng-click="addCategory(category.id)" ng-checked="isCategorySelected(category.id)"/>
-           </label><span  ng-click="currentState != 'categories' && (loadQuestions(category.id) || closeCategoriesModel()) ">{{category.title}}</span> 
+           </label >{{category.title}}
          </div>
       
       </div>   

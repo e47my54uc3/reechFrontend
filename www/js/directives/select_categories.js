@@ -46,6 +46,7 @@ reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordo
 				});
 				localStorage.selectedCategoriesIds = JSON.stringify(selectedCategories);
 				$scope.allCategories.splice($filter('firstIndex')($scope.allCategories, {id: '', title: 'All'}), 1);
+				$scope.filterCategories();
 				$scope.closeCategoriesModel();
 			}
       $scope.submit = function(){
