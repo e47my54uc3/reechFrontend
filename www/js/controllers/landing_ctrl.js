@@ -1,5 +1,6 @@
 function landingCtrl($scope, $rootScope, $location, Auth, $http, $window, User, $cordovaSpinnerDialog){
-
+  if($rootScope.currentUser)
+    $location.path("/categories");
   $scope.facebookLogin = function () {
     if(window.cordova) {
       facebookConnectPlugin.login(["email"], function(response){
