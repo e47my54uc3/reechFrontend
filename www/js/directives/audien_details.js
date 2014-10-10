@@ -1,4 +1,4 @@
-reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Group, $cordovaContacts, $rootScope){
+reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Group, $cordovaContacts, $ionicPopup, $rootScope){
 	return{
 		restrict: 'A',
 		scope: false,
@@ -104,6 +104,19 @@ reech.directive('audienDetails', function($ionicModal, $ionicPlatform, User, Gro
 			}
 			$scope.resetNewInvite = function(index){
 				$scope.new_invites[index] = {email: "", phone_number: "", type: $scope.new_invites[index].type ? $scope.new_invites[index].type : "email"};
+			}
+			$scope.canLink = function(userCanLink){
+				if(userCanLink)
+					return true;
+				else{
+					var alertPopup = $ionicPopup.alert({
+						title: "Link Question",
+						template: "You Can't Link the Question!"
+					});
+					alertPopup.then(function(res) {
+						return false;
+					});
+				}
 			}
 		}
 	}
