@@ -51,16 +51,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $rootScope.$broadcast('scroll.infiniteScrollComplete');
     }
 
-    if (!localStorage.inviteCode){
-      $location.path("/reech");
-    }
-
-    else if(localStorage.currentUser) {
-      $rootScope.setCurrentUser();
-    }
-    else {
-      $location.path("/landing");
-    }
+    
 
   });
 
@@ -73,8 +64,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     }
     else {
       $rootScope.setProfile();
-    }
-    $location.path("/categories");
+    }    
   }
 
   $rootScope.signout = function() {
@@ -83,7 +73,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     localStorage.removeItem('currentUserProfile');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
-    $location.path("/landing1");
+    $state.go("landing1");
   }
 
   $rootScope.setProfile = function() {
@@ -100,11 +90,28 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $state.go('questions');
   };
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
-
     $rootScope.previousState = fromState.name;
     $rootScope.previousStateParams = fromParams;
     $rootScope.currentState = toState.name;
     $rootScope.currentStateParams = toParams;
+    if(localStorage.currentUser != undefined)  {
+      $rootScope.setCurrentUser();
+      if(!toState.requireUser)
+        $state.go('categories');
+    }else{
+      if(toState.requireNone && (localStorage.inviteCode != undefined)){
+        $state.go('landing');
+      }else if(toState.requireInviteCode && !localStorage.inviteCode){
+        $state.go('reech');
+      }else if(toState.requireUser){
+        if((localStorage.inviteCode != undefined))
+          $state.go('landing');
+        else
+          $state.go('reech'); 
+      }  
+    }
+
+
   });
 
 
@@ -130,22 +137,26 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     .state('reech', {
       url: '/reech',
       controller: 'reechCtrl',
-      templateUrl: 'templates/reech.html'
+      templateUrl: 'templates/reech.html',
+      requireNone: true
     })
     .state('landing', {
       url: '/landing',
       templateUrl: 'templates/landing.html',
-      controller: 'landingCtrl'
+      controller: 'landingCtrl',
+      requireInviteCode: true
     })
     .state('login', {
       url: '/login',
       templateUrl: 'templates/login.html',
-      controller: 'loginCtrl'
+      controller: 'loginCtrl',
+      requireInviteCode: true
     })
     .state('sign_up', {
       url: '/sign_up',
       templateUrl: 'templates/register.html',
-      controller: 'registrationCtrl'
+      controller: 'registrationCtrl',
+      requireInviteCode: true
     })
     .state('sign_out', {
       url: '/sign_out',
@@ -153,39 +164,47 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('questions', {
       url: '/questions',
-      templateUrl: 'templates/questions.html'
+      templateUrl: 'templates/questions.html',
+      requireUser: true
     })
     .state('category_questions', {
       url: '/categories/:categoryId/questions',
-      templateUrl: 'templates/questions.html'
+      templateUrl: 'templates/questions.html',
+      requireUser: true
     })
     .state('friends', {
       url: '/friends',
       templateUrl: 'templates/friends.html',
-      controller: 'friendsCtrl'
+      controller: 'friendsCtrl',
+      requireUser: true
     })
     .state('categories', {
       url: '/categories',
       templateUrl: 'templates/categories.html',
-      controller: 'categoriesCtrl'
+      controller: 'categoriesCtrl',
+      requireUser: true
     })
     .state('questions_by_categories', {
       url: '/categories/questions',
-      templateUrl: 'templates/questions.html'
+      templateUrl: 'templates/questions.html',
+      requireUser: true
     })
     .state('ask_a_question', {
       url: '/ask_a_question',
-      templateUrl: 'templates/ask_a_question.html'
+      templateUrl: 'templates/ask_a_question.html',
+      requireUser: true
     })
     .state('connections', {
       url: '/connections',
       templateUrl: 'templates/connections.html',
-      controller: 'connectionsCtrl'
+      controller: 'connectionsCtrl',
+      requireUser: true
     })
     .state('notifications', {
       url: '/notifications',
       templateUrl: 'templates/notifications.html',
-      controller: 'notificationsCtrl'
+      controller: 'notificationsCtrl',
+      requireUser: true
     });;
     // if none of the above states are matched, use this as the fallback
 
@@ -210,7 +229,7 @@ reech.config(function($httpProvider) {
     return {
       'responseError': function(rejection) {
         if (rejection.status == 401) {
-          localStorage.currentUser = '';
+          delete localStorage.currentUser;
           if ($location.path().indexOf('landing') < 0) {
             $location.path('/landing');
           }

@@ -1,6 +1,5 @@
-function landingCtrl($scope, $rootScope, $location, Auth, $http, $window, User, $cordovaSpinnerDialog){
-  if($rootScope.currentUser)
-    $location.path("/categories");
+function landingCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $cordovaSpinnerDialog){
+  
   $scope.facebookLogin = function () {
     if(window.cordova) {
       facebookConnectPlugin.login(["email"], function(response){
@@ -14,7 +13,7 @@ function landingCtrl($scope, $rootScope, $location, Auth, $http, $window, User, 
             $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
             $rootScope.setProfile();
             $cordovaSpinnerDialog.hide();
-            $location.path("/categories");
+            $state.go("categories");
           });
         }
         else {

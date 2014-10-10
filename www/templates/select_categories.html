@@ -7,9 +7,9 @@
       <div class="list">        
         <label class="item item-input">
           <input type="text" ng-model="qCategory" placeholder="search for category..."></input>
-        </label>  
-         
+        </label>          
           <div class="item item-checkbox" ng-repeat="category in allCategories | filter: qCategory" ng-click="currentState != 'categories' && (loadQuestions(category.id) || closeCategoriesModel()) ">
+           
            <label class="checkbox" ng-if="currentState == 'categories'">
              <input type="checkbox" ng-click="addCategory(category.id)" ng-checked="isCategorySelected(category.id)"/>
            </label >{{category.title}}

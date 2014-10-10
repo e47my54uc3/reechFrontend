@@ -1,4 +1,4 @@
-function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $location, $rootScope, $ionicPopup){
+function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $rootScope, $ionicPopup){
 	$scope.friends_list = User.friends();
 	$scope.groups = Group.query();
 	$scope.group = {group_id: "", associated_user_id: ""};

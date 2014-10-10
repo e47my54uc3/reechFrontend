@@ -1,5 +1,5 @@
-function registrationCtrl($scope, $rootScope, $location, Auth, $http, $cordovaCamera, $cordovaFile){
-
+function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamera, $cordovaFile){
+  
   $scope.user = {
     first_name: '',
     last_name: '',
@@ -41,7 +41,7 @@ function registrationCtrl($scope, $rootScope, $location, Auth, $http, $cordovaCa
         $rootScope.currentUser = JSON.parse(localStorage.currentUser);
         $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
         $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
-        $location.path("/categories");
+        $state.go("categories");
     }
   $scope.register = function() {
     if($scope.user_profile.picture != ""){

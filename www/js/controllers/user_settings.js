@@ -1,5 +1,5 @@
-function userSettingsCtrl($scope, $location, UserSetting, User){	
-  $scope.showBackButton = ($location.path() == "/user_settings");
+function userSettingsCtrl($scope, UserSetting, User){	
+  
   $scope.settings = ["question_gets_answer", "linked_to_new", "solution_gets_hi5", "friend_asks_help", "stared_question_gets_answer", "some_one_grabs_my_solution"];
   $scope.user = {old_password: "", password: "", password_confirmation: ""};
   $scope.initializeForNewUser = function(type){    

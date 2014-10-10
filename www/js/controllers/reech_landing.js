@@ -1,6 +1,5 @@
-function reechCtrl($scope, $rootScope, $location, User){
-  if(localStorage.inviteCode)
-    $location.path("/landing");
+function reechCtrl($scope, $rootScope, $state, User){
+
   $scope.inviteForm = {};
   $rootScope.currentState = 'reech';
 
@@ -9,7 +8,7 @@ function reechCtrl($scope, $rootScope, $location, User){
       if (response.is_valid) {
         localStorage.inviteCode = true;
         localStorage.inviteId = response.invite_id;
-        $location.path("/landing");
+        $state.go("landing");
       }
       else {
         alert("Please enter a valid code.")

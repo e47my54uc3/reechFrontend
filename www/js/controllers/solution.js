@@ -1,4 +1,4 @@
-function solutionCtrl($scope, $ionicPlatform, $timeout, Solution, $location, $rootScope){
+function solutionCtrl($scope, $ionicPlatform, $timeout, Solution, $rootScope){
 	var timer;
 	$scope.previewTime = 8;
 	$scope.setPreviewSolution = function(){

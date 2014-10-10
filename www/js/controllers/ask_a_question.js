@@ -1,4 +1,4 @@
-function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $location, $cordovaFile){
+function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $state, $cordovaFile){
 	$scope.categories = Category.query();
 	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: '', is_public: true};
 	$scope.avatar = "";
@@ -34,7 +34,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		}
 
   	$scope.cancelQuestion = function(){
-  		$location.path("/categories");
+  		$state.go("categories");
   	}
 
   	$scope.createQuestion = function(){
@@ -65,7 +65,7 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 				Question.save({question: $scope.question}, function(res){
 		  			alert("Question successfully posted.");
 						$rootScope.setProfile();
-		  			$location.path("/questions");
+		  			$state.go("questions");
 		  		}, function(err){
 		  			alert("Error occured while posting the question. Please try again.");
 		  		});

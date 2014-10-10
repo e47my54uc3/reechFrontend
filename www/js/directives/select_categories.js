@@ -1,4 +1,4 @@
-reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordovaContacts, $state, $stateParams, $filter, $location){
+reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordovaContacts, $state, $stateParams, $filter){
 	return{
 		restrict: 'AE',
 		scope: false,
@@ -58,15 +58,17 @@ reech.directive('selectCategories', function($ionicModal, $ionicPlatform, $cordo
 				$scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
 				$scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
 				$scope.categories = $filter('orderBy')($scope.categories, 'title');
-				$scope.allCategories.splice($filter('firstIndex')($scope.allCategories, {id: '', title: 'All'}), 1);
+				$scope.allCategories = $filter('orderBy')($scope.allCategories, 'title');
+				if($scope.currentState == 'categories')
+					$scope.allCategories.splice($filter('firstIndex')($scope.allCategories, {id: '', title: 'All'}), 1);				
 				$scope.closeCategoriesModel();
 			}
 			$scope.filterCategories();
 			$scope.loadQuestions = function(categoryId) {
 				if(categoryId == '')
-					$location.path("/questions");
+					$state.go("questions");
 				else
-  				$location.path("categories/" + categoryId + "/questions");
+  				$state.go("category_questions", {categoryId: categoryId});
 			}
 		}
 	};
