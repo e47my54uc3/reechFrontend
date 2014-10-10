@@ -10,20 +10,20 @@
         </label>  
          
           <div class="item item-checkbox" ng-repeat="category in allCategories | filter: qCategory">
-           <label class="checkbox">
+           <label class="checkbox" ng-if="currentState == 'categories'">
              <input type="checkbox" ng-click="addCategory(category.id)" ng-checked="isCategorySelected(category.id)"/>
-           </label> {{category.title}}
+           </label><span  ng-click="currentState != 'categories' && (loadQuestions(category.id) || closeCategoriesModel()) ">{{category.title}}</span> 
          </div>
       
       </div>   
    
     </ion-content>
-    <ion-footer-bar style="height:50px;">
+    <ion-footer-bar style="height:50px;" ng-if="currentState == 'categories'">
         <a class="button col col-50 button-balanced" ng-click="selectAllCategories()"> 
           All
         </a> 
         <a class="button col col-50 button-positive" ng-click="submit()"> 
           Done!
         </a>   
-    </ion-subfooter-bar>
+    </ion-footer-bar>
   </ion-modal-view>
