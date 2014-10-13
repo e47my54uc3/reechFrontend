@@ -3,7 +3,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
   $scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
   $scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
-  $rootScope.headerTitle = $stateParams.categoryId ? ($filter('columnIn')($scope.categories, 'id', $stateParams.categoryId))[0].title : 'All';
+  $rootScope.headerTitle = $stateParams.categoryId ? ($filter('columnIn')($scope.allCategories, 'id', $stateParams.categoryId))[0].title : 'All';
   $scope.currentCategory = $stateParams.categoryId ? $stateParams.categoryId : '';
   $scope.currentScope = "all_feed";
   $scope.pageOptions = {page: 1, per_page: 3};
