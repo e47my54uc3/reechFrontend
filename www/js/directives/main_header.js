@@ -4,6 +4,9 @@ reech.directive('mainHeader',function($state, $ionicModal, $rootScope, $filter){
     scope: true,
     templateUrl: 'templates/main_header.html',
     link: function(scope, element, attrs){
+    	 scope.askAQuestion = function(){
+    	 	$state.go('ask_a_question');
+    	 }
     	 $rootScope.openProfileModal = function(profileId) {
 		    $rootScope.currentProfileId = profileId;
 		    $ionicModal.fromTemplateUrl('templates/profile.html', {
