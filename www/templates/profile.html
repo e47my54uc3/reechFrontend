@@ -9,12 +9,15 @@
 				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
 			</div>
 			<div class ="col">
-				<div class="col col-bottom"><h3 class="dividers">{{profile.full_name}}</h3></div>
+				<div class="row">
+          <div class="col 67 button_bar_icons" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{profile.full_name}}</div>
+          <div class="col button_bar_icons" ng-if="currentUser.id == profile.id">{{profile.curio_points}}<img src="img/curio.png" style="height: 16px; margin-left: 2px;"></img></div>
+        </div>
 				<div class="row" style="height: 40px; border-top:2px solid white">
 					<div class="col stable">{{profile.questions_count || 0}} Q</div>
-					<div class="col divider-left stable">{{profile.answered_solutions_count}} S</div>
-					<div class="col divider-left stable">{{profile.high_fives}} HI5</div>
-					<div class="col divider-left stable" ng-if="currentUser.id == profile.id">{{profile.curio_points}} C</div>
+					<div class="col divider-left stable">{{profile.answered_solutions_count}} A</div>
+					<div class="col divider-left stable">{{profile.high_fives}} Hi5</div>
+					<div class="col divider-left stable">{{profile.connections_count}} <i class="ion-ios7-people "></i></div>
 				</div>
 			</div>
 		</div>
