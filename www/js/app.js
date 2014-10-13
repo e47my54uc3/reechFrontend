@@ -73,7 +73,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     localStorage.removeItem('currentUserProfile');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
-    $state.go("landing1");
+    $state.go("landing");
   }
 
   $rootScope.setProfile = function() {
@@ -158,10 +158,6 @@ reech.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'registrationCtrl',
       requireInviteCode: true
     })
-    .state('sign_out', {
-      url: '/sign_out',
-      controller: 'signOutCtrl'
-    })
     .state('questions', {
       url: '/questions',
       templateUrl: 'templates/questions.html',
@@ -231,12 +227,13 @@ reech.config(function($httpProvider) {
         if (rejection.status == 401) {
           delete localStorage.currentUser;
           if ($location.path().indexOf('landing') < 0) {
-            $state = $injector.get($state);
+            window.location.reload();
+            $state = $injector.get('$state');
             $state.go('landing');
           }
         }
         if (rejection.status == 403) {
-          $state = $injector.get($state);
+          $state = $injector.get('$state');
           $state.go('categories');
         }
         return $q.reject(rejection);
