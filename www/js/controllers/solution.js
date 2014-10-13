@@ -10,9 +10,8 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, Solution, $rootScope){
     Solution.purchaseSolution({solution_id: $scope.currentSolution.id}, function(){
       $scope.showSolution = true;
       $scope.cancelTimer();
-      $scope.currentSolution.purchased = true;
-      $scope.$parent.selectedSolution.purchased = true;
-      $scope.setOrginalOwnerDetails();
+      $scope.$parent.closeSolutionModal();
+      $rootScope.$broadcast('solution-purchased');
 			$rootScope.setProfile();
     });
   }

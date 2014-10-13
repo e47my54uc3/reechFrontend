@@ -25,10 +25,13 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
   $scope.$on('answerModal.hidden', function() {
     $scope.answerModal.remove();
   });
-  $scope.$on('answerModal-closed', function(){
-    $scope.fetchQuestionDetailsWithSolutions();
-  });
+  angular.forEach(['answerModal-closed', 'solution-purchased'], function(event){
+    $scope.$on(event, function(){
+      $scope.fetchQuestionDetailsWithSolutions();
+    });
 
+  });
+  
   $scope.openSolutionModal = function(solution) {
     $scope.selectedSolution = solution;
     $ionicModal.fromTemplateUrl('templates/solution.html', {

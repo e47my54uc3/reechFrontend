@@ -12,7 +12,7 @@
           <div class="col col-50 stable">
             <div class="item-avatar item-text-wrap" ng-click="selectedQuestion.question.clickable && openProfileModal(selectedQuestion.question.posted_by_user_id)">
               <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.posted_by_avatar != null ? selectedQuestion.question.posted_by_avatar : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.posted_by}}</span><br />
-               <ng-pluralize class="item-text-wrap" count="selectedQuestion.question.linkers.length" offset=1 when="{'0': '',
+               <ng-pluralize class="item-text-wrap link-text" count="selectedQuestion.question.linkers.length" offset=1 when="{'0': '',
        '1': '{{selectedQuestion.question.linkers[0]}} linked you to question.',
        'other': '{{selectedQuestion.question.linkers[0]}} +{} members linked you to question'}"></ng-pluralize> 
             </div>
