@@ -34,6 +34,7 @@ function answerQuestionCtrl($scope, $ionicPlatform, $ionicPopup, $cordovaCamera,
    	 			$scope.model = "";
   				$scope.closeAnswerModal();
           $rootScope.setProfile();
+          $rootScope.$broadcast('answerModal-closed');
    			});
 
   		});

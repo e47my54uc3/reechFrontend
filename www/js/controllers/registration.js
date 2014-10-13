@@ -54,7 +54,7 @@ function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamer
           params.user = $scope.user;
           options.params = params;
 
-        $cordovaFile.uploadFile(BaseUrl + '/users', $scope.user_profile.picture, options).then(function(result) {
+        $cordovaFile.uploadFile(BaseUrl + 'users', $scope.user_profile.picture, options).then(function(result) {
           $scope.onRegister(result);
           alert("upload success");
       }, function(error) {

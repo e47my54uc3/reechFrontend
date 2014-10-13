@@ -2,10 +2,13 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
   var index;
   $scope.question = {};
   $scope.modalOpened = true;
-  if($scope.$parent.selectedQuestion) {
+  $scope.fetchQuestionDetailsWithSolutions = function(){
     Question.get({id: $scope.$parent.selectedQuestion}, function(response){
       $scope.selectedQuestion = response;
     });
+  }
+  if($scope.$parent.selectedQuestion) {
+    $scope.fetchQuestionDetailsWithSolutions();
   }
   $scope.openAnswerModal = function() {
     $ionicModal.fromTemplateUrl('templates/answer_question.html', {
@@ -21,6 +24,9 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
   };
   $scope.$on('answerModal.hidden', function() {
     $scope.answerModal.remove();
+  });
+  $scope.$on('answerModal-closed', function(){
+    $scope.fetchQuestionDetailsWithSolutions();
   });
 
   $scope.openSolutionModal = function(solution) {
