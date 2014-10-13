@@ -5,10 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise', 'ngLodash'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash, $cordovaPush) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+
+    
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -24,6 +27,90 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
        }, function(err) {
         alert(err);
       });
+
+      // Notification configuaration
+
+      if($cordovaDevice.getPlatform() == "android" || $cordovaDevice.getPlatform() == "Android"){
+        var config = {
+          "senderID":"88244655731",
+          "ecb":"onNotification"
+        };
+      }else{
+        var config = {
+          "badge":"true",
+          "sound":"true",
+          "alert":"true",
+          "ecb":"onNotificationAPN"
+        };
+      }
+
+      $cordovaPush.register(config).then(function(result) {
+          // Success! 
+      }, function(err) {
+          alert("error" + err);
+      });
+
+      $scope.onNotification = function(e){
+        switch( e.event )
+          {
+          case 'registered':
+              if ( e.regid.length > 0 )
+              {
+                  //alert("regID = " + e.regid);
+                  localStorage.deviceToken = e.regid;
+              }
+          break;
+      
+          case 'message':
+            if ( e.foreground )
+              {
+                
+                  //handlePushNotification(e.payload.payload_body);
+              }
+              else
+              {  // otherwise we were launched because the user touched a notification in the notification tray.
+                  if ( e.coldstart )
+                  {
+                    //handlePushNotification(e.payload.payload_body);
+                  }
+                  else
+                  {
+                    //handlePushNotification(e.payload.payload_body);
+                  }
+              }
+          
+          break;
+      
+          case 'error':
+              alert("ERR  :  " + e.msg);
+          break;
+      
+          default:
+              alert("unknown event");
+          break;
+        }
+      }
+
+      $scope.onNotificationAPN = function(event){
+        if ( event.message )
+        {
+           handlePushNotification(event.message);
+        }
+    
+        if ( event.sound )
+        {
+            var snd = new Media(event.sound);
+            snd.play();
+        }
+    
+        if ( event.badge )
+        {
+            pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+        }
+      }
+    
+
+    //---notifications config. end
 
     }else{
       // This is for browser testing only.
