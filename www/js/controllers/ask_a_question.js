@@ -1,4 +1,4 @@
-function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $state, $cordovaFile){
+function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera, $state, $cordovaFile, $cordovaSpinnerDialog){
 	$scope.categories = Category.query();
 	$scope.question = {ups: 0, downs: 0, Charisma: 5, posted_by_uid: '', posted_by: '', is_public: true};
 	$scope.avatar = "";
@@ -38,9 +38,12 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
   	}
 
   	$scope.createQuestion = function(){
+  		$cordovaSpinnerDialog.show();
   		if($scope.question.category_id == null){
+  			$cordovaSpinnerDialog.hide();
   			alert("Please select one category.");
   		}else if($scope.question.post == null){
+  			$cordovaSpinnerDialog.hide();
   			alert("Please enter your question.");
   		}else{
   			$scope.question.posted_by_uid = $rootScope.currentUser.reecher_id;
@@ -56,17 +59,22 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		        options.params = params;
 
 		  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
+		  			$cordovaSpinnerDialog.hide();
 				    alert("upload success");
+				    $state.go("questions");
 				}, function(error) {
+					$cordovaSpinnerDialog.hide();
 					alert("An error has occurred: Code = " + error.code);
 		    	}, function (progress) {
 				});
 			}else{
 				Question.save({question: $scope.question}, function(res){
+					$cordovaSpinnerDialog.hide();
 		  			alert("Question successfully posted.");
-						$rootScope.setProfile();
+					$rootScope.setProfile();
 		  			$state.go("questions");
 		  		}, function(err){
+		  			$cordovaSpinnerDialog.hide();
 		  			alert("Error occured while posting the question. Please try again.");
 		  		});
 			}
