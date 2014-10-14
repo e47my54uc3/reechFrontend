@@ -5,6 +5,7 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
   $scope.fetchQuestionDetailsWithSolutions = function(){
     Question.get({id: $scope.$parent.selectedQuestion}, function(response){
       $scope.selectedQuestion = response;
+      $rootScope.$broadcast('question-fetched');
     });
   }
   if($scope.$parent.selectedQuestion) {
