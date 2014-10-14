@@ -32,6 +32,12 @@
       </div>
       </ion-item>
 </ion-list>
+<ion-infinite-scroll
+        ng-if="!noMoreItemsAvailable"
+        on-infinite="loadMore()"
+        icon="ion-loading-c"
+        distance="10%">
+        </ion-infinite-scroll>
   </ion-content>
   <ion-footer-bar class="bar bar-footer bar-stable">
     <button class="button button-clear col-10 navbar_bottom" ng-click="currentScope = 'all_feed'" ng-class="{'button-positive': currentScope == 'all_feed'}">All</button>

@@ -10,15 +10,28 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $scope.linkQuestionId = '';
   $scope.modalOpened = false;
   $scope.question = {};
+  $scope.questions = [];
   var index;
   $scope.fetchQuestions = function(){
-    Question.query({scope: $scope.currentScope, category_id: $scope.currentCategory}, function(data){
-      $scope.questions = data;
+    Question.query(angular.extend($scope.pageOptions, {scope: $scope.currentScope, category_id: $scope.currentCategory}), function(data){
+      $scope.questions = $scope.questions.concat(data);
+      $scope.count = data.length;
+      $scope.noMoreItemsAvailable = true;
     });
   }
-
+  $scope.loadMore = function(){
+    if($scope.count == 3){
+      $scope.pageOptions.page+= 1;
+      $scope.noMoreItemsAvailable = false;
+      $scope.fetchQuestions();  
+    }else{
+      $scope.noMoreItemsAvailable = true;
+    }
+    
+  } 
   $scope.$watch("currentScope", function(){
     $scope.questions = [];
+    $scope.pageOptions = {page: 1, per_page: 3};
     $scope.fetchQuestions();
   });
 
