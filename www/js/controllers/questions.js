@@ -6,7 +6,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $rootScope.headerTitle = $stateParams.categoryId ? ($filter('columnIn')($scope.allCategories, 'id', $stateParams.categoryId))[0].title : 'All';
   $scope.currentCategory = $stateParams.categoryId ? $stateParams.categoryId : '';
   $scope.currentScope = "all_feed";
-  $scope.pageOptions = {page: 1, per_page: 3};
+  $scope.pageOptions = {page: 1, per_page: 4};
   $scope.linkQuestionId = '';
   $scope.modalOpened = false;
   $scope.question = {};
@@ -16,22 +16,23 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
     Question.query(angular.extend($scope.pageOptions, {scope: $scope.currentScope, category_id: $scope.currentCategory}), function(data){
       $scope.questions = $scope.questions.concat(data);
       $scope.count = data.length;
-      $scope.noMoreItemsAvailable = true;
+      $scope.noMoreQuestionsAvailable = false;
     });
   }
-  $scope.loadMore = function(){
-    if($scope.count == 3){
+  $scope.loadMoreQuestions = function(){
+    if($scope.count == 4){
       $scope.pageOptions.page+= 1;
-      $scope.noMoreItemsAvailable = false;
+      $scope.noMoreQuestionsAvailable = false;
       $scope.fetchQuestions();  
     }else{
-      $scope.noMoreItemsAvailable = true;
+      $scope.noMoreQuestionsAvailable = true;
     }
+    $rootScope.$broadcast('scroll.infiniteScrollComplete');
     
   } 
   $scope.$watch("currentScope", function(){
     $scope.questions = [];
-    $scope.pageOptions = {page: 1, per_page: 3};
+    $scope.pageOptions = {page: 1, per_page: 4};
     $scope.fetchQuestions();
   });
 
