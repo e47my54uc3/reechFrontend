@@ -6,7 +6,7 @@
 		</div>
 		<div class= "col col-25">
 			<center>
-				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
+				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;"/><br /><h6 ng-if="currentUser.id == profile.id && !profile.social_user" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
 			</div>
 			<div class ="col">
 				<div class="row">
