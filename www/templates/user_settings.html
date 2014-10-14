@@ -27,81 +27,81 @@
        <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.friend_asks_help" >
        a friends ask me for help
      </label>
-   </li>
-   <li class="item">
+    </li>
+    <li class="item">
      <label>
        <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.stared_question_gets_answer" >
        my starred question gets an answer
      </label>
-   </li>
-   <li class="item">
+    </li>
+    <li class="item">
      <label>
        <input type="checkbox"   ng-change="changeSetting()" ng-model="model.message_settings.some_one_grabs_my_solution" >
        someone grabs my solution
      </label>
-   </li>
-   </ion-scroll>
- </ul>
-</div>
-<div class="list">
-  <div class="item item-divider assertive-bg">
-    Notify through email when
-  </div>
+    </li>
+    </ion-scroll>
+  </ul>
+  <div class="list">
+    <div class="item item-divider assertive-bg">
+      Notify through email when
+    </div>
     <ul class="list">
       <ion-scroll>
-    <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.question_gets_answer" >
-       my question gets new answers
-     </label>
-   </li>
-   <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.linked_to_new" >
-       I'm linked to a new question
-     </label>
-   </li>
-   <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.solution_gets_hi5" >
-       my solution gets a Hi5
-     </label>
-   </li>
-   <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.friend_asks_help" >
-       a friends ask me for help
-     </label>
-   </li>
-   <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.stared_question_gets_answer" >
-       my starred question gets an answer
-     </label>
-   </li>
-   <li class="item">
-     <label>
-       <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.some_one_grabs_my_solution" >
-       someone grabs my solution
-     </label>
-   </li></ion-scroll>
- </ul>
-</div>
-<div class="list">
-  <div class="item item-divider assertive-bg">
-    Change Password
+      <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.question_gets_answer" >
+         my question gets new answers
+       </label>
+     </li>
+     <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.linked_to_new" >
+         I'm linked to a new question
+       </label>
+     </li>
+     <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.solution_gets_hi5" >
+         my solution gets a Hi5
+       </label>
+     </li>
+     <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.friend_asks_help" >
+         a friends ask me for help
+       </label>
+     </li>
+     <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.stared_question_gets_answer" >
+         my starred question gets an answer
+       </label>
+     </li>
+     <li class="item">
+       <label>
+         <input type="checkbox"   ng-change="changeSetting()" ng-model="model.email_settings.some_one_grabs_my_solution" >
+         someone grabs my solution
+       </label>
+     </li></ion-scroll>
+   </ul>
   </div>
-  <ion-scroll>
-    <label class="item item-input">
-      <input type="password" placeholder="Old password" ng-model="user.old_password">
-    </label>
-    <label class="item item-input">
-      <input type="password" placeholder="New password" ng-model="user.password">
-    </label>
-    <label class="item item-input">
-      <input type="password" placeholder="Confirm new password" ng-model="user.password_confirmation"></input>
-    </label>
-    <button class="button button-positive button-full" ng-click="changePassword()" ng-disabled="user.password != user.password_confirmation">Change password</button>
-    <br /><br />
-  </ion-scroll>
+  <div class="list">
+    <div class="item item-divider assertive-bg">
+      Change Password
+    </div>
+    <ion-scroll>
+      <label class="item item-input">
+        <input type="password" placeholder="Old password" ng-model="user.old_password">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="New password" ng-model="user.password">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Confirm new password" ng-model="user.password_confirmation"></input>
+      </label>
+      <button class="button button-positive button-full" ng-click="changePassword()" ng-disabled="user.password != user.password_confirmation">Change password</button>
+      <br /><br />
+    </ion-scroll>
+  </div>
 </div>
