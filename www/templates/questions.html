@@ -28,7 +28,7 @@
           <div class="col col-offset-0"><icon class="ion-ios7-star staricon" ng-class="{positive: question.is_starred}" ng-click="starQuestion(question.id);"></icon></div>
           <div class="col col-offset-25" ng-click="canLink(question.can_link) && (setlinkQuestionId(question.id) || openAudienModal())"><icon class="ion-link linkicon" ng-class="{positive: question.is_linked}"  ></icon></div>
           <div class="col col-offset-25"><icon class="ion-ios7-chatboxes chaticon" ng-if="question.has_conversation"></icon></div>
-          <div class="col col-offset-25"><icon class="ion-ios7-checkmark solvedicon" ng-if="question.solution_purchased"></icon>#{{question.solution_count}}</div>
+          <div class="col col-offset-25"><icon class="ion-ios7-checkmark solvedicon" ng-if="question.solution_purchased"></icon>{{question.solution_count}}</div>
       </div>
       </ion-item>
 </ion-list>
