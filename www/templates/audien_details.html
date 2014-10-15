@@ -1,7 +1,7 @@
 <ion-modal-view>
 	<ion-header-bar>
 		<a class="button button-clear button-dark" ng-click="resetAudiens()"><i class="icon ion-close-round"></i> </a>
-		<h1 class="title">Audiens</h1>
+		<h1 class="title">Audience</h1>
 		<a class="button button-clear button-dark" ng-click="closeAudienModal()">Done</a>
 	</ion-header-bar>
 	<ion-tabs class="tabs-dark tabs-icon-only">
@@ -57,9 +57,9 @@
 						<select ng-change="new_invite=resetNewInvite($index)" ng-model="new_invite.type">
 							<option value="email">email</option>
 							<option value="phone_number">phone number</option>
-						</select>				
+						</select>
 					</div>
-						
+
 				</div>
 				<button ng-click="newInvite()" class="button button-block button-positive">
 					Invite
