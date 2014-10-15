@@ -20,7 +20,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       //setup device
       $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
       $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
-       $rootScope.allContacts = result;
+       $rootScope.allContacts = lodash.remove(result, function(item) { return item.displayName });
        $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return (item.displayName ? item.displayName.toLowerCase() : item.displayName); })
        //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
        $rootScope.contacts = [];
@@ -28,7 +28,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
         alert(err);
       });
 
-      
+
 
     }else{
       // This is for browser testing only.
@@ -36,6 +36,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $rootScope.allContacts = [{id: "1", rawId: "1", displayName: "test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]},
       {id: "2", rawId: "2", displayName: "Test1", phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "kurapatijayaram@gmail.com"}]},
       {id: "3", rawId: "3", displayName: '', phoneNumbers: [{value: "7832648723"}, {value: "7823687237"}], emails: [{value: "test@test.com"}]}];
+      $rootScope.allContacts = lodash.remove($rootScope.allContacts, function(item) { return item.displayName });
       $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return toString(item.displayName).toLowerCase(); })
       //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
       $rootScope.contacts = [];
