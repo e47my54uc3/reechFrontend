@@ -1,7 +1,7 @@
 <ion-modal-view>
   <ion-content ng-controller="questionCtrl">
   <div class="main-box">
-    <div class="box-image" back-img="selectedQuestion.question.avatar_file_name != null ? selectedQuestion.question.avatar_file_name : ''" back-src="selectedQuestion.question.avatar_file_name">
+    <div  back-img="selectedQuestion.question.avatar_file_name != null ? selectedQuestion.question.avatar_file_name : ''" back-src="selectedQuestion.question.avatar_file_name" ng-style="{'min-height': boxHeight}">
       <div class="winter inner-box">
         <div class="item item-icon-left item-icon-right winter">
           <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
@@ -37,7 +37,7 @@
       <a class="button col button-balanced ion-link button-clear" audien-details ng-click="canLink(selectedQuestion.question.can_link) && openAudienModal()">Link Expert</a>
     </div>
   </div>
-  <ion-scroll direction="x" ng-if="selectedQuestion.solutions.length">
+  <ion-scroll direction="x" ng-if="selectedQuestion.solutions.length" class="half-box">
   <div class="row">
     <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" >
       <div class="row stable">
