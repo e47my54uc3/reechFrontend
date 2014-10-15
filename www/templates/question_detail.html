@@ -1,67 +1,75 @@
 <ion-modal-view>
   <ion-content ng-controller="questionCtrl">
-  <div class="main-box">
-    <div  back-img="selectedQuestion.question.avatar_file_name != null ? selectedQuestion.question.avatar_file_name : ''" back-src="selectedQuestion.question.avatar_file_name" ng-style="{'min-height': boxHeight}">
-      <div class="winter inner-box">
-        <div class="item item-icon-left item-icon-right winter">
-          <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
-          <i class="icon Qstaricon" ng-class="{'ion-ios7-star-outline': !selectedQuestion.current_user_starred_question, 'ion-ios7-star': selectedQuestion.current_user_starred_question}" ng-click="starQuestion(); "></i>          
-        </div>
+    <div class="main-box">
+      <div  back-img="selectedQuestion.question.avatar_file_name != null ? selectedQuestion.question.avatar_file_name : ''" back-src="selectedQuestion.question.avatar_file_name" ng-style="{'min-height': boxHeight+'px', 'max-height': boxHeight+'px'}">
+        <div class="winter inner-box">
+          <div class="item item-icon-left item-icon-right winter">
+            <i class="icon ion-android-close Qcloseicon" ng-click="$parent.closeModal()"></i>
+            <i class="icon Qstaricon" ng-class="{'ion-ios7-star-outline': !selectedQuestion.question.is_starred, 'ion-ios7-star': selectedQuestion.question.is_starred}" ng-click="starQuestion(); "></i>          
+          </div>
 
-        <div class="row">
-          <div class="col col-50 stable">
-            <div class="item-avatar item-text-wrap" ng-click="selectedQuestion.question.clickable && openProfileModal(selectedQuestion.question.posted_by_user_id)">
-              <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.posted_by_avatar != null ? selectedQuestion.question.posted_by_avatar : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.posted_by}}</span><br />
-              <ng-pluralize class="link-text" style="white-space: nowrap;" count="selectedQuestion.question.linkers.length"  when="{'0': '',
-       '1': '{{selectedQuestion.question.linkers[0]}} linked you to question.',
-       'other': '{{selectedQuestion.question.linkers[0]}} +{{selectedQuestion.question.linkers.length-1}} members linked you to question'}"></ng-pluralize>
+          <div class="row">
+            <div class="col col-50 stable">
+              <div class="item-avatar item-text-wrap" ng-click="selectedQuestion.question.clickable && openProfileModal(selectedQuestion.question.posted_by_user_id)">
+                <img class="user-avatar full-image" ng-src="{{selectedQuestion.question.posted_by_avatar != null ? selectedQuestion.question.posted_by_avatar : 'img/no-image.png'}}"><span class="item-text-wrap">{{selectedQuestion.question.posted_by}}</span><br />
+                <ng-pluralize class="link-text" style="white-space: nowrap;" count="selectedQuestion.question.linkers.length"  when="{'0': '',
+         '1': '{{selectedQuestion.question.linkers[0]}} linked you to question.',
+         'other': '{{selectedQuestion.question.linkers[0]}} +{{selectedQuestion.question.linkers.length-1}} members linked you to question'}"></ng-pluralize>
+              </div>
             </div>
+            <!-- <div class="button-bar col-20">
+              <a class="button button-clear ion-ios7-videocam "></a>
+              <a class="button button-clear ion-ios7-mic"></a>
+              <a class="button button-clear ion-link"></a>
+            </div> -->
           </div>
-          <!-- <div class="button-bar col-20">
-            <a class="button button-clear ion-ios7-videocam "></a>
-            <a class="button button-clear ion-ios7-mic"></a>
-            <a class="button button-clear ion-link"></a>
-          </div> -->
-        </div>
 
-        <div class="row">
-          <div class="col col-90 item-text-wrap stable questiondetail_text">
-            {{selectedQuestion.question.post}}
+          <div class="row">          
+            <ion-scroll direction="y">
+              <div class="col col-90 item-text-wrap stable questiondetail_text" ng-style="{'max-height': boxHeight/2+'px'}">
+              {{selectedQuestion.question.post}}    
+                Gmail for work
+  Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table
+    Gmail for work
+  Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table       
+              </div>
+            </ion-scroll>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <a class="button col button-positive button-clear button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
-      <span class="divider-left dark"></span>
-      <a class="button col button-balanced ion-link button-clear" audien-details ng-click="canLink(selectedQuestion.question.can_link) && openAudienModal()">Link Expert</a>
-    </div>
-  </div>
-  <ion-scroll direction="x" ng-if="selectedQuestion.solutions.length" class="half-box">
-  <div class="row">
-    <div class="list card col col-50 row250" ng-repeat="solution in selectedQuestion.solutions" >
-      <div class="row stable">
-        <a class="item-avatar item-text-wrap">
-          <img class="full-image" ng-src="{{solution.solver_image != null ? solution.solver_image : 'img/no-image.png'}}" ng-click="solution.profile_pic_clickable && openProfileModal(solution.solver_id)"><span class="dark item-text-wrap">{{solution.solver}}</span>
-        </a>
-      </div>
-      <div class="row item-text-wrap" style="height: 200px;" ng-click="openSolutionModal(solution)">
-        <ion-scroll direction="y">
-          {{solution.body}}
-        </ion-scroll>
-      </div>
-      <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
-        <i class="ion-chatbubbles assertive "></i>
-        <i class="ion-android-hand royal notification">{{solution.hi5_count}} </i>
-      </div>
-      <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
-        <span class="curio_container">
-          <img src="img/curio.png" class="curio_img"></img>
-          <div class="curio_text">25</div>
-        </span>
+      <div class="row">
+        <a class="button col button-positive button-clear button-positive ion-edit"  ng-click="openAnswerModal()">Provide Solution</a>
+        <a class="button col button-balanced ion-link button-clear" audien-details ng-click="canLink(selectedQuestion.question.can_link) && openAudienModal()">Link Expert</a>
       </div>
     </div>
-  </div>
-  </ion-scroll>
+    <ion-scroll direction="x" ng-if="selectedQuestion.solutions.length"> 
+      <div class="row">
+        <div class="list card col col-50" ng-repeat="solution in selectedQuestion.solutions" ng-style="{'min-height': boxHeight+'px', 'max-height': boxHeight+'px'}">
+          <div class="row">
+            <div class="col stable">
+              <div class="item-avatar item-text-wrap" ng-click="solution.profile_pic_clickable && openProfileModal(solution.solver_id)">
+                <img class="full-image" ng-src="{{solution.solver_image != null ? solution.solver_image : 'img/no-image.png'}}" ><span class="dark item-text-wrap">{{solution.solver}}</span>
+              </div>
+            </div>
+          </div>               
+          <ion-scroll direction="y">
+            <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)">    {{solution.body}}
+                Gmail for work
+    Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table          
+            </div>
+          </ion-scroll>          
+          <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
+            <i class="ion-chatbubbles assertive "></i>
+            <i class="ion-android-hand royal notification">{{solution.hi5_count}} </i>
+          </div>
+          <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
+            <span class="curio_container">
+              <img src="img/curio.png" class="curio_img"></img>
+              <div class="curio_text">25</div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </ion-scroll>
   </ion-content>
 </ion-modal-view>

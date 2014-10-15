@@ -460,3 +460,8 @@ text-align: center;
   background: url("../img/triangle-left.png") no-repeat #325692;
   background-position: right bottom;
 }
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}

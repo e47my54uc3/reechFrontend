@@ -53,7 +53,7 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
   
   $scope.starQuestion = function(){
     Question.starQuestion({'question_id': $scope.selectedQuestion.question.id}, function(response){
-      $scope.selectedQuestion.current_user_starred_question = response.stared;
+      $scope.selectedQuestion.question.is_starred = response.stared;
       $rootScope.setProfile();
       if(typeof $scope.$parent.setStar === 'function')
         $scope.$parent.setStar($scope.selectedQuestion.question.id, response.stared)      
