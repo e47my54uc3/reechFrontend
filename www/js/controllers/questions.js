@@ -3,7 +3,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $scope.selectedCategories = localStorage.selectedCategoriesIds != undefined ? JSON.parse(localStorage.selectedCategoriesIds) : [];
   $scope.allCategories = localStorage.categories != undefined ? JSON.parse(localStorage.categories) : [];
   $scope.categories = $filter('columnIn')($scope.allCategories, 'id', $scope.selectedCategories);
-  $rootScope.headerTitle = $stateParams.categoryId ? ($filter('columnIn')($scope.allCategories, 'id', $stateParams.categoryId))[0].title : 'All';
+  $rootScope.headerTitle = $stateParams.categoryId ? $scope.allCategories[($filter('firstIndex')($scope.allCategories, {id: $stateParams.categoryId}))].title : 'All';
   $scope.currentCategory = $stateParams.categoryId ? $stateParams.categoryId : '';
   $scope.currentScope = "all_feed";
   $scope.pageOptions = {page: 1, per_page: 4};
@@ -23,13 +23,13 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
     if($scope.count == 4){
       $scope.pageOptions.page+= 1;
       $scope.noMoreQuestionsAvailable = false;
-      $scope.fetchQuestions();  
+      $scope.fetchQuestions();
     }else{
       $scope.noMoreQuestionsAvailable = true;
     }
     $rootScope.$broadcast('scroll.infiniteScrollComplete');
-    
-  } 
+
+  }
   $scope.$watch("currentScope", function(){
     $scope.questions = [];
     $scope.pageOptions = {page: 1, per_page: 4};
@@ -40,7 +40,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
     $scope.selectedQuestion = question_id;
     $scope.modalOpened = true;
   };
-  
+
   $scope.setStar = function(question_id, stared){
     index = $filter('firstIndex')($scope.questions, {'id': question_id});
     $scope.questions[index].is_starred = stared;
@@ -58,7 +58,7 @@ function questionsCtrl($scope, $ionicModal, Question, $stateParams, $rootScope, 
   $scope.$on('audien-modalClosed', function(event, args){
     if(!$scope.modalOpened && !$scope.isAudienDetailsEmpty(args)){
       $scope.linkQuestionToExpert( $scope.linkQuestionId, args);
-      $scope.init();      
+      $scope.init();
       $scope.modalOpened = false;
     }
   });
