@@ -27,11 +27,7 @@
           <div class="row">          
             <ion-scroll direction="y">
               <div class="col col-90 item-text-wrap stable questiondetail_text" ng-style="{'max-height': boxHeight/2+'px'}">
-              {{selectedQuestion.question.post}}    
-                Gmail for work
-  Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table
-    Gmail for work
-  Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table       
+              {{selectedQuestion.question.post}}
               </div>
             </ion-scroll>
           </div>
@@ -53,9 +49,7 @@
             </div>
           </div>               
           <ion-scroll direction="y">
-            <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)">    {{solution.body}}
-                Gmail for work
-    Get custom email @your_company.com including calendar, docs, video meetings, and more with access from your phone or table          
+            <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)">    {{solution.body}}        
             </div>
           </ion-scroll>          
           <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
