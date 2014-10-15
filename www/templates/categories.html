@@ -2,7 +2,7 @@
 
 	<ion-content class="has-subheader has-footer">
 		<div class="row no-padding-margin" ng-repeat="number in []|range: ceil(categories.length/2)" style="margin-top: 2px;">
-			<div class="col col-50 no-padding-margin" ng-repeat="column in [0,1]" ng-click="loadQuestions(categories[2*number + column].id)" >
+			<div class="col col-50 no-padding-margin" style="margin-right: 2px;" ng-repeat="column in [0,1]" ng-click="loadQuestions(categories[2*number + column].id)" >
 				<div ng-if="categories[2*number + column]" class="card no-padding-margin" style="min-height: 150px; background: url('img/categories/{{(categories[2*number + column].title.replace('&', '_').split(' ').join('')|lowercase)}}.jpg') no-repeat;background-size: 100% 100%;">
 					<div class="item item-divider item-dark no-padding-margin ng-binding semi-transparent" style=" color: white;">
 						{{categories[2*number + column].title}}
