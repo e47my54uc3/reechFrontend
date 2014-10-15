@@ -34,7 +34,7 @@
       </div>
       <div class="row h3" ng-if="!showSolution"> Grab Solution! </div>
   	</div>
-    <button reech-modal modal-template="(currentSolution.chat_members == undefined||currentSolution.chat_members.length == 0) ? 'templates/chat.html' : 'templates/chat_members.html'" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" class="button button-block button-positive" ng-click="openModal()"><i class="icon ion-chatbubbles"></i>
+    <button reech-modal modal-template="(currentSolution.solver_id != currentUser.id) ? 'templates/chat.html' : 'templates/chat_members.html'" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" class="button button-block button-positive" ng-click="openModal()"><i class="icon ion-chatbubbles"></i>
       Chat
     </button>
   	<div class="winter inner-box" ng-click="grabSolution()" ng-if="!currentSolution.purchased && !currentSolution.current_user_is_solver">

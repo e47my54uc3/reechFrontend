@@ -9,6 +9,7 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   $scope.$on('question-fetched', function(){
     if($scope.solutionGrabed){
       $scope.currentSolution = $filter('columnWith')($scope.$parent.selectedQuestion.solutions , 'id', $scope.$parent.selectedSolution.id+'')[0];           
+      $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
     }
 
   });
@@ -31,7 +32,7 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   }
   if($scope.$parent.selectedSolution) {
     $scope.currentSolution = $scope.$parent.selectedSolution;
-    $scope.currentChatMemberId = $scope.currentSolution.solution_owner_id;
+    $scope.currentChatMemberId = $scope.currentSolution.solver_id;
     $scope.showSolution =  !$scope.currentSolution.previewed ||  $scope.currentSolution.current_user_is_solver || $scope.currentSolution.purchased;
     if(!$scope.currentSolution.previewed && !$scope.currentSolution.current_user_is_solver && !$scope.currentSolution.purchased)
     {
@@ -62,9 +63,11 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
     }
   }
 
-  $scope.setCurrentChatMember = function(user_id){
+  $scope.setCurrentChatMember = function(user_id, name){
     $scope.currentChatMemberId = user_id;
+    $scope.currentChatMemberName = name;
   }
+  $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
 
   $ionicPlatform.onHardwareBackButton(function(){
     if($scope.$parent.solutionModal)

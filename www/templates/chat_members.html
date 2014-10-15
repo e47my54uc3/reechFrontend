@@ -7,7 +7,7 @@
     	<div class="list">
             <div ng-repeat="chat_member in currentSolution.chat_members" class="item item-button-right">
                 {{chat_member.first_name}} {{chat_member.last_name}}
-                <button reech-modal modal-template="'templates/chat.html'" modal-before-open="setCurrentChatMember(chat_member.id)" ng-click="openModal()" class="button button-positive">
+                <button reech-modal modal-template="'templates/chat.html'" modal-before-open="setCurrentChatMember(chat_member.id, chat_member.first_name+chat_member.first_name)" ng-click="openModal()" class="button button-positive">
                   <i class="icon ion-chatbubbles"></i>
                 </button>
             </div>
