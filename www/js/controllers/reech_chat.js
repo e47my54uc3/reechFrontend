@@ -15,9 +15,10 @@ function reechChatCtrl($scope, $rootScope, ReechChat, $ionicScrollDelegate){
     $ionicScrollDelegate.$getByHandle('chat').scrollBottom();
   };
 	$scope.postMessage = function(){
-		var index = $scope.chats.length;
-		$scope.chats[index] = angular.copy($scope.current_message);
-		if($scope.current_message.from_user_id != $scope.current_message.to_user_id)
+		if($scope.current_message.message && $scope.$parent.currentChatMemberId)
+		{				
+			var index = $scope.chats.length;
+			$scope.chats[index] = angular.copy($scope.current_message);
 			ReechChat.save({reech_chat: $scope.current_message}, function(res){
 				if(res.status == 200){
 					$scope.chats[index] = res.reech_chats;
@@ -30,5 +31,6 @@ function reechChatCtrl($scope, $rootScope, ReechChat, $ionicScrollDelegate){
 				$scope.chats[index].status = 2;
 				$scope.current_message = {from_user_id: $rootScope.currentUser.id, to_user_id: $scope.$parent.currentChatMemberId, message: '', solution_id: $scope.$parent.currentSolution.id, status: 0};
 			});
+		}
 	}
 }
