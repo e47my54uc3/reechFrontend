@@ -76,14 +76,14 @@
                 </div>
               </div>
                <div class="col col-20">
-                <img ng-src="{{currentUserProfile.image_url ? currentUserProfile.image_url : 'img/User-icon1.png'}}" class="icon" style="height:30px;"></img>
+                <img ng-src="{{currentUserProfile.image_url ? currentUserProfile.image_url : 'img/User-icon1.png'}}" class="full-image"></img>
               </div>
             </div>
           </div>
           <div class="card col col-67" ng-if="chat.from_user_id != currentUser.id" style="background: #3FA3EC; color: white;border-radius: 12px;">
             <div class="row">
               <div class="col col-20">
-                <img ng-src="{{$parent.currentChatMemberImageUrl}}" class="icon" style="height:30px;"></img>
+                <img ng-src="{{$parent.currentChatMemberImageUrl}}" class="full-image" ></img>
               </div>
               <div class="col col-80" style="margin-top: -7px;">   
                 <div class="row" style="width:100%;border-bottom: 1px solid black;"> 
@@ -91,7 +91,8 @@
                   <small class="col">{{chat.created_at| timeago}}</small>
                 </div>
                 <div class="item-text-wrap">
-                  <div class="row">{{chat.message}}</div>
+                  <div class="row">{{chat.message}}
+                  </div>
                 </div>
               </div>
             </div>
