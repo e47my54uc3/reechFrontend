@@ -67,8 +67,10 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
     $scope.currentChatMemberId = user_id;
     $scope.currentChatMemberName = name;
   }
-  $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
-
+  if($scope.currentSolution.solver_id != $rootScope.currentUser.id)
+    $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
+  else
+    $scope.setCurrentChatMember($scope.currentSolution.chat_members[0].id, $scope.currentSolution.chat_members[0].full_name);
   $ionicPlatform.onHardwareBackButton(function(){
     if($scope.$parent.solutionModal)
       $scope.$parent.closeSolutionModal();

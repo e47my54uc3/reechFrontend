@@ -1,55 +1,89 @@
 <ion-modal-view  ng-controller="solutionCtrl">
+<div  ng-controller="reechChatCtrl">
   <ion-content> 
-  <div class="main-box">
-  	<div class="box-image" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
-  		<div class="winter inner-box has_header">
-    		<div class="item item-icon-left item-icon-right item-positive" style="height: 50px;">
-    			<i class="icon ion-close" ng-click="closeSolutionModal()"></i>
-    			<div class="title text-center">Solution</div>
-          <span class="h3 stable col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" style="margin-top: -28px;">{{currentSolution.hi5_count}}  
-            <img  src="img/High-Fives.png" ng-click="solutionHi5()" ></img>    
-          </span>
-  			</div>
-        <div ng-if="showSolution">
-    		  <div class="row" >
-      		  <div class="col col-50 stable">
-        		  <a class="item-avatar item-text-wrap">
-          		  <img style="margin-top: 21px;" class="user-avatar full-image" ng-src="{{currentSolution.solver_image ? currentSolution.solver_image : 'img/no-image.png'}}"  ng-click="currentSolution.profile_pic_clickable && openProfileModal(currentSolution.solver_id)"><span class="item-text-wrap">
-          		{{currentSolution.solver}}</span></img>
-        		  </a>
+    <div class="main-box">
+  	  <div class="box-image" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+  		  <div class="winter inner-box has_header">
+    		  <div class="item item-icon-left item-icon-right item-positive" style="height: 50px;">
+    			  <i class="icon ion-close" ng-click="closeSolutionModal()"></i>
+    			  <div class="title text-center">Solution</div>
+            <span class="h3 stable col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" style="margin-top: -28px;">{{currentSolution.hi5_count}}  
+              <img  src="img/High-Fives.png" ng-click="solutionHi5()" ></img>    
+            </span>
+  			  </div>
+          <div ng-if="showSolution">
+      		  <div class="row" >
+        		  <div class="col col-50 stable">
+          		  <a class="item-avatar item-text-wrap">
+            		  <img style="margin-top: 21px;" class="user-avatar full-image" ng-src="{{currentSolution.solver_image ? currentSolution.solver_image : 'img/no-image.png'}}"  ng-click="currentSolution.profile_pic_clickable && openProfileModal(currentSolution.solver_id)"><span class="item-text-wrap">
+            		{{currentSolution.solver}}</span></img>
+          		  </a>
+        		  </div>
+        		  <!-- <div class="button-bar col-20">
+    					  <a class="button button-clear ion-ios7-videocam "></a>
+    					  <a class="button button-clear ion-ios7-mic"></a>
+    					  <a class="button button-clear ion-link"></a>
+  					  </div> -->
       		  </div>
-      		  <!-- <div class="button-bar col-20">
-  					  <a class="button button-clear ion-ios7-videocam "></a>
-  					  <a class="button button-clear ion-ios7-mic"></a>
-  					  <a class="button button-clear ion-link"></a>
-					  </div> -->
-    		  </div>
 
-    		  <div class="row">
-    			  <div class="col col-90 item-text-wrap stable">
-    				  {{currentSolution.body}}
-    			  </div>
-    		  </div>
-  		  </div>
-      </div>
-      <div class="row h3" ng-if="!showSolution"> Grab Solution! </div>
-  	</div>
-    <button reech-modal modal-template="(currentSolution.solver_id != currentUser.id) ? 'templates/chat.html' : 'templates/chat_members.html'" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" class="button button-block button-positive" ng-click="openModal()"><i class="icon ion-chatbubbles"></i>
-      Chat
-    </button>
-  	<div class="winter inner-box" ng-click="grabSolution()" ng-if="!currentSolution.purchased && !currentSolution.current_user_is_solver">
-  		<div class="row">
-  			<div class="col col-offset-10" ng-if="!currentSolution.previewed">
-  				<h1  class="ion-ios7-timer-outline"></h1><span class="stable h3">{{previewTime}} seconds</span>
-  			</div>
-  			<div class="col">
-  				<h1  class="royal ion-android-hand"></h1><span class="stable h3">Grab Solution</span>
-  			</div>
-  		</div>
-  		<div class="text-center">
-  			<h3><img src="img/curio.png"/><span class="stable"> 25</span>	</h3>
-  		</div>
-  	</div>
-  </div>
+    		    <div class="row">
+    			    <div class="col col-90 item-text-wrap stable">
+    				    {{currentSolution.body}}
+    			    </div>
+    		    </div>
+  		    </div>
+        </div>
+        <div class="row h3" ng-if="!showSolution"> Grab Solution! </div>
+  	  </div>
+      
+    	<div class="winter inner-box" ng-click="grabSolution()" ng-if="!currentSolution.purchased && !currentSolution.current_user_is_solver">
+    		<div class="row">
+    			<div class="col col-offset-10" ng-if="!currentSolution.previewed">
+    				<h1  class="ion-ios7-timer-outline"></h1><span class="stable h3">{{previewTime}} seconds</span>
+    			</div>
+    			<div class="col">
+    				<h1  class="royal ion-android-hand"></h1><span class="stable h3">Grab Solution</span>
+    			</div>
+    		</div>
+    		<div class="text-center">
+    			<h3><img src="img/curio.png"/><span class="stable"> 25</span>	</h3>
+    		</div>
+    	</div>
+    </div>
+   <!--  <button reech-modal modal-template="(currentSolution.solver_id != currentUser.id) ? 'templates/chat.html' : 'templates/chat_members.html'" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" class="button button-block button-positive" ng-click="openModal()"><i class="icon ion-chatbubbles"></i>
+        Chat
+    </button> -->
+    <div class="row">
+      <button ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.first_name+chat_member.full_name)" class="button button-small" ng-class="{'button-positive': chat_member.id == currentChatMemberId}">{{chat_member.full_name | limitTo: 4}}</button>
+    </div>
+    <div ng-if="currentSolution.purchased || currentSolution.current_user_is_solver"> 
+      <ion-scroll direction="y" delegate-handle="chat" style="width: 100%" ng-style="{'height': boxHeight+'px'}">     
+        <div ng-repeat="chat in chats">       
+          <div ng-if="chat.from_user_id == currentUser.id" class="col col-67 col-offset-33  card" style="background: #3FA3EC; color: white; text-align: right; border-radius: 12px;">
+            {{chat.created_at| timeago}}
+            <div class="item-text-wrap">
+              {{chat.message}}
+            </div>
+          </div>
+          <div class="card col col-67" ng-if="chat.from_user_id != currentUser.id" style="border-radius: 12px;">
+           <span class="ellipsis" style="color: #3FA3EC;">{{$parent.currentChatMemberName}}</span> {{chat.created_at| timeago}}
+           <div class="item-text-wrap">
+            {{chat.message}}
+           </div>
+          </div>
+        </div>   
+      </ion-scroll>             
+    </div>    
   </ion-content>
+  <ion-footer-bar class="bar-default item-input-inset" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver">
+
+    <label class="item-input-wrapper">
+      <input type="search" ng-model="current_message.message" placeholder="Type your message here ..." ng-enter="postMessage()">
+    </label>
+    <button ng-click="postMessage()" class="button button-clear button-icon ion-ios7-chatboxes-outline">
+
+    </button>
+
+  </ion-footer-bar> 
+</div>
 </ion-modal-view>
