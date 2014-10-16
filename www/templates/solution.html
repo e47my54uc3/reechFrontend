@@ -57,7 +57,7 @@
       <button ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.first_name+chat_member.full_name)" class="button button-small" ng-class="{'button-positive': chat_member.id == currentChatMemberId}">{{chat_member.full_name | limitTo: 4}}</button>
     </div>
     <div ng-if="currentSolution.purchased || currentSolution.current_user_is_solver"> 
-      <ion-scroll direction="y" delegate-handle="chat" style="width: 100%" ng-style="{'height': boxHeight+'px'}">     
+      <ion-scroll direction="y" delegate-handle="chat" style="width: 100%;" ng-style="{'height': boxHeight-35+'px'}">     
         <div ng-repeat="chat in chats">       
           <div ng-if="chat.from_user_id == currentUser.id" class="col col-67 col-offset-33  card" style="background: #3FA3EC; color: white; text-align: right; border-radius: 12px;">
             {{chat.created_at| timeago}}
