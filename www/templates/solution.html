@@ -101,14 +101,13 @@
     </div>    
   </ion-content>
   <ion-footer-bar class="bar-default item-input-inset" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver">
-
-    <label class="item-input-wrapper">
-      <input type="search" ng-model="current_message.message" placeholder="Type your message here ..." ng-enter="postMessage()">
-    </label>
-    <button ng-click="postMessage()" class="button button-clear button-icon ion-ios7-chatboxes-outline">
-
-    </button>
-
+    <form name="chatForm" class="row" style="width:100%" ng-submit="current_message.message && postMessage()">
+      <label class="item-input-wrapper">
+        <input type="search" ng-model="current_message.message" placeholder="Type your message here ..."/>
+      </label>
+      <button type="submit" class="button button-clear button-icon ion-ios7-chatboxes-outline">
+      </button>
+    </form>    
   </ion-footer-bar> 
 </div>
 </ion-modal-view>
