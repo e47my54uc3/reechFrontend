@@ -5,12 +5,12 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 	$scope.test = localStorage.currentUser;
 	$scope.takePicture = function(type) {
 	    var options = {
-	        quality : 75,
+	        quality : 50,
 	        destinationType : Camera.DestinationType.FILE_URI,
 	        allowEdit : true,
 	        encodingType: Camera.EncodingType.JPEG,
-	        targetWidth: 100,
-	        targetHeight: 100,
+	        targetWidth: 300,
+	        targetHeight: 300,
 	        popoverOptions: CameraPopoverOptions,
 	        saveToPhotoAlbum: false
 	    };
@@ -80,6 +80,6 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		  		});
 			}
   		}
-		
+
   	}
 }
