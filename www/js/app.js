@@ -64,7 +64,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
         }
       }
 
-      $window.onNotification = function(e){alert("GOT MESSAGE");
+      $window.onNotification = function(e){
         switch( e.event )
           {
           case 'registered':
@@ -78,12 +78,30 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
                     }else{
                       //alert("Something went wrong while registering your device");
                     }
-                  })
+                  });
               }
           break;
       
           case 'message':
-              
+              if ( e.foreground )
+              {
+                  $rootScope.currentUserProfile.notification_count += 1;
+                  if(!$rootScope.$$phase){
+                    $rootScope.$apply();
+                  }
+                  localStorage.currentUserProfile = JSON.stringify($rootScope.currentUserProfile);     
+              }
+              else
+              { 
+                  if ( e.coldstart )
+                  {
+                    //$state.go('notifications');
+                  }
+                  else
+                  {
+                    $state.go('notifications');
+                  }
+              }
           break;
       
           case 'error':
@@ -97,24 +115,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       }
 
 
-      // $window.handlePushNotification = function(body){
-      //   var tempHash = {};
-      //   tempHash.type = body.type;
-      //   tempHash.message = body.message;
-      //   tempHash.record_id = body.record_id;
-      //   tempHash.type = body.type;
-      //   tempHash.read = false;
-
-      //   $rootScope.notifications.unshift(tempHash);
-      //   if(!$rootScope.$$phase){
-      //     $rootScope.$apply();
-      //   }     
-      //   $rootScope.$broadcast('new-notification', $rootScope.notifications);
-      //   localStorage.notifications = JSON.stringify($rootScope.notifications);
-      //   localStorage.notificationCount += 1;
-      // }
-
-    //---notifications config. end
+      //---notifications config. end
 
 
 
