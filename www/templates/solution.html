@@ -57,7 +57,7 @@
     </button> -->
     <div class="row">
       <ion-scroll direction='x' style="width: 100%">
-        <img ng-src="{{currentChatMemberImageUrl}}" title="{{currentChatMemberName}}" ng-if="!currentSolution.chat_members.length && (currentSolution.purchased || currentSolution.current_user_is_solver)" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" class="button button-small"></img>
+        <img ng-src="{{currentChatMemberImageUrl}}" title="{{currentChatMemberName}}" ng-if="!currentSolution.current_user_is_solver && !currentSolution.chat_members.length && (currentSolution.purchased || currentSolution.current_user_is_solver)" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" class="button button-small"></img>
         <img ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.full_name)" class="button button-small" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" ng-src="{{chat_member.image_url != null ? chat_member.image_url : 'img/User-icon1.png'}}" class="logo" style="left: 0 !important; height: 32px; top: 0 !important;" title="{{chat_member.full_name}}"></img>
       </ion-scroll>
     </div>
@@ -101,8 +101,8 @@
       </ion-scroll>             
     </div>    
   </ion-content>
-  <ion-footer-bar class="bar bar-default" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" style="height: 45px">
-    <form name="chatForm" class="row" style="width:100%; margin-top: -10px;" ng-submit="current_message.message && postMessage()">
+  <ion-footer-bar class="bar bar-default" ng-if="$parent.currentChatMemberId && (currentSolution.purchased || currentSolution.current_user_is_solver)" style="height: 45px">
+    <form name="chatForm" class="row" style="width:100%; margin-top: -10px;" ng-submit="postMessage()">
       <div class="row item-input-inset">
         <label class="item-input-wrapper">
           <input type="search" ng-model="current_message.message" placeholder="Type your message here ..."/>            
