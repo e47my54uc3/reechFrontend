@@ -2,7 +2,7 @@
 <div  ng-controller="reechChatCtrl">
   <ion-content> 
     <div class="main-box">
-  	  <div class="box-image" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+  	  <div ng-style="{'min-height': boxHeight+'px'}" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
   		  <div class="winter inner-box has_header">
     		  <div class="item item-icon-left item-icon-right item-positive" style="height: 50px;">
     			  <i class="icon ion-close" ng-click="closeSolutionModal()"></i>
@@ -26,10 +26,12 @@
   					  </div> -->
       		  </div>
 
-    		    <div class="row">
-    			    <div class="col col-90 item-text-wrap stable">
-    				    {{currentSolution.body}}
-    			    </div>
+    		    <div class="row">    			    
+              <ion-scroll direction='y' style="width: 100%">
+      				  <div class="col col-90 item-text-wrap stable" ng-style="{'height': boxHeight/2+'px'}"> 
+                  {{currentSolution.body}}                  
+                </div>
+              </ion-scroll>
     		    </div>
   		    </div>
         </div>
@@ -54,24 +56,47 @@
         Chat
     </button> -->
     <div class="row">
-      <button ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.first_name+chat_member.full_name)" class="button button-small" ng-class="{'button-positive': chat_member.id == currentChatMemberId}">{{chat_member.full_name | limitTo: 4}}</button>
+      <ion-scroll direction='x' style="width: 100%">
+        <img ng-src="{{currentChatMemberImageUrl}}" title="{{currentChatMemberName}}" ng-if="!currentSolution.chat_members.length" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" class="button button-small"></img>
+        <img ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.full_name)" class="button button-small" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" ng-src="{{chat_member.image_url != null ? chat_member.image_url : 'img/User-icon1.png'}}" class="logo" style="left: 0 !important; height: 32px; top: 0 !important;" title="{{chat_member.full_name}}"></img>
+      </ion-scroll>
     </div>
     <div ng-if="currentSolution.purchased || currentSolution.current_user_is_solver"> 
-      <ion-scroll direction="y" delegate-handle="chat" style="width: 100%;" ng-style="{'height': boxHeight-35+'px'}">     
+      <ion-scroll direction="y" delegate-handle="chat" style="width: 100%;" ng-style="{'height': boxHeight+'px'}">     
         <div ng-repeat="chat in chats">       
-          <div ng-if="chat.from_user_id == currentUser.id" class="col col-67 col-offset-33  card" style="background: #3FA3EC; color: white; text-align: right; border-radius: 12px;">
-            {{chat.created_at| timeago}}
-            <div class="item-text-wrap">
-              {{chat.message}}
+          <div ng-if="chat.from_user_id == currentUser.id" class="col col-67 col-offset-33 card-balanced card" style="background: #388860;color: white; border-radius: 12px;">
+            <div class="row">             
+              <div class="col col-80" style="margin-top: -7px; ">  
+                <div class="row" style="border-bottom: 1px solid black; ">
+                  <small  class="col col-50"> You wrote </small>
+                  <small  class="col">{{chat.created_at| timeago}}</small>
+                </div> 
+                <div class="item-text-wrap">
+                  <div class="row">{{chat.message}}</div>
+                </div>
+              </div>
+               <div class="col col-20">
+                <img ng-src="{{currentUserProfile.image_url ? currentUserProfile.image_url : 'img/User-icon1.png'}}" class="icon" style="height:30px;"></img>
+              </div>
             </div>
           </div>
-          <div class="card col col-67" ng-if="chat.from_user_id != currentUser.id" style="border-radius: 12px;">
-           <span class="ellipsis" style="color: #3FA3EC;">{{$parent.currentChatMemberName}}</span> {{chat.created_at| timeago}}
-           <div class="item-text-wrap">
-            {{chat.message}}
-           </div>
-          </div>
-        </div>   
+          <div class="card col col-67" ng-if="chat.from_user_id != currentUser.id" style="background: #3FA3EC; color: white;border-radius: 12px;">
+            <div class="row">
+              <div class="col col-20">
+                <img ng-src="{{$parent.currentChatMemberImageUrl}}" class="icon" style="height:30px;"></img>
+              </div>
+              <div class="col col-80" style="margin-top: -7px;">   
+                <div class="row" style="width:100%;border-bottom: 1px solid black;"> 
+                  <small class="ellipsis col col-50">{{$parent.currentChatMemberName}} wrote</small> 
+                  <small class="col">{{chat.created_at| timeago}}</small>
+                </div>
+                <div class="item-text-wrap">
+                  <div class="row">{{chat.message}}</div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>    
       </ion-scroll>             
     </div>    
   </ion-content>

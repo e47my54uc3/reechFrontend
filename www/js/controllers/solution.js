@@ -9,7 +9,7 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   $scope.$on('question-fetched', function(){
     if($scope.solutionGrabed){
       $scope.currentSolution = $filter('columnWith')($scope.$parent.selectedQuestion.solutions , 'id', $scope.$parent.selectedSolution.id+'')[0];           
-      $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
+      $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver, $scope.currentSolution.solver_image);
     }
 
   });
@@ -32,7 +32,6 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   }
   if($scope.$parent.selectedSolution) {
     $scope.currentSolution = $scope.$parent.selectedSolution;
-    $scope.currentChatMemberId = $scope.currentSolution.solver_id;
     $scope.showSolution =  !$scope.currentSolution.previewed ||  $scope.currentSolution.current_user_is_solver || $scope.currentSolution.purchased;
     if(!$scope.currentSolution.previewed && !$scope.currentSolution.current_user_is_solver && !$scope.currentSolution.purchased)
     {
@@ -63,14 +62,17 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
     }
   }
 
-  $scope.setCurrentChatMember = function(user_id, name){
+  $scope.setCurrentChatMember = function(user_id, name, imageUrl){
     $scope.currentChatMemberId = user_id;
     $scope.currentChatMemberName = name;
+    $scope.currentChatMemberImageUrl = imageUrl ? imageUrl : 'img/User-icon1.png';
   }
   if($scope.currentSolution.solver_id != $rootScope.currentUser.id)
-    $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver);
+    $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver, $scope.currentSolution.solver_image);
   else
-    $scope.setCurrentChatMember($scope.currentSolution.chat_members[0].id, $scope.currentSolution.chat_members[0].full_name);
+    if($scope.currentSolution.chat_members[0])
+      $scope.setCurrentChatMember($scope.currentSolution.chat_members[0].id, $scope.currentSolution.chat_members[0].full_name, $scope.currentSolution.chat_members[0].image_url);
+  
   $ionicPlatform.onHardwareBackButton(function(){
     if($scope.$parent.solutionModal)
       $scope.$parent.closeSolutionModal();
