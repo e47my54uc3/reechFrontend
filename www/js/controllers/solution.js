@@ -70,7 +70,7 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   if($scope.currentSolution.solver_id != $rootScope.currentUser.id)
     $scope.setCurrentChatMember($scope.currentSolution.solver_id, $scope.currentSolution.solver, $scope.currentSolution.solver_image);
   else
-    if($scope.currentSolution.chat_members[0])
+    if($scope.currentSolution.chat_members && $scope.currentSolution.chat_members.length)
       $scope.setCurrentChatMember($scope.currentSolution.chat_members[0].id, $scope.currentSolution.chat_members[0].full_name, $scope.currentSolution.chat_members[0].image_url);
   
   $ionicPlatform.onHardwareBackButton(function(){
