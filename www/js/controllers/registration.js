@@ -56,11 +56,16 @@ function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamer
 
         $cordovaFile.uploadFile(BaseUrl + 'users', $scope.user_profile.picture, options).then(function(result) {
           $scope.onRegister(result);
+          $rootScope.pushNotification.register(function(){
+            //alert("registered with GCM successfully");
+          }, function(){
+            //alert("error");
+          }, $rootScope.pushConfig);
           alert("upload success");
-      }, function(error) {
-        alert("An error has occurred: Code = " + error.code);
+        }, function(error) {
+          alert("An error has occurred: Code = " + error.code);
         }, function (progress) {
-      });
+        });
     }else{
       Auth.register($scope.user).then(function(user) {
         $scope.onRegister(user);

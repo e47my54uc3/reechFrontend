@@ -104,6 +104,12 @@ reech.factory('User', ['$resource', function($resource) {
       method: 'POST',
       params: {},
       isArray: false
+    },
+    setDevice: {
+      url: BaseUrl + "api_users/set_device",
+      method: 'POST',
+      params: {},
+      isArray: false
     }
   }
   );
