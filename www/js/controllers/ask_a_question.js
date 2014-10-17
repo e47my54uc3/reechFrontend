@@ -55,14 +55,24 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 		        options.mimeType = "image/jpeg";
 		        options.chunkedMode = false;
 		        var params = {};
+		        var headers = {
+		        	"X-User-Email": $rootScope.currentUser.email,
+		        	"X-User-Token": $rootScope.currentUser.authentication_token
+		        }
 		        params.question = $scope.question;
 		        options.params = params;
+		        options.headers = headers;
 
 		  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
 		  			$cordovaSpinnerDialog.hide();
-				    alert("upload success");
-				    $rootScope.setProfile();
-				    $state.go("questions");
+		  			if(result.status == 200){
+		  				alert("upload success");
+				    	$rootScope.setProfile();
+				    	$state.go("questions");	
+		  			}else{
+		  				alert("Error while upload a file");
+		  			}
+				    
 				}, function(error) {
 					$cordovaSpinnerDialog.hide();
 					alert("An error has occurred: Code = " + error.code);
