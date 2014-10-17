@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 reech = angular.module('reech', ['ionic', 'ngResource', 'ngCordova', 'arrayFilters', 'Devise', 'ngLodash'])
 
-reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash, $cordovaPush) {
+reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, $http, User, $cordovaContacts, $cordovaDevice, lodash, $window) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,7 +18,8 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     //Set the landing page on page load.
     if (window.cordova) {
       //setup device
-      $rootScope.device = {device_token: $cordovaDevice.getUUID(), platform: $cordovaDevice.getPlatform()}
+      $rootScope.pushNotification = $window.plugins.pushNotification;
+      $rootScope.device = {device_token: localStorage.deviceToken, platform: $cordovaDevice.getPlatform()}
       $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
        $rootScope.allContacts = lodash.remove(result, function(item) { return item.displayName });
        $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return (item.displayName ? item.displayName.toLowerCase() : item.displayName); })
@@ -27,6 +28,94 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
        }, function(err) {
         alert(err);
       });
+
+      // Notification configuaration
+
+      if($cordovaDevice.getPlatform() == "android" || $cordovaDevice.getPlatform() == "Android"){
+        $rootScope.pushConfig = {
+          "senderID": "908230974104",
+          "ecb":"onNotification"
+        };
+      }else{
+        $rootScope.pushConfig = {
+          "badge":"true",
+          "sound":"true",
+          "alert":"true",
+          "ecb":"onNotificationAPN"
+        };
+      }
+
+      
+      $window.onNotificationAPN = function(event){
+        if ( event.other.message )
+        {
+          handlePushNotification(event.other);
+        }
+    
+        if ( event.sound )
+        {
+            var snd = new Media(event.sound);
+            snd.play();
+        }
+    
+        if ( event.badge )
+        {
+            $rootScope.pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+        }
+      }
+
+      $window.onNotification = function(e){
+        switch( e.event )
+          {
+          case 'registered':
+              if ( e.regid.length > 0 )
+              {
+                  $rootScope.device.device_token = e.regid;
+                  localStorage.deviceToken = e.regid;
+                  User.setDevice($rootScope.device, function(res){
+                    if(res.status == 200){
+                      //alert("Device registration success");
+                    }else{
+                      //alert("Something went wrong while registering your device");
+                    }
+                  });
+              }
+          break;
+      
+          case 'message':
+              if ( e.foreground )
+              {
+                  $rootScope.currentUserProfile.notification_count += 1;
+                  if(!$rootScope.$$phase){
+                    $rootScope.$apply();
+                  }
+                  localStorage.currentUserProfile = JSON.stringify($rootScope.currentUserProfile);     
+              }
+              else
+              { 
+                  if ( e.coldstart )
+                  {
+                    //$state.go('notifications');
+                  }
+                  else
+                  {
+                    $state.go('notifications');
+                  }
+              }
+          break;
+      
+          case 'error':
+              alert("ERR  :  " + e.msg);
+          break;
+      
+          default:
+              alert("unknown event");
+          break;
+        }
+      }
+
+
+      //---notifications config. end
 
 
 
@@ -77,8 +166,14 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     $rootScope.currentUser = '';
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserProfile');
+    localStorage.removeItem('deviceToken');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
+    $rootScope.pushNotification.unregister(function(){
+      alert("successfully unregistered.");
+    }, function(){
+      alert("Error while unregistering ur device from GCM.");
+    })
     $state.go("landing");
   }
 
