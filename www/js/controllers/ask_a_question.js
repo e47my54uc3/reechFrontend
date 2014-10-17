@@ -65,14 +65,10 @@ function askAQuestionCtrl($scope, Category, Question, $rootScope, $cordovaCamera
 
 		  		$cordovaFile.uploadFile(BaseUrl + 'post_question_with_image', $scope.avatar, options).then(function(result) {
 		  			$cordovaSpinnerDialog.hide();
-		  			if(result.status == 200){
 		  				alert("upload success");
 				    	$rootScope.setProfile();
-				    	$state.go("questions");	
-		  			}else{
-		  				alert("Error while upload a file");
-		  			}
-				    
+				    	$state.go("questions");		  			
+
 				}, function(error) {
 					$cordovaSpinnerDialog.hide();
 					alert("An error has occurred: Code = " + error.code);
