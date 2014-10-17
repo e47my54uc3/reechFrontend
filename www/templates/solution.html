@@ -57,8 +57,8 @@
     </button> -->
     <div class="row">
       <ion-scroll direction='x' style="width: 100%">
-        <img ng-src="{{currentChatMemberImageUrl}}" title="{{currentChatMemberName}}" ng-if="!currentSolution.current_user_is_solver && !currentSolution.chat_members.length && (currentSolution.purchased || currentSolution.current_user_is_solver)" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" class="button button-small"></img>
-        <img ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.full_name)" class="button button-small" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" ng-src="{{chat_member.image_url != null ? chat_member.image_url : 'img/User-icon1.png'}}" class="logo" style="left: 0 !important; height: 32px; top: 0 !important;" title="{{chat_member.full_name}}"></img>
+        <img ng-src="{{currentChatMemberImageUrl}}" title="{{currentChatMemberName}}" ng-if="!currentSolution.current_user_is_solver && !currentSolution.chat_members.length && (currentSolution.purchased || currentSolution.current_user_is_solver)" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" class="button button-span"></img>
+        <img ng-repeat="chat_member in currentSolution.chat_members" ng-click="setCurrentChatMember(chat_member.id, chat_member.full_name)" class="button button-span" ng-class="{'button-default': chat_member.id == currentChatMemberId, 'button-clear': chat_member.id != currentChatMemberId}" ng-src="{{chat_member.image_url != null ? chat_member.image_url : 'img/User-icon1.png'}}" class="logo" style="left: 0 !important; height: 32px; top: 0 !important;" title="{{chat_member.full_name}}"></img>
       </ion-scroll>
     </div>
     <div ng-if="currentSolution.purchased || currentSolution.current_user_is_solver"> 
@@ -67,9 +67,12 @@
           <div ng-if="chat.from_user_id == currentUser.id" class="col col-67 col-offset-33 card-balanced card" style="background: #388860;color: white; border-radius: 12px;">
             <div class="row">             
               <div class="col col-80" style="margin-top: -7px; ">  
-                <div class="row" style="border-bottom: 1px solid black; ">
-                  <small  class="col col-50"> You wrote </small>
-                  <small  class="col">{{chat.created_at| timeago}}</small>
+                <div class="row  small-font" style="border-bottom: 1px solid black; ">
+                  <span  class="col col-33 ellipsis"> You wrote </span>
+                  <span  class="col">
+                    <span>{{chat.created_at| date:'MM/dd'}},</span>
+                    <span class="ellipsis">{{chat.created_at| timeago}}</span>
+                  </span>
                 </div> 
                 <div class="item-text-wrap">
                   <div class="row">{{chat.message}}</div>
@@ -86,9 +89,12 @@
                 <img ng-src="{{$parent.currentChatMemberImageUrl}}" class="full-image" ></img>
               </div>
               <div class="col col-80" style="margin-top: -7px;">   
-                <div class="row" style="width:100%;border-bottom: 1px solid black;"> 
-                  <small class="ellipsis col col-50">{{$parent.currentChatMemberName}} wrote</small> 
-                  <small class="col">{{chat.created_at| timeago}}</small>
+                <div class="row  small-font" style="width:100%;border-bottom: 1px solid black;"> 
+                  <span class="ellipsis col col-33">{{$parent.currentChatMemberName}} wrote</span> 
+                  <span class="col">
+                    <span>{{chat.created_at| date:'MM/dd'}},</span>
+                    <span class="ellipsis">{{chat.created_at| timeago}}</span>
+                  </span>
                 </div>
                 <div class="item-text-wrap">
                   <div class="row">{{chat.message}}
@@ -101,13 +107,13 @@
       </ion-scroll>             
     </div>    
   </ion-content>
-  <ion-footer-bar class="bar bar-default" ng-if="$parent.currentChatMemberId && (currentSolution.purchased || currentSolution.current_user_is_solver)" style="height: 45px">
-    <form name="chatForm" class="row" style="width:100%; margin-top: -10px;" ng-submit="postMessage()">
+  <ion-footer-bar class="bar bar-dark" ng-if="$parent.currentChatMemberId && (currentSolution.purchased || currentSolution.current_user_is_solver)" style="height: 45px">
+    <form name="chatForm" class="row" style="width:100%; margin-top: -6px;" ng-submit="postMessage()">
       <div class="row item-input-inset">
         <label class="item-input-wrapper">
           <input type="search" ng-model="current_message.message" placeholder="Type your message here ..."/>            
         </label>
-        <button type="submit" class="button button-clear button-icon ion-ios7-chatboxes-outline">
+        <button type="submit" style="margin-top: -4px;" class="button button-clear button-icon ion-ios7-chatboxes-outline">
         </button>
       </div>      
     </form>    

@@ -37,9 +37,9 @@
 					<img ng-src="{{avatar == '' ? 'img/default-image.png' : (avatar)}}" style="height: 100px; width: 100px;">
 				</div>
 			</div>
-
+      <span class="col col-offset-66">{{250 - question.post.length}} characters</span>
 			<label class="item item-input">
-				<textarea ng-model="question.post" placeholder="Tap to ask a question ..." rows="10"></textarea>
+				<textarea ng-model="question.post" ng-trim="false" placeholder="Tap to ask a question ..." rows="10" maxlength="250"></textarea>
 			</label>
 		</div>
 
