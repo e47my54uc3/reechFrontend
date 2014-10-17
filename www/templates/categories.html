@@ -15,14 +15,17 @@
 		</div>
 	</ion-content>
 	<div class="bar bar-footer bar-stable">
-	  	<button class="button button-clear col-10 navbar_bottom" select-categories ng-click="openCategoriesModel()"><i class="ion-ios7-gear-outline" style="font-size: 25px"></i></button>
+		  <span class="col-10">
+		  	<button class="button button-clear button-icon ion-ios7-gear-outline" select-categories ng-click="openCategoriesModel()" style=" position: absolute;
+  bottom: 0;"></button>  	
+		  </span>
 	  	<span class="col">
 	  			<img src="img/reechR.png" class="reechR_img"></img>
 	  	</span>
 	  	<span class="col">
 	      <span class="curio_container">
-	        <img src="img/curio.png" class="curio_img"></img>
-	        <div class="curio_text">{{currentUserProfile.curio_points}}</div>
+	      	<div class="curio_text">{{currentUserProfile.curio_points}}</div>
+	        <img src="img/curio.png" class="curio_img"></img>	        
 				</span>
 	    </span>
 	</div>

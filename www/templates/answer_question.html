@@ -1,17 +1,18 @@
 <ion-modal-view ng-controller="answerQuestionCtrl">
-    <ion-header-bar class="bar-positive">
+  <ion-header-bar class="bar-positive">
     <a class="button button-clear" ng-click="closeAnswerModal()"><i class="icon ion-ios7-close-outline"></i></a>
-      <h1 class="title"> Provide a Solution </h1>
-    </ion-header-bar>
-    <ion-content>
-      <textarea ng-model="model.body" placeholder="Type answer to question here..." rows="8" cols="40"></textarea>
-      <div class="button-bar">
-				<a class="button" ng-click="takePicture()"><i class="icon ion-camera"></i></a>
-				<a class="button" ng-click="model.is_public = !model.is_public"><i class="icon ion-person" ng-if="!model.is_public"></i><i class="icon ion-person-stalker" ng-if="model.is_public"></i><small>({{model.is_public ? "Public" : "Private"}})</small></a>
-				<a class="button button-balanced" ng-disabled="!model.body" ng-click="submit()">Answer</a>
-			</div>
-			<div class="row">
-				<img id="solutionImage" class="full-image"></img>
-			</div>
-    </ion-content>
-  </ion-modal-view>
+    <h1 class="title"> Provide a Solution </h1>
+  </ion-header-bar>
+  <ion-content>
+    <textarea ng-model="model.body" placeholder="Type answer to question here..." rows="8" cols="40"></textarea>
+    <div class="button-bar">
+      <a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
+	  	<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
+		  <a class="button" ng-click="model.is_public = !model.is_public"><i class="icon ion-person" ng-if="!model.is_public"></i><i class="icon ion-person-stalker" ng-if="model.is_public"></i><small>({{model.is_public ? "Public" : "Private"}})</small></a>
+			<a class="button button-balanced" ng-disabled="!model.body" ng-click="submit()">Answer</a>
+		</div>
+		<div class="row">
+			<img ng-src="{{picture ? picture : ''}}" class="full-image"></img>
+		</div>
+  </ion-content>
+</ion-modal-view>
