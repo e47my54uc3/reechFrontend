@@ -24,11 +24,12 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
     });
   }
   $scope.solutionHi5 = function(){
-    Solution.solutionHi5({solution_id: $scope.currentSolution.id}, function(response){
-      $scope.showSolution.hi5_count =  response.hi5_count;
-      $scope.$parent.selectedSolution.hi5_count = response.hi5_count;
-      $rootScope.setProfile();
-    });
+    if($rootScope.currentUser.id != $scope.currentSolution.solver_id)
+      Solution.solutionHi5({solution_id: $scope.currentSolution.id}, function(response){
+        $scope.showSolution.hi5_count =  response.hi5_count;
+        $scope.$parent.selectedSolution.hi5_count = response.hi5_count;
+        $rootScope.setProfile();
+      });
   }
   if($scope.$parent.selectedSolution) {
     $scope.currentSolution = $scope.$parent.selectedSolution;
