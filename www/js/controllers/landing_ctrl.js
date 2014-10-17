@@ -1,5 +1,5 @@
 function landingCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $cordovaSpinnerDialog){
-  
+
   $scope.facebookLogin = function () {
     if(window.cordova) {
       facebookConnectPlugin.login(["email"], function(response){
@@ -12,6 +12,11 @@ function landingCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $co
             $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
             $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
             $rootScope.setProfile();
+            $rootScope.pushNotification.register(function(){
+          //alert("registered with GCM successfully");
+        }, function(){
+          //alert("error");
+        }, $rootScope.pushConfig);
             $cordovaSpinnerDialog.hide();
             $state.go("categories");
           });
