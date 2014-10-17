@@ -1,22 +1,23 @@
 <ion-view title="Notifications">
 
 	<ion-content class="has-subheader">
-		<div class="list">
-			<div class="item item-divider">
+
+		<ion-list>
+			<ion-item class="item-divider">
 				Notifications
-			</div>
-			<div ng-if="notifications.length > 0" reech-modal modal-template="'templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'item-stable'}}">
+			</ion-item>
+			<ion-item ng-if="notifications.length > 0" reech-modal modal-template="'templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'item-stable'}}">
 				{{notification.message}}
 				<span class="item-note">
       				{{notification.created_at | timeago}}
     			</span>
-			</div>
-			<div ng-if="notifications.length == 0" class="item">
-				<button class="button button-full button-clear button-positive">
-  					No notifications
-				</button>
-			</div>
-		</div>
-
+			</ion-item>
+		</ion-list>
+		<ion-infinite-scroll
+		        ng-if="!noMoreNotificationsAvailable"
+		        on-infinite="loadMoreNotifications()"
+		        icon="ion-loading-c"
+		        distance="50%">
+		</ion-infinite-scroll>
 	</ion-content>
 </ion-view>
