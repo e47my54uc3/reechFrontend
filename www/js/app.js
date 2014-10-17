@@ -33,6 +33,9 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
       if($cordovaDevice.getPlatform() == "android" || $cordovaDevice.getPlatform() == "Android"){
         $rootScope.pushConfig = {
+          //for server
+          //"senderID": "88244655731",
+          //for testing
           "senderID": "908230974104",
           "ecb":"onNotification"
         };
