@@ -34,9 +34,9 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       if($cordovaDevice.getPlatform() == "android" || $cordovaDevice.getPlatform() == "Android"){
         $rootScope.pushConfig = {
           //for server
-          //"senderID": "88244655731",
+          "senderID": "88244655731",
           //for testing
-          "senderID": "908230974104",
+          //"senderID": "908230974104",
           "ecb":"onNotification"
         };
       }else{
@@ -48,19 +48,19 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
         };
       }
 
-      
+
       $window.onNotificationAPN = function(event){
         if ( event.other.message )
         {
           handlePushNotification(event.other);
         }
-    
+
         if ( event.sound )
         {
             var snd = new Media(event.sound);
             snd.play();
         }
-    
+
         if ( event.badge )
         {
             $rootScope.pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
@@ -84,7 +84,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
                   });
               }
           break;
-      
+
           case 'message':
               if ( e.foreground )
               {
@@ -92,10 +92,10 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
                   if(!$rootScope.$$phase){
                     $rootScope.$apply();
                   }
-                  localStorage.currentUserProfile = JSON.stringify($rootScope.currentUserProfile);     
+                  localStorage.currentUserProfile = JSON.stringify($rootScope.currentUserProfile);
               }
               else
-              { 
+              {
                   if ( e.coldstart )
                   {
                     //$state.go('notifications');
@@ -106,11 +106,11 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
                   }
               }
           break;
-      
+
           case 'error':
               alert("ERR  :  " + e.msg);
           break;
-      
+
           default:
               alert("unknown event");
           break;
