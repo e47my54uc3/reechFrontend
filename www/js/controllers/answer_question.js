@@ -36,13 +36,18 @@ function answerQuestionCtrl($scope, $ionicPlatform, $ionicPopup, $cordovaCamera,
             options.mimeType = "image/jpeg";
             options.chunkedMode = false;
             var params = {};
+            var headers = {
+              "X-User-Email": $rootScope.currentUser.email,
+              "X-User-Token": $rootScope.currentUser.authentication_token
+            };
+            options.headers = headers;
             params.solution = $scope.model;
             options.params = params;
 
           $cordovaFile.uploadFile(BaseUrl + 'solutions', $scope.picture, options).then(function(result) {
             //$cordovaSpinnerDialog.hide();
             alert("upload success");
-            
+             $scope.$parent.closeAnswerModal();
         }, function(error) {
           //$cordovaSpinnerDialog.hide();
           alert("An error has occurred: Code = " + error.code);
