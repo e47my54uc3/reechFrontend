@@ -26,7 +26,9 @@ function solutionCtrl($scope, $ionicPlatform, $timeout, $filter, Solution, $root
   $scope.solutionHi5 = function(){
     if($rootScope.currentUser.id != $scope.currentSolution.solver_id)
       Solution.solutionHi5({solution_id: $scope.currentSolution.id}, function(response){
-        $scope.showSolution.hi5_count =  response.hi5_count;
+        $scope.currentSolution.hi5_count =  response.hi5_count;
+        $scope.currentSolution.current_user_voted_up_on = true;
+        $scope.$parent.selectedSolution.current_user_voted_up_on = true;
         $scope.$parent.selectedSolution.hi5_count = response.hi5_count;
         $rootScope.setProfile();
       });

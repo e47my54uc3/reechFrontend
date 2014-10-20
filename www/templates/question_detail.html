@@ -53,8 +53,8 @@
             </div>
           </ion-scroll>          
           <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
-            <i class="col col-50 ion-chatbubbles assertive"></i>
-            <i class="col col-offset-20 ion-android-hand royal"></i>
+            <i class="col col-50" ng-class="{'ion-chatbubbles assertive' :solution.has_conversation}"></i>
+            <i class="col col-offset-33 ion-android-hand royal"></i>
           </div>
           <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
             <span class="curio_container">
