@@ -9,7 +9,8 @@ function userSettingsCtrl($scope, UserSetting, User){
   }
 
   UserSetting.get({'id': 'new'}, function(data){
-  	$scope.model = data;  	  	
+  	$scope.model = data;
+    $scope.model.reecher_id = $scope.currentUser.reecher_id;  	
   	if(data.id == null){
       $scope.initializeForNewUser('email_settings');
       $scope.initializeForNewUser('message_settings');	  
@@ -21,7 +22,7 @@ function userSettingsCtrl($scope, UserSetting, User){
 	$scope.changeSetting = function(){
 		if($scope.model.id == null){
   		UserSetting.save({'user_settings': $scope.model}, function(data){
-  			$scope.model = data.user_settings;
+  			$scope.model = data.user_settings;alert("here")
   		});
   	}else{
   		UserSetting.update({'id': $scope.model.id, 'user_settings': $scope.model}, function(data){
