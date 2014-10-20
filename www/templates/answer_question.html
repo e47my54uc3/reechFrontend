@@ -8,7 +8,7 @@
     <div class="button-bar">
       <a class="button" ng-click="takePicture('camera')"><i class="icon ion-camera"></i></a>
 	  	<a class="button" ng-click="takePicture('gallery')"><i class="icon ion-image"></i></a>
-		  <a class="button" ng-click="model.is_public = !model.is_public"><i class="icon ion-person" ng-if="!model.is_public"></i><i class="icon ion-person-stalker" ng-if="model.is_public"></i><small>({{model.is_public ? "Public" : "Private"}})</small></a>
+		  <a class="button small-font" ng-click="model.is_public = !model.is_public"><i class="icon ion-person" ng-if="!model.is_public"></i><i class="icon ion-person-stalker" ng-if="model.is_public"></i><small>({{model.is_public ? "Public" : "Private"}})</small></a>
 			<a class="button button-balanced" ng-disabled="!model.body" ng-click="submit()">Answer</a>
 		</div>
 		<div class="row">
