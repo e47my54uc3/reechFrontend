@@ -29,6 +29,7 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
 
         $cordovaFile.uploadFile(BaseUrl + 'api_users/' + $rootScope.currentUser.id, $scope.avatar, options).then(function(result) {
             alert("upload success");
+            $rootScope.setProfile();
           }, function(error) {
             alert("An error has occurred: Code = " + error.code);
           }, function (progress) {
@@ -36,6 +37,7 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
       }else{
         User.update({id: $rootScope.currentUser.id, user: $scope.attributes}, function(data){
           alert("Profile updated successfully!");
+          $rootScope.setProfile();
         });
       }
     }
