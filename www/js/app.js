@@ -170,6 +170,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserProfile');
     localStorage.removeItem('deviceToken');
+    localStorage.removeItem('selectedCategoriesIds');
     $http.defaults.headers.common["X-User-Email"]= '';
     $http.defaults.headers.common["X-User-Token"]= '';
     $rootScope.pushNotification.unregister(function(){
