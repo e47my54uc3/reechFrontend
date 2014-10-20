@@ -8,7 +8,8 @@
     			  <i class="icon ion-close" ng-click="closeSolutionModal()"></i>
     			  <div class="title text-center">Solution</div>
             <span class="h3 stable col col-offset-90" ng-if="currentSolution.purchased || currentSolution.current_user_is_solver" style="margin-top: -28px;">{{currentSolution.hi5_count}}  
-              <img  src="img/High-Fives.png" ng-click="solutionHi5()" ></img>    
+              <img  src="img/High-Fives.png" ng-click="solutionHi5()" ng-if="!currentSolution.current_user_is_solver && !currentSolution.current_user_voted_up_on" ></img>
+              <img  src="img/High-Fives1.png" ng-if="currentSolution.current_user_is_solver || currentSolution.current_user_voted_up_on" ></img>     
             </span>
   			  </div>
           <div ng-if="showSolution">
