@@ -2,7 +2,7 @@
 <div  ng-controller="reechChatCtrl">
   <ion-content> 
     <div class="main-box">
-  	  <div ng-style="{'min-height': boxHeight+'px'}" back-img="'img/default-image.png'" back-src="selectedQuestion.avatar_file_name">
+  	  <div ng-style="{'min-height': boxHeight+'px'}" back-img="currentSolution.image_url != null ? currentSolution.image_url : 'img/default-image.png'" back-src="currentSolution.image_url">
   		  <div class="winter inner-box has_header">
     		  <div class="item item-icon-left item-icon-right item-positive" style="height: 50px;">
     			  <i class="icon ion-close" ng-click="closeSolutionModal()"></i>
