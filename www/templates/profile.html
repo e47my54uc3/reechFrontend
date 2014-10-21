@@ -6,12 +6,12 @@
 		</div>
 		<div class= "col col-25">
 			<center>
-				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;" ng-click="(currentUser.id == profile.id && !profile.social_user) && takePicture()"/><br /><h6 ng-if="currentUser.id == profile.id && !profile.social_user" ng-click="takePicture()" class="stable"style="font-size:8px; margin-top: 0px;">click to change</h6></center>
+				<img ng-src="{{profile.image_url == null ? 'img/no-image.png' : profile.image_url}}" style="height: 67px;" ng-click="(currentUser.id == profile.id && !profile.social_user) && takePicture()"/><br /><h6 ng-if="currentUser.id == profile.id && !profile.social_user" ng-click="takePicture()" class="stable" style="font-size:8px; margin-top: 0px;">click to change</h6></center>
 			</div>
-			<div class ="col">
+			<div class ="col" style="font-size: 18px;">
 				<div class="row">
-          <div class="col 67 button_bar_icons" class="ellipsis">{{profile.full_name}}</div>
-          <div class="col button_bar_icons" ng-if="currentUser.id == profile.id">{{profile.curio_points}}<img src="img/curio.png" style="height: 16px; margin-left: 2px;"></img></div>
+          <div class="col 67" class="ellipsis">{{profile.full_name}}</div>
+          <div class="col" ng-if="currentUser.id == profile.id">{{profile.curio_points}}<img src="img/curio.png" style="height: 16px; margin-left: 2px;"></img></div>
         </div>
 				<div class="row" style="height: 40px; border-top:2px solid white">
 					<div class="col stable">{{profile.questions_count || 0}} Q</div>

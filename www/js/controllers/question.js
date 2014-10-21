@@ -79,6 +79,7 @@ function questionCtrl($scope, $ionicModal, Question, $rootScope, $filter) {
       $scope.linkQuestionToExpert( $scope.selectedQuestion.question.id, args);
       $scope.init();
       $scope.modalOpened = false;
+      $scope.$parent.closeModal();
     }
   });
 }
