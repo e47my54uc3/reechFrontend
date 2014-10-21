@@ -15,6 +15,6 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="fullscreen" value="true" />
   <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+    <param name="ios-package" value="CDVStatusBar" onload="false"/>
   </feature>
 </widget>
