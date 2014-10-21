@@ -80,7 +80,7 @@ function connectionsCtrl($scope, User, Group, $ionicModal, $filter, $rootScope, 
 				user.groups.push({id: res.groups.id, name: res.groups.name, reecher_id: res.groups.reecher_id});
 				$scope.beforeMemberModal(user.id);
 				$scope.new_group = {member_reecher_ids: [$scope.new_group.member_reecher_ids[0]], reecher_id: $rootScope.currentUser.reecher_id, name: ""};
-				alert("Group created successfully");
+				alert("Group created successfully");				
 			}else{
 				alert("Please try again");
 			}
