@@ -50,14 +50,14 @@
           </div>  
           <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)" >    {{solution.body | limitTo: 70}} <span ng-if="solution.body.length > 70">...</span>
           </div>        
-          <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
+          <div class="row categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver" style="background: #f8f8f8" >
             <i class="col col-50" ng-class="{'ion-chatbubbles assertive' :solution.has_conversation}"></i>
             <i class="col col-offset-33 ion-android-hand royal"></i>
           </div>
-          <div class="row stable-bg categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver">
+          <div class="row categories_footer_text" ng-if="!solution.purchased && !solution.current_user_is_solver" style="background: #f8f8f8">
             <span class="curio_container">
               <img src="img/curio.png" class="curio_img"></img>
-              <div class="curio_text">25</div>
+              <div class="curio_text dark">25</div>
             </span>
           </div>
         </div>
