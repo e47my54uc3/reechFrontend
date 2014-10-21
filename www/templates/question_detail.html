@@ -47,11 +47,9 @@
                 <img class="full-image" ng-src="{{solution.solver_image != null ? solution.solver_image : 'img/no-image.png'}}" ><span class="dark item-text-wrap">{{solution.solver}}</span>
               </div>
             </div>
-          </div>               
-          <ion-scroll direction="y">
-            <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)">    {{solution.body}}        
-            </div>
-          </ion-scroll>          
+          </div>  
+          <div class="item-text-wrap" ng-style="{'max-height': boxHeight-130+'px', 'min-height': boxHeight-130+'px'}" ng-click="openSolutionModal(solution)" >    {{solution.body | limitTo: 70}} <span ng-if="solution.body.length > 70">...</span>
+          </div>        
           <div class="row stable-bg categories_footer_text" ng-if="solution.purchased || solution.current_user_is_solver">
             <i class="col col-50" ng-class="{'ion-chatbubbles assertive' :solution.has_conversation}"></i>
             <i class="col col-offset-33 ion-android-hand royal"></i>
