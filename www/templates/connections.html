@@ -35,7 +35,7 @@
         <ion-scroll style="height: 212px;">
         <ul>
           <li ng-repeat="friend in friends_list" class="item">
-            {{friend.first_name}} {{friend.last_name}}
+            <a ng-click="openProfileModal(friend.id)">{{friend.first_name}} {{friend.last_name}}</a>
 
             <span class="item-note padding-left">
               <button modal-template="'templates/user_groups.html'" modal-before-open="beforeMemberModal(friend.id)" modal-on-close="executeOnClose()" class="button button-small button-light" reech-modal ng-click="openModal()">

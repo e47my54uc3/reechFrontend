@@ -1,5 +1,5 @@
 //<button reech-modal modal-template-url="" modal-before-open="" modal-on-close=""></button>
-reech.directive('reechModal', function($ionicModal, $ionicPlatform, $compile, $parse){
+reech.directive('reechModal', function($ionicModal, $document, $ionicPlatform, $compile, $parse){
 	return{
 		restrict: 'AE',
 		scope: false,
