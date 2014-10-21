@@ -468,3 +468,10 @@ text-align: center;
 .small-font{
   font-size: 60%;
 }
+
+/* for unread notifications */
+  .notification_unread{
+    background-color: #FFE0A3
+  }
+
+/* for unread notifications */

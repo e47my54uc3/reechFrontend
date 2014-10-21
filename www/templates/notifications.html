@@ -6,7 +6,7 @@
 			<ion-item class="item-divider">
 				Notifications
 			</ion-item>
-			<ion-item ng-if="notifications.length > 0" reech-modal modal-template="'templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'item-stable'}}">
+			<ion-item ng-if="notifications.length > 0" reech-modal modal-template="'templates/question_detail.html'" modal-before-open="setQuestion(notification.id, notification.record_id, notification.read)" modal-on-close="refresh()" ng-repeat="notification in notifications" ng-click="openModal()" class="item {{notification.read ? '' : 'notification_unread'}}">
 				{{notification.message}}
 				<span class="item-note">
       				{{notification.created_at | timeago}}
