@@ -32,7 +32,12 @@
   -moz-opacity:.80;
   filter:alpha(opacity=80);
 }
+reech-header{
+  top: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
 
+}
 .centered {
   position: fixed;
   left: 50%;
@@ -49,9 +54,8 @@ img.logoLeaderboard {
 
 }
 img.photo {
-    margin-top: 5px;
-    height: 75px;
-    width: 55px;
+  height: 87px;
+  width: 55px;
 }
 
 .no-padding-margin {
@@ -462,7 +466,7 @@ text-align: center;
 }
 .ellipsis{
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 .small-font{
