@@ -73,15 +73,8 @@ function profilesCtrl($scope, $ionicPopup, User, $rootScope, $cordovaCamera, $st
     ];
 
     $scope.showConfirm = function() {
-      var confirmPopup = $ionicPopup.confirm({
+      var confirmPopup = $ionicPopup.alert({
         templateUrl: 'templates/help.html'
-      });
-      confirmPopup.then(function(res) {
-        if(res) {
-          console.log('You are sure');
-        } else {
-          console.log('You are not sure');
-        }
       });
     };
 }
