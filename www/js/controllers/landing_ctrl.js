@@ -12,11 +12,22 @@ function landingCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $co
             $http.defaults.headers.common["X-User-Email"]= $rootScope.currentUser.email;
             $http.defaults.headers.common["X-User-Token"]= $rootScope.currentUser.authentication_token;
             $rootScope.setProfile();
-            $rootScope.pushNotification.register(function(){
-          //alert("registered with GCM successfully");
-        }, function(){
-          //alert("error");
-        }, $rootScope.pushConfig);
+            $rootScope.pushNotification.register(function(result){
+              alert("registered with GCM/APN successfully");
+              if($rootScope.device.platform == "iPhone"){
+                $rootScope.device.device_token = result;
+                localStorage.deviceToken = result;
+                User.setDevice($rootScope.device, function(res){
+                if(res.status == 200){
+                  alert("iPhone Device registration success");
+                }else{
+                  alert("Something went wrong while registering your device");
+                }
+                });
+              }
+            }, function(){
+              //alert("error");
+            }, $rootScope.pushConfig);
             $cordovaSpinnerDialog.hide();
             $state.go("categories");
           });

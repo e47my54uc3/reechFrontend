@@ -56,8 +56,19 @@ function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamer
 
         $cordovaFile.uploadFile(BaseUrl + 'users', $scope.user_profile.picture, options).then(function(result) {
           $scope.onRegister(result);
-          $rootScope.pushNotification.register(function(){
-            //alert("registered with GCM successfully");
+          $rootScope.pushNotification.register(function(result){
+            alert("registered with GCM/APN successfully");
+            if($rootScope.device.platform == "iPhone"){
+              $rootScope.device.device_token = result;
+              localStorage.deviceToken = result;
+              User.setDevice($rootScope.device, function(res){
+              if(res.status == 200){
+                alert("iPhone Device registration success");
+              }else{
+                alert("Something went wrong while registering your device");
+              }
+              });
+            }
           }, function(){
             //alert("error");
           }, $rootScope.pushConfig);
