@@ -1,5 +1,5 @@
 function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamera, $cordovaFile){
-  
+
   $scope.user = {
     first_name: '',
     last_name: '',
@@ -9,7 +9,7 @@ function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamer
     phone_number: '',
     invite_id: localStorage.inviteId,
     invite_code: localStorage.inviteCode,
-    device: $rootScope.device    
+    device: $rootScope.device
   };
   $scope.user_profile = {picture: ''}
   $scope.takePicture = function(type) {
@@ -58,7 +58,7 @@ function registrationCtrl($scope, $rootScope, $state, Auth, $http, $cordovaCamer
           $scope.onRegister(result);
           $rootScope.pushNotification.register(function(result){
             alert("registered with GCM/APN successfully");
-            if($rootScope.device.platform == "iPhone"){
+            if($rootScope.device.platform == "iOS"){
               $rootScope.device.device_token = result;
               localStorage.deviceToken = result;
               User.setDevice($rootScope.device, function(res){

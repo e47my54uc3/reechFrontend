@@ -1,5 +1,5 @@
 function loginCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $cordovaSpinnerDialog){
-  
+
 	$scope.credentials = {device: $rootScope.device};
 	$scope.login = function(){
 		Auth.login($scope.credentials).then(function(user) {
@@ -10,7 +10,7 @@ function loginCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $cord
       		$rootScope.setProfile();
       		$rootScope.pushNotification.register(function(result){
 				alert("registered with GCM/APN successfully");
-				if($rootScope.device.platform == "iPhone"){
+				if($rootScope.device.platform == "iOS"){
 					$rootScope.device.device_token = result;
 					localStorage.deviceToken = result;
 					User.setDevice($rootScope.device, function(res){

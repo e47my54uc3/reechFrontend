@@ -25,7 +25,14 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
       $rootScope.pushNotification = $window.plugins.pushNotification;
       $rootScope.device = {device_token: localStorage.deviceToken, platform: $cordovaDevice.getPlatform()}
       $cordovaContacts.find({filter: "", multiple: true, fields: ["emails", "displayName", "phoneNumbers", "id"]}).then(function(result) {
-       $rootScope.allContacts = lodash.remove(result, function(item) { return item.displayName });
+
+       if($rootScope.device.platform == "iOS"){
+         for(var con in result){
+           if(result[con].name && result[con].name.formatted)
+             result[con].displayName = result[con].name.formatted;
+         }
+       }
+       $rootScope.allContacts = lodash.remove(result, function(item) { return (item.displayName || item.formatted) });
        $rootScope.allContacts = lodash.sortBy($rootScope.allContacts, function(item) {return (item.displayName ? item.displayName.toLowerCase() : item.displayName); })
        //$rootScope.contacts = lodash.groupBy($rootScope.contacts, function(item) {return item.displayName[0].toUpperCase(); });
        $rootScope.contacts = [];
