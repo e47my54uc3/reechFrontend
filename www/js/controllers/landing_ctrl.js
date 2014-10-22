@@ -18,15 +18,13 @@ function landingCtrl($scope, $rootScope, $state, Auth, $http, $window, User, $co
                 $rootScope.device.device_token = result;
                 localStorage.deviceToken = result;
                 User.setDevice($rootScope.device, function(res){
-                if(res.status == 200){
                   alert("iPhone Device registration success");
-                }else{
+                }, function(err){
                   alert("Something went wrong while registering your device");
-                }
                 });
               }
-            }, function(){
-              //alert("error");
+            }, function(err){
+              alert("error" + err);
             }, $rootScope.pushConfig);
             $cordovaSpinnerDialog.hide();
             $state.go("categories");
