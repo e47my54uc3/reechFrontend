@@ -54,9 +54,13 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
 
       $window.onNotificationAPN = function(event){
-        if ( event.other.message )
+        if ( event.message )
         {
-          handlePushNotification(event.other);
+          $rootScope.currentUserProfile.notification_count += 1;
+          if(!$rootScope.$$phase){
+            $rootScope.$apply();
+          }
+          localStorage.currentUserProfile = JSON.stringify($rootScope.currentUserProfile);
         }
 
         if ( event.sound )
@@ -67,7 +71,7 @@ reech.run(function($ionicPlatform, $rootScope, $location, $state, $stateParams, 
 
         if ( event.badge )
         {
-            $rootScope.pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+            $rootScope.pushNotification.setApplicationIconBadgeNumber(function(){}, function(){}, event.badge);
         }
       }
 
